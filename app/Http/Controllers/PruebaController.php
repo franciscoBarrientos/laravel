@@ -12,7 +12,8 @@ namespace Veterinaria\Http\Controllers;
 class PruebaController extends Controller {
 
     public function index () {
-        return "Hola desde Controller";
+        //return "Hola desde Controller";
+        return view('sidebar');
     }
 
     public function name ($nombre) {

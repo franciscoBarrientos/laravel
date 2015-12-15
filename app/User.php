@@ -36,4 +36,10 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function setPasswordAttribute($pass){
+        if (!empty($pass)){
+            $this->attributes['password'] = \Hash::make($pass);
+        }
+    }
 }
