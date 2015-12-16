@@ -25,3 +25,32 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+Sistema de gestión de pacientes y control de abastecimiento
+
+#VIDA ANIMAL
+
+## Instalación
+
++ Después de descargar el proyecto entramos a este.
+
+        $ cd nombreRepositorio
+
++ Ejecutamos el siguiente comando.
+
+        $ composer install
+    
++ Modificamos el nombre del archivo __.env.example.__ por __.env__ y agregamos nuestras credenciales.
+
++ Ejecutamos las migraciones.
+
+        $ php artisan migrate
+
++ Por ultimo solo debemos generar una key para nuestra app.
+
+         $ php artisan key:generate
+
++ Listo ya podemos ejecutar el proyecto.
+
+        $ php artisan serve
+		
