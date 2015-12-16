@@ -1,0 +1,37 @@
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+
+.container-float{
+    width:100%;
+}
+
+.container-margin-top{
+    margin-top:10px;
+}
+
+
+.icono-edit:before{
+    font-family: FontAwesome;
+    content:"\f040";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-save:before{
+    font-family: FontAwesome;
+    content:"\f0c7";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icono-remove:before{
+    font-family: FontAwesome;
+    content:"\f00d";
+    color:#FFF;
+    font-size: 15px;
+}

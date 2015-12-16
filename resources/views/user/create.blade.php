@@ -1,7 +1,11 @@
 @extends('layouts.principal')
 @section('content')
+<div class="container-fluid">
         {!!Form::open(['route'=>'usuario.store', 'method'=>'POST'])!!}
             @include('user.forms.user')
-            {!!Form::submit('Guardar', ['class'=>"btn btn-primary"])!!}
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save"></i> Guardar
+            </button>
         {!!Form::close()!!}
+</div>
 @endsection
