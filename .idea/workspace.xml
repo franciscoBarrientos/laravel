@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e498ad4b-72da-4ee7-8873-2c938ba1847f" name="Default" comment="" />
-    <list id="d7737f4e-01f0-42af-9431-1a5e437a1731" name="composer" comment="se cambia .env.example">
-      <change type="DELETED" beforePath="D:\Desarrollo\usr\local\cmd\cl\ucentral\laravel\.env.example" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/laravel.iml" afterPath="$PROJECT_DIR$/.idea/laravel.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+    <list default="true" id="e498ad4b-72da-4ee7-8873-2c938ba1847f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="laravel.iws" />
@@ -381,7 +377,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e498ad4b-72da-4ee7-8873-2c938ba1847f" name="Default" comment="" />
-      <changelist id="d7737f4e-01f0-42af-9431-1a5e437a1731" name="composer" comment="se cambia .env.example" />
+      <changelist id="" name="composer" comment="se cambia .env.example" />
       <created>1449031955279</created>
       <updated>1449031955279</updated>
     </task>
@@ -393,7 +389,11 @@
       <created>1450332042497</created>
       <updated>1450332042497</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="se cambia .env.example">
+      <created>1450332065194</created>
+      <updated>1450332065194</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -475,7 +475,8 @@
     </option>
     <MESSAGE value="composer" />
     <MESSAGE value="login, y middleware" />
-    <option name="LAST_COMMIT_MESSAGE" value="login, y middleware" />
+    <MESSAGE value="se cambia .env.example" />
+    <option name="LAST_COMMIT_MESSAGE" value="se cambia .env.example" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -765,7 +766,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="36" selection-start="582" selection-end="582" vertical-scroll-proportion="-11.769231" vertical-offset="119" max-vertical-offset="629">
           <folding>
-            <element signature="e#47#59#0" expanded="true" />
+            <element signature="e#47#59#0" expanded="false" />
           </folding>
         </state>
       </provider>
