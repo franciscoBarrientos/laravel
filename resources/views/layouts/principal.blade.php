@@ -48,15 +48,15 @@
     <ul class="nav navbar-top-links navbar-right float-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                <?php echo(ucfirst(strtolower(Auth::user()->name))); ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user"></i> Perfil de Usuario</a>
+                <li><a href="/usuario/{!!Auth::user()->id!!}/edit"><i class="fa fa-user"></i> Perfil de Usuario</a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear"></i> Configuración</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="#"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
+                <li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -69,7 +69,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="#"><i class="fa fa-dashboard"></i> Panel</a>
+                    <a href="/home"><i class="fa fa-dashboard"></i> Panel</a>
                 </li>
                 <li>
                     <a href="/usuario"><i class="fa fa-users"></i> Administrar Usuarios</a>

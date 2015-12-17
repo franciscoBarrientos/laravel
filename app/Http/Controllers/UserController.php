@@ -3,15 +3,21 @@
 namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
+use Veterinaria\Http\Requests\UserCreateRequest;
+use Veterinaria\Http\Requests\UserUpdateRequest;
 use Veterinaria\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+
+    public function __construct(){
+        $this -> middleware('auth');
+        $this -> middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::paginate(10);
         return view('user.index', compact('users'));
     }
 
@@ -41,7 +47,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
         //
         User::Create([
@@ -88,7 +94,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         //
         $user = User::find($id);

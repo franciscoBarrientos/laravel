@@ -63,8 +63,11 @@
         <!-- Header -->
         <a name="signin"></a>
         <div class="intro-header grayscale">
-            <div class="container">
+            <div class="login-error">
                 @include('alerts.errors')
+                @include('alerts.request')
+            </div>
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="intro-message">
@@ -79,7 +82,9 @@
                                     <br/>
                                     <ul class="list-inline intro-form-buttons">
                                         <li>
-                                            <button class="btn btn-default btn-lg" onclick="submit()"><i class="fa fa-sign-in fa-fw"></i><span class="network-name">Iniciar Sesión</span></button>
+                                            <button class="btn btn-default btn-lg" onclick="submit()">
+                                                <i class="fa fa-sign-in"></i><span class="network-name">Iniciar Sesión</span>
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>

@@ -1,5 +1,6 @@
 @extends('layouts.principal')
 @section('content')
+@include('alerts.request')
 <div class="container-fluid">
     {!!Form::model($user,['route'=>['usuario.update',$user->id], 'method'=>'PUT'])!!}
         @include('user.forms.user')

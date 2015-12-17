@@ -9,7 +9,8 @@
             {{Session::get('message')}}
         </div>
     @endif
-    <div id="tableUser">
+
+    <div id="tableUser" class="table-responsive">
         <table class="table">
             <thead>
                 <th>Usuario</th>
@@ -33,5 +34,6 @@
             </tbody>
             @endforeach
         </table>
+        <div>{!! $users->render() !!}</div>
     </div>
 @endsection
