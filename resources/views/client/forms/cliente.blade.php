@@ -20,9 +20,9 @@
 </div>
 <div class="form-group">
     {!!Form::label('Teléfono celular:')!!}
-    {!!Form::text('cellphone', $client->client_cellphone,['class'=>'form-control', 'maxlength'=>'8', 'placeholder'=>'8123XXXX'])!!}
+    {!!Form::text('cellphone', $client->client_cellphone,['class'=>'form-control', 'maxlength'=>'15', 'placeholder'=>'+56 9 8765 4321'])!!}
 </div>
 <div class="form-group">
     {!!Form::label('Teléfono fijo:')!!}
-    {!!Form::text('phone', $client->client_phone,['class'=>'form-control', 'placeholder'=>'02-22233114'])!!}
+    {!!Form::text('phone', $client->client_phone,['class'=>'form-control', 'maxlength'=>'12', 'placeholder'=>'02 2876 5432'])!!}
 </div>

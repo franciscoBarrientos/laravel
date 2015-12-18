@@ -1,19 +1,13 @@
 @extends('layouts.principal')
 @section('content')
-    @if(Session::has('message'))
-        <div class="alert alert-success alert-dismissible" role="alert"">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                <span class="hide">Close</span>
-            </button>
-            {{Session::get('message')}}
-        </div>
-    @endif
-    <div id="tableUser">
+    @include('alerts.message')
+
+    <div id="tableUser" class="table-responsive">
         <table class="table">
             <thead>
                 <th>Usuario</th>
-                <th colspan="3">Correo</th>
+                <th>Correo</th>
+                <th colspan="2">Acciones</th>
             </thead>
 
             @foreach($users as $user)
@@ -33,5 +27,6 @@
             </tbody>
             @endforeach
         </table>
+        <div>{!! $users->render() !!}</div>
     </div>
 @endsection

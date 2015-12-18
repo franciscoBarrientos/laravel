@@ -3,17 +3,16 @@
 namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Veterinaria\Administrator;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
-use Veterinaria\Http\Requests\UserCreateRequest;
-use Veterinaria\Http\Requests\UserUpdateRequest;
 use Veterinaria\User;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
 
-class UserController extends Controller
+class AdministratorController extends Controller
 {
-
     public function __construct(){
         $this -> middleware('auth');
         $this -> middleware('admin');
@@ -25,9 +24,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        $users = User::paginate(10);
-        return view('user.index', compact('users'));
+        $administrators = Administrator::paginate(10);
+        $users = User::all();
+        return view('administrator.index', compact('administrators','users'));
     }
 
     /**
@@ -37,8 +36,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-        return view('user.create');
+        $users = User::all();
+        $administrators = Administrator::all();
+        return view('administrator.create',compact('users','administrators'));
     }
 
     /**
@@ -47,19 +47,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserCreateRequest $request)
+    public function store(Request $request)
     {
-        //
-        User::Create([
-            'name' => $request['name']
-            , 'email' => $request['email']
-            //Se encripta en el UserController
-            //, 'password' => bcrypt($request['password'])
-            , 'password' => $request['password']
+        Administrator::Create([
+            'user_id' => $request['user_id']
         ]);
 
-        Session::flash('message', 'Usuario creado correctamente');
-        return Redirect::to('/usuario');
+        Session::flash('message', 'Administrador creado correctamente');
+        return Redirect::to('/administrator');
     }
 
     /**
@@ -81,10 +76,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
-        $user = User::find($id);
-
-        return view('user.edit', ['user'=>$user]);
+        return Redirect::to('/administrator');
     }
 
     /**
@@ -94,15 +86,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $user = User::find($id);
-        $user -> fill($request->all());
-        $user -> save();
-
-        Session::flash('message', 'Usuario editado correctamente');
-        return Redirect::to('/usuario');
     }
 
     /**
@@ -113,8 +99,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        Session::flash('message','Usuario Eliminado Correctamente');
-        return Redirect::to('/usuario');
+        Administrator::destroy($id);
+        Session::flash('message','Administrador Eliminado Correctamente');
+        return Redirect::to('/administrator');
     }
 }
