@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \Veterinaria\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Veterinaria\Http\Middleware\RedirectIfAuthenticated::class,
+        'admin' => \Veterinaria\Http\Middleware\Admin::class,
     ];
 }

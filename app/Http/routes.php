@@ -48,5 +48,11 @@ Route::get('reviews', 'FrontController@reviews');
 */
 
 Route::resource('/', 'FrontController');
-Route::get('contacto', 'FrontController@contact');
+//Route::get('contact', 'FrontController@contact');
 Route::resource('cliente', 'ClientController');
+Route::resource('usuario', 'UserController');
+//Route::resource('sidebar', 'PruebaController');
+Route::resource('login', 'LogController');
+Route::get('logout', 'LogController@logout');
+Route::resource('home', 'FrontController@home');
+Route::resource('administrator', 'AdministratorController');
