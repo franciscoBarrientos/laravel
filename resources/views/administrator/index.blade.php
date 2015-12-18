@@ -20,7 +20,7 @@
             </td>
             <td><?php echo($user->email); ?></td>
             <td>
-                {!!Form::open(['route'=>['administrator.destroy',$administrator->id], 'method'=>'DELETE'])!!}
+                {!!Form::open(['route'=>['administrator.destroy',$administrator->user_id], 'method'=>'DELETE'])!!}
                 <button type="submit" class="btn btn-danger">
                     <i class="fa fa-user-times"></i> Eliminar
                 </button>
