@@ -73,13 +73,13 @@
                 </li>
 
                 <li>
-                    <a href="/cliente"><i class="fa fa-user-md"></i> Cliente</a>
+                    <a href="/client"><i class="fa fa-user-md"></i> Cliente</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{!! URL::to('/cliente/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                            <a href="{!! URL::to('/client/create') !!}"><i class="fa fa-plus"></i> Crear</a>
                         </li>
                         <li>
-                            <a href="{!! URL::to('/cliente') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                            <a href="{!! URL::to('/client') !!}"><i class="fa fa-th-list"></i> Listar</a>
                         </li>
                     </ul>
                 </li>

@@ -49,7 +49,7 @@ Route::get('reviews', 'FrontController@reviews');
 
 Route::resource('/', 'FrontController');
 //Route::get('contact', 'FrontController@contact');
-Route::resource('cliente', 'ClientController');
+Route::resource('client', 'ClientController');
 Route::resource('usuario', 'UserController');
 //Route::resource('sidebar', 'PruebaController');
 Route::resource('login', 'LogController');

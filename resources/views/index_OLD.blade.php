@@ -14,7 +14,7 @@
     <h1 class="pacifico fonts-high green-color">Vida Animal</h1>
     <h2>Cariño y profesionalismo</h2>
     <nav>
-        {!!link_to_route('cliente.index', $title = 'Acceso');!!}
+        {!!link_to_route('client.index', $title = 'Acceso');!!}
         <!--
         <a href="contact.html" class="margin-right">Contacto</a>
         <a href="">Nosotros</a>

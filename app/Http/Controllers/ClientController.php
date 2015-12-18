@@ -3,7 +3,6 @@
 namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Veterinaria\Http\Requests;
@@ -13,6 +12,9 @@ use Veterinaria\Client;
 
 class ClientController extends Controller
 {
+    public function __construct(){
+        $this -> middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +22,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //comments to use pagination
-        //$clients = Client::All();
-        $clients = Client::paginate(2);
+        $clients = Client::paginate(10);
         return view('client.index', compact('clients'));
-
     }
 
     /**
@@ -48,17 +47,17 @@ class ClientController extends Controller
     {
         //return "Exito";
         Client::create([
-            'client_name' => $request['client_name']
-            , 'client_last_name_p' => $request['client_last_name_p']
-            , 'client_last_name_m' => $request['client_last_name_m']
-            , 'client_rut' => $request['client_rut']
-            , 'client_direction' => $request['client_direction']
-            , 'client_cellphone' => $request['client_cellphone']
-            , 'client_phone' => $request['client_phone']
+              'name'        => $request['name']
+            , 'lastname'  => $request['lastname']
+            , 'rut'         => $request['rut']
+            , 'address'   => $request['address']
+            , 'cellphone'   => $request['cellphone']
+            , 'phone'       => $request['phone']
+            , 'email'       => $request['email']
         ]);
 
         Session::flash('message', 'Cliente creado correctamente');
-        return Redirect::to('/cliente');
+        return Redirect::to('/client');
     }
 
     /**
@@ -93,7 +92,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientCreateRequest $request, $id)
     {
         //
         $client = Client::find($id);
@@ -101,7 +100,7 @@ class ClientController extends Controller
         $client -> save();
 
         Session::flash('message', 'Cliente editado correctamente');
-        return Redirect::to('/cliente');
+        return Redirect::to('/client');
     }
 
     /**
@@ -115,8 +114,8 @@ class ClientController extends Controller
         //
         Client::destroy($id);
 
-        Session::flash('message', 'Usuario eliminado correctamente');
-        return Redirect::to('/cliente');
+        Session::flash('message', 'Cliente eliminado correctamente');
+        return Redirect::to('/client');
     }
 }
 
