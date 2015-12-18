@@ -73,28 +73,23 @@
                 </li>
 
                 <li>
-                    <a href="/cliente"><i class="fa fa-user-md"></i> Cliente</a>
+                    <a href="/client"><i class="fa fa-user-md"></i> Cliente</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{!! URL::to('/cliente/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                            <a href="{!! URL::to('/client/create') !!}"><i class="fa fa-plus"></i> Crear</a>
                         </li>
                         <li>
-                            <a href="{!! URL::to('/cliente') !!}"><i class="fa fa-th-list"></i>Listar</a>
+                            <a href="{!! URL::to('/client') !!}"><i class="fa fa-th-list"></i> Listar</a>
                         </li>
                     </ul>
                 </li>
 
                 <?php
-                    $administrators = \Veterinaria\Administrator::all();
-                    $flag = 0;
-                    foreach($administrators as $administrator){
-                        if(Auth::user()->id == $administrator->user_id){
-                            $flag = 1;
-                        }
-                    }
+                    $admin = \Veterinaria\Administrator::find(Auth::user()->id);
+                    $userId = (explode(",", $admin["user_id"])[0]);
                 ?>
 
-                @if($flag == 1)
+                @if($userId == Auth::user()->id)
                 <li>
                     <a href=""><i class="fa fa-gear"></i> Administrar</a>
                     <ul class="nav nav-second-level">
