@@ -1,7 +1,7 @@
 {
   "name": "Holder",
   "version": "2.4.1",
-  "summary": "client side image placeholders",
+  "summary": "forms side image placeholders",
   "description": "Holder uses SVG to render image placeholders entirely in browser.",
   "author": {
     "name": "Ivan Malopinsky",
@@ -15,7 +15,7 @@
   "keywords": [
     "images",
     "placeholders",
-    "client-side",
+    "forms-side",
     "canvas",
     "generation",
     "development",

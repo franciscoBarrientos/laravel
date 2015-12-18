@@ -115,7 +115,7 @@ class ClientController extends Controller
         Client::destroy($id);
 
         Session::flash('message', 'Cliente eliminado correctamente');
-        return Redirect::to('/client');
+        return Redirect::to('/clinet');
     }
 }
 

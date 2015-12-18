@@ -36,9 +36,18 @@ class AdministratorController extends Controller
      */
     public function create()
     {
+        $userList = array();
         $users = User::all();
-        $administrators = Administrator::all();
-        return view('administrator.create',compact('users','administrators'));
+        foreach($users as $user){
+            $admin = Administrator::find($user->id);
+            $userId = (explode(",", $admin["user_id"])[0]);
+
+            if($userId != $user->id){
+                array_push($userList, $user);
+            }
+        }
+
+        return view('administrator.create',compact('userList'));
     }
 
     /**
