@@ -1,5 +1,6 @@
 @extends('layouts.principal')
 @section('content')
+        @include('alerts.request')
         {!!Form::open(['route'=>'cliente.store', 'method'=>'POST'])!!}
             <div class="form-group">
                 {!!Form::label('Nombre:')!!}

@@ -25,7 +25,7 @@ class UserUpdateRequest extends Request
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:users|email'
+            'email' => 'required|email'
         ];
     }
 }

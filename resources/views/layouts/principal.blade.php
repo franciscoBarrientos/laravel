@@ -51,12 +51,12 @@
                 <?php echo(ucfirst(strtolower(Auth::user()->name))); ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="/usuario/{!!Auth::user()->id!!}/edit"><i class="fa fa-user"></i> Perfil de Usuario</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear"></i> Configuración</a>
+                <li>
+                    <a href="/usuario/{!!Auth::user()->id!!}/edit"><i class="fa fa-user"></i> Perfil de Usuario</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
+                <li>
+                    <a href="/logout"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -71,17 +71,58 @@
                 <li>
                     <a href="/home"><i class="fa fa-dashboard"></i> Panel</a>
                 </li>
+
                 <li>
-                    <a href="/usuario"><i class="fa fa-users"></i> Administrar Usuarios</a>
+                    <a href="/cliente"><i class="fa fa-user-md"></i> Cliente</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{!! URL::to('/usuario/create') !!}"><i class="fa fa-user-plus"></i> Crear</a>
+                            <a href="{!! URL::to('/cliente/create') !!}"><i class="fa fa-plus"></i> Crear</a>
                         </li>
                         <li>
-                            <a href="{!! URL::to('/usuario') !!}"><i class="fa fa-th-list"></i>Listar</a>
+                            <a href="{!! URL::to('/cliente') !!}"><i class="fa fa-th-list"></i>Listar</a>
                         </li>
                     </ul>
                 </li>
+
+                <?php
+                    $administrators = \Veterinaria\Administrator::all();
+                    $flag = 0;
+                    foreach($administrators as $administrator){
+                        if(Auth::user()->id == $administrator->user_id){
+                            $flag = 1;
+                        }
+                    }
+                ?>
+
+                @if($flag == 1)
+                <li>
+                    <a href=""><i class="fa fa-gear"></i> Administrar</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/usuario"><i class="fa fa-users"></i> Usuarios</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/usuario/create') !!}"><i class="fa fa-user-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/usuario') !!}"><i class="fa fa-th-list"></i>Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/administrator"><i class="fa fa-wrench"></i> Administradores</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/administrator/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/administrator') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                @endif
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

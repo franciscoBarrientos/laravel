@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLevelsToUsersTable extends Migration
+class CreateAdministratorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class AddLevelsToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('level_id')->default(2);
+        Schema::create('administrators', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->references('id')->on('users');;
+            $table->timestamps();
         });
     }
 
@@ -24,8 +26,6 @@ class AddLevelsToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('level_id');
-        });
+        Schema::drop('administrators');
     }
 }

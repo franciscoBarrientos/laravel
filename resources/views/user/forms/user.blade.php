@@ -10,4 +10,3 @@
         {!!Form::label('Contraseña:')!!}
         {!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Password'])!!}
     </div>
-

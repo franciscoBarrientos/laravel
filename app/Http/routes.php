@@ -55,4 +55,4 @@ Route::resource('usuario', 'UserController');
 Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
 Route::resource('home', 'FrontController@home');
-
+Route::resource('administrator', 'AdministratorController');

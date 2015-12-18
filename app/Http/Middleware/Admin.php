@@ -5,6 +5,7 @@ namespace Veterinaria\Http\Middleware;
 use Closure;
 use Session;
 use Illuminate\Contracts\Auth\Guard;
+use Veterinaria\Administrator;
 
 class Admin
 {
@@ -21,8 +22,18 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next){
-        if($this->auth->user()->id != 1){
-            Session::flash('message-error','Sin privilegios');
+        $administrators = Administrator::all();
+
+        $flag = 0;
+
+        foreach($administrators as $administrator){
+            if($administrator->user_id == $this->auth->user()->id){
+                $flag = 1;
+            }
+        }
+
+        if($flag == 0){
+            Session::flash('message-error','Sin privilegios de administrador');
             return redirect()->to('home');
         }
 
