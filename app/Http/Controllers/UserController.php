@@ -44,7 +44,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Veterinaria\Http\Requests\UserCreateRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(UserCreateRequest $request)
@@ -90,8 +90,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Veterinaria\Http\Requests\UserUpdateRequest $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UserUpdateRequest $request, $id)

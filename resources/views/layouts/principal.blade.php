@@ -73,13 +73,25 @@
                 </li>
 
                 <li>
-                    <a href="/client"><i class="fa fa-user-md"></i> Cliente</a>
+                    <a href="/client"><i class="fa fa-user-plus"></i> Cliente</a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{!! URL::to('/client/create') !!}"><i class="fa fa-plus"></i> Crear</a>
                         </li>
                         <li>
                             <a href="{!! URL::to('/client') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{!! URL::to('/productType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                        </li>
+                        <li>
+                            <a href="{!! URL::to('/productType') !!}"><i class="fa fa-th-list"></i> Listar</a>
                         </li>
                     </ul>
                 </li>
@@ -97,7 +109,7 @@
                             <a href="/usuario"><i class="fa fa-users"></i> Usuarios</a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="{!! URL::to('/usuario/create') !!}"><i class="fa fa-user-plus"></i> Crear</a>
+                                    <a href="{!! URL::to('/usuario/create') !!}"><i class="fa fa-plus"></i> Crear</a>
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('/usuario') !!}"><i class="fa fa-th-list"></i>Listar</a>
