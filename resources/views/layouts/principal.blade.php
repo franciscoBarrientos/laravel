@@ -96,6 +96,18 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="/provider"><i class="fa fa-truck"></i> Proveedor</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{!! URL::to('/provider/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                        </li>
+                        <li>
+                            <a href="{!! URL::to('/provider') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <?php
                     $admin = \Veterinaria\Administrator::find(Auth::user()->id);
                     $userId = (explode(",", $admin["user_id"])[0]);

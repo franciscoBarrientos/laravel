@@ -94,10 +94,42 @@ class ProviderController extends Controller
     {
         $provider = Provider::find($id);
         $provider -> fill($request->all());
-        $provider -> save();
 
-        Session::flash('message', 'Proveedor editado correctamente');
-        return Redirect::to('/provider');
+        $rut = $provider -> rut.'-'.$provider->verifying_digit;
+
+        if(strpos($rut,"-")==false){
+            $rutArray[0] = substr($rut, 0, -1);
+            $rutArray[1] = substr($rut, -1);
+        }else{
+            $rutArray = explode("-", trim($rut));
+        }
+        
+        $rutNew = str_replace(".", "", trim($rutArray[0]));
+        $factor = 2;
+        $sum = 0;
+        
+        for($i = strlen($rutNew)-1; $i >= 0; $i--):
+            $factor = $factor > 7 ? 2 : $factor;
+            $sum += $rutNew{$i}*$factor++;
+        endfor;
+        
+        $rest = $sum % 11;
+        $dv = 11 - $rest;
+        
+        if($dv == 11){
+            $dv = 0;
+        }else if($dv == 10){
+            $dv = "k";
+        }
+        
+        if($dv == trim(strtolower($rutArray[1]))){
+            $provider -> save();
+            Session::flash('message', 'Proveedor editado correctamente');
+            return Redirect::to('/provider');
+        }else{
+            Session::flash('message-error', 'El RUT no es correcto');
+            return view('provider.edit', compact('provider'));
+        }
     }
 
     /**
