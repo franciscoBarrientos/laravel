@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('content')
     @include('alerts.message')
-    <div id="tableClient">
+    <div>
         <table class="table">
             <thead>
                 <th>Tipo de Producto</th>

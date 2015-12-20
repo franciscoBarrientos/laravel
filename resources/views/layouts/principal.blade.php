@@ -85,6 +85,18 @@
                 </li>
 
                 <li>
+                    <a href="/product"><i class="fa fa-cart-plus "></i> Productos</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{!! URL::to('/product/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                        </li>
+                        <li>
+                            <a href="{!! URL::to('/product') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
                     <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
                     <ul class="nav nav-second-level">
                         <li>
