@@ -26,6 +26,6 @@ class AddTestUserToAdministratorsTable extends Migration
      */
     public function down()
     {
-        DB::table('users')->where('user_id', '=', 1)->delete();
+        DB::table('administrators')->where('user_id', '=', 1)->delete();
     }
 }

@@ -3,15 +3,17 @@
 namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
-use Veterinaria\Http\Requests;
-use Veterinaria\Http\Requests\LoginRequest;
-use Veterinaria\Http\Controllers\Controller;
 
-class LogController extends Controller
-{
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Veterinaria\Http\Requests;
+use Veterinaria\Http\Controllers\Controller;
+use Veterinaria\ProductType;
+
+class ProductTypeController extends Controller{
+    public function __construct(){
+        $this -> middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +21,8 @@ class LogController extends Controller
      */
     public function index()
     {
-        return view('/');
+        $productTypes = ProductType::paginate(10);
+        return view('productType.index', compact('productTypes'));
     }
 
     /**
@@ -29,22 +32,23 @@ class LogController extends Controller
      */
     public function create()
     {
-        //
+        return view('productType.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Veterinaria\Http\Requests\LoginRequest $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
-        if(Auth::attempt(['email'=>$request['email'], 'password'=>$request['password']])){
-            return Redirect::to('/home');
-        }
-        Session::flash('message-error', 'Datos incorrectos');
-        return Redirect::to('/');
+        ProductType::Create([
+            'description' => $request['description']
+        ]);
+
+        Session::flash('message', 'Tipo de producto creado correctamente');
+        return Redirect::to('/productType');
     }
 
     /**
@@ -66,7 +70,9 @@ class LogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productType = ProductType::find($id);
+
+        return view('productType.edit', ['productType'=>$productType]);
     }
 
     /**
@@ -78,7 +84,12 @@ class LogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $productTypes = ProductType::find($id);
+        $productTypes -> fill($request->all());
+        $productTypes -> save();
+
+        Session::flash('message', 'Tipo de producto editado correctamente');
+        return Redirect::to('/productType');
     }
 
     /**
@@ -89,11 +100,8 @@ class LogController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function logout(){
-        Auth::logout();
-        return Redirect::to('/');
+        ProductType::destroy($id);
+        Session::flash('message','Tipo de producto Eliminado Correctamente');
+        return Redirect::to('/productType');
     }
 }

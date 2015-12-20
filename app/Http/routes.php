@@ -56,3 +56,6 @@ Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
 Route::resource('home', 'FrontController@home');
 Route::resource('administrator', 'AdministratorController');
+Route::resource('productType', 'ProductTypeController');
+Route::resource('provider', 'ProviderController');
+Route::resource('product', 'ProductController');
