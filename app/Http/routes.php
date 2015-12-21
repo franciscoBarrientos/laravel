@@ -51,6 +51,7 @@ Route::resource('/', 'FrontController');
 //Route::get('contact', 'FrontController@contact');
 Route::resource('client', 'ClientController');
 Route::resource('usuario', 'UserController');
+Route::resource('pet', 'PetController');
 //Route::resource('sidebar', 'PruebaController');
 Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');

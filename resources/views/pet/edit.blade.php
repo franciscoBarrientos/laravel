@@ -7,7 +7,6 @@
                 <button class="btn btn-primary" onclick="submitUpdateUser(this.form)">
                     <i class="fa fa-refresh"></i> Actualizar
                 </button>
-                <a href="{{ route('usuario.index') }}" class="btn btn-info" title="Volver">Volver</span></a>
             {!!Form::close()!!}
         </div>
 

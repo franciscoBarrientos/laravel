@@ -9,6 +9,7 @@ use Veterinaria\Http\Requests;
 use Veterinaria\Http\Requests\ClientCreateRequest;
 use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Client;
+use Veterinaria\Pet;
 
 class ClientController extends Controller
 {
@@ -81,8 +82,9 @@ class ClientController extends Controller
     {
         //
         $client = Client::find($id);
+        $pets = Pet::paginate(10);
 
-        return view('client.edit', ['client'=>$client]);
+        return view('client.edit', ['pets' => $pets, 'client'=>$client]);
     }
 
     /**
