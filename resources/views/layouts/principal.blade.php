@@ -95,7 +95,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
                     <ul class="nav nav-second-level">
@@ -120,12 +120,7 @@
                     </ul>
                 </li>
 
-                <?php
-                    $admin = \Veterinaria\Administrator::find(Auth::user()->id);
-                    $userId = (explode(",", $admin["user_id"])[0]);
-                ?>
-
-                @if($userId == Auth::user()->id)
+                @if(\Veterinaria\Administrator::find(Auth::user()->id)->user_id == Auth::user()->id)
                 <li>
                     <a href=""><i class="fa fa-gear"></i> Administrar</a>
                     <ul class="nav nav-second-level">
@@ -179,5 +174,8 @@
 
 <!-- Custom Theme JavaScript -->
 {!!Html::script('dist/js/sb-admin-2.js')!!}
+
+<!-- Custom Utils JavaScript -->
+{!!Html::script('js/utils.js')!!}
 </body>
 </html>

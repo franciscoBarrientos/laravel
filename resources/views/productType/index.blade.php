@@ -15,9 +15,10 @@
                 </td>
                 <td>
                     {!!Form::open(['route'=>['productType.destroy',$productType->id], 'method'=>'DELETE'])!!}
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fa fa-user-times"></i> Eliminar
-                    </button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$productType->id}}">
+                            <i class="fa fa-user-times"></i> Eliminar
+                        </button>
+                        @include('productType.forms.confirm')
                     {!!Form::close()!!}
                 </td>
             </tbody>

@@ -4,6 +4,7 @@ namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Veterinaria\Administrator;
@@ -36,16 +37,11 @@ class AdministratorController extends Controller
      */
     public function create()
     {
-        $userList = array();
-        $users = User::all();
-        foreach($users as $user){
-            $admin = Administrator::find($user->id);
-            $userId = (explode(",", $admin["user_id"])[0]);
-
-            if($userId != $user->id){
-                array_push($userList, $user);
-            }
-        }
+        $userList = DB::table('users')
+                    ->leftJoin('administrators', 'users.id', '=', 'administrators.user_id')
+                    ->select('users.id', 'users.name')
+                    ->whereNull('administrators.user_id')
+                    ->get();
 
         return view('administrator.create',compact('userList'));
     }
