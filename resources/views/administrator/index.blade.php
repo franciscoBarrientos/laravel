@@ -14,9 +14,10 @@
                     <td>{{$users->find($administrator->user_id)->email}}</td>
                     <td>
                         {!!Form::open(['route'=>['administrator.destroy',$administrator->user_id], 'method'=>'DELETE'])!!}
-                        <button type="submit" class="btn btn-danger">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$administrator->id}}">
                             <i class="fa fa-user-times"></i> Eliminar
                         </button>
+                        @include('administrator.forms.confirm')
                         {!!Form::close()!!}
                     </td>
                 </tr>

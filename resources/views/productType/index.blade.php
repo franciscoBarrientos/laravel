@@ -11,7 +11,7 @@
             <tbody>
                 <td>{{$productType->description}}</td>
                 <td>
-                    {!!link_to_route('productType.edit', $title = ' Editar', $parameters = $productType->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                    {!!link_to_route('productType.edit', $title = ' Editar', $parameters = $productType->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>
                 <td>
                     {!!Form::open(['route'=>['productType.destroy',$productType->id], 'method'=>'DELETE'])!!}

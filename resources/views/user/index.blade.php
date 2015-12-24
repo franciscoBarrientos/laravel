@@ -14,13 +14,14 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
-                    {!!link_to_route('usuario.edit', $title = ' Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                    {!!link_to_route('usuario.edit', $title = ' Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>
                 <td>
                     {!!Form::open(['route'=>['usuario.destroy',$user->id], 'method'=>'DELETE'])!!}
-                        <button type="submit" class="btn btn-danger">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$user->id}}">
                             <i class="fa fa-user-times"></i> Eliminar
                         </button>
+                        @include('user.forms.confirm')
                     {!!Form::close()!!}
                 </td>
             </tbody>

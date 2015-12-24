@@ -23,7 +23,7 @@
                 <td>{{$client->cellphone}}</td>
                 <td>{{$client->phone}}</td>
                 <td>
-                    {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                    {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>
                 <td>
                     {!!Form::open(['route'=>['client.destroy',$client->id], 'method'=>'DELETE'])!!}

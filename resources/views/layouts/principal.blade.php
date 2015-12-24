@@ -30,6 +30,21 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- jQuery -->
+    {!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
+
+    <!-- Bootstrap Core JavaScript -->
+    {!!Html::script('js/bootstrap.min.js')!!}
+
+    <!-- Metis Menu Plugin JavaScript -->
+    {!!Html::script('bower_components/metisMenu/dist/metisMenu.min.js')!!}
+
+    <!-- Custom Theme JavaScript -->
+    {!!Html::script('dist/js/sb-admin-2.js')!!}
+
+    <!-- Custom Utils JavaScript -->
+    {!!Html::script('js/utils.js')!!}
 </head>
 <body>
 <!-- Navigation -->
@@ -162,20 +177,5 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-
-<!-- jQuery -->
-{!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
-
-<!-- Bootstrap Core JavaScript -->
-{!!Html::script('js/bootstrap.min.js')!!}
-
-<!-- Metis Menu Plugin JavaScript -->
-{!!Html::script('bower_components/metisMenu/dist/metisMenu.min.js')!!}
-
-<!-- Custom Theme JavaScript -->
-{!!Html::script('dist/js/sb-admin-2.js')!!}
-
-<!-- Custom Utils JavaScript -->
-{!!Html::script('js/utils.js')!!}
 </body>
 </html>

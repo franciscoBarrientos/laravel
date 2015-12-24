@@ -19,7 +19,7 @@
             <td>{{$product->quantity}}</td>
             <td>{{$product->price}}</td>
             <td>
-                {!!link_to_route('product.edit', $title = ' Editar', $parameters = $product->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                {!!link_to_route('product.edit', $title = ' Editar', $parameters = $product->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
             </td>
             <td>
                 {!!Form::open(['route'=>['product.destroy',$product->id], 'method'=>'DELETE'])!!}

@@ -23,7 +23,7 @@
                     <td>{{$provider->email}}</td>
                     <td>{{$provider->phone}}</td>
                     <td>
-                        {!!link_to_route('provider.edit', $title = ' Editar', $parameters = $provider->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                        {!!link_to_route('provider.edit', $title = ' Editar', $parameters = $provider->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                     </td>
                     <td>
                         {!!Form::open(['route'=>['provider.destroy',$provider->id], 'method'=>'DELETE'])!!}

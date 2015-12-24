@@ -59,3 +59,5 @@ Route::resource('administrator', 'AdministratorController');
 Route::resource('productType', 'ProductTypeController');
 Route::resource('provider', 'ProviderController');
 Route::resource('product', 'ProductController');
+Route::get('password/email','Auth\PasswordController@getEmail');
+Route::post('password/email','Auth\PasswordController@postEmail');

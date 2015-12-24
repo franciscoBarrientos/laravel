@@ -30,7 +30,7 @@
     border: 0;
 }
 
-.icono-edit:before{
+.icon-edit:before{
     font-family: FontAwesome;
     content:"\f040";
     color:#FFF;
@@ -44,7 +44,7 @@
     font-size: 15px;
 }
 
-.icono-remove:before{
+.icon-remove:before{
     font-family: FontAwesome;
     content:"\f00d";
     color:#FFF;
