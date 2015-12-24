@@ -24,10 +24,11 @@ class ProductRequest extends Request
     public function rules()
     {
         return [
-            'name'              => 'required',
-            'product_type_id'   => 'required|numeric',
-            'provider_id'       => 'required|numeric',
-            'quantity'          => 'required|numeric'
+            'name'               => 'required'
+            ,'product_type_id'   => 'required|numeric'
+            ,'provider_id'       => 'required|numeric'
+            ,'quantity'          => 'required|numeric'
+            ,'price'             => 'required|numeric|min:1'
         ];
     }
 }
