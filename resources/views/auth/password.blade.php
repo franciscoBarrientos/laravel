@@ -23,7 +23,7 @@
                 {!! Form::close() !!}
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <img class="img-responsive" src="img/phones.png" alt="">
+                {!!Html::image('img/ipad.png','alt',array( 'class' => 'img-responsive'))!!}
             </div>
         </div>
     </div>
