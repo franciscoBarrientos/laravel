@@ -40,18 +40,9 @@ Route::get('/', function () {
 });
 */
 
-/*
- try with views
-Route::get('/', 'FrontController@index');
-Route::get('contacto', 'FrontController@contacto');
-Route::get('reviews', 'FrontController@reviews');
-*/
-
 Route::resource('/', 'FrontController');
-//Route::get('contact', 'FrontController@contact');
 Route::resource('client', 'ClientController');
 Route::resource('usuario', 'UserController');
-//Route::resource('sidebar', 'PruebaController');
 Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
 Route::resource('home', 'FrontController@home');
@@ -59,7 +50,6 @@ Route::resource('administrator', 'AdministratorController');
 Route::resource('productType', 'ProductTypeController');
 Route::resource('provider', 'ProviderController');
 Route::resource('product', 'ProductController');
-//Route::get('password/email','Auth\PasswordController@getEmail');
 Route::post('password/email','Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}','Auth\PasswordController@getReset');
 Route::post('password/reset','Auth\PasswordController@postReset');

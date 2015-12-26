@@ -63,7 +63,7 @@
     <ul class="nav navbar-top-links navbar-right float-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <?php echo(ucfirst(strtolower(Auth::user()->name))); ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                {{ucfirst(strtolower(Auth::user()->name))}} <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
@@ -135,7 +135,7 @@
                     </ul>
                 </li>
 
-                @if(\Veterinaria\Administrator::find(Auth::user()->id)->user_id == Auth::user()->id)
+                @if(\Veterinaria\Administrator::find(Auth::user()->id))
                 <li>
                     <a href=""><i class="fa fa-gear"></i> Administrar</a>
                     <ul class="nav nav-second-level">
