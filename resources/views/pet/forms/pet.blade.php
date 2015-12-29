@@ -1,10 +1,11 @@
+    {!!Form::hidden('client_id', $client -> id,['class'=>'form-control', 'parameters' => 'id'])!!}
     <div class="form-group">
         {!!Form::label('name', 'Nombre:')!!}
         {!!Form::text('name', null,['class'=>'form-control', 'placeholder'=>'Nombre mascota'])!!}
     </div>
     <div class="form-group">
         {!!Form::label('birthDate', 'Fecha nacimiento:')!!}
-        {!!Form::text('birthDate', null,['class'=>'form-control', 'placeholder'=>'Fecha nacimiento'])!!}
+        {!!Form::text('birthDate', $birthDate, ['id' => 'datepicker']) !!}
     </div>
     <div class="form-group">
         {!!Form::label('sex', 'Sexo:')!!}

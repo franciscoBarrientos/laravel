@@ -57,3 +57,23 @@ Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
 Route::resource('home', 'FrontController@home');
 Route::resource('administrator', 'AdministratorController');
+Route::get('pet/{id}/createpet', [
+    'uses'  => 'PetController@createPetByClient',
+    'as'    => 'pet.createpet'
+]);
+Route::get('pet/{id}/destroy', [
+    'uses'  => 'PetController@destroy',
+    'as'    => 'pet.destroy'
+]);
+Route::get('pet/{id}/index', [
+    'uses'  => 'PetController@indexPetsByClient',
+    'as'    => 'pet.indexPetsByClient'
+]);
+Route::get('pet/{clientId}/{petId}/edit', [
+    'uses'  => 'PetController@editPetByClient',
+    'as'    => 'pet.editPetByClient'
+]);
+Route::get('client/{id}/destroy', [
+    'uses'  => 'ClientController@destroy',
+    'as'    => 'client.destroy'
+]);

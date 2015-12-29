@@ -31,14 +31,21 @@
                 <td>{{$client->cellphone}}</td>
                 <td>{{$client->phone}}</td>
                 <td>
+                    {!!link_to_route('pet.indexPetsByClient', $title = ' Mascotas', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}
+                </td>
+                <td>
                     {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
                 </td>
                 <td>
-                    {!!Form::open(['route'=>['client.destroy',$client->id], 'method'=>'DELETE'])!!}
+<!--                    {!!Form::open(['route'=>['client.destroy',$client->id], 'method'=>'DELETE'])!!}
                     <button type="submit" class="btn btn-danger">
                         <i class="fa fa-user-times"></i> Eliminar
                     </button>
                     {!!Form::close()!!}
+-->
+                    <a href="{{ route('client.destroy', $client->id) }}" class="btn btn-danger">
+                        <i class="fa fa-user-times"></i>Eliminar
+                    </a>
                 </td>
             </tbody>
             @endforeach

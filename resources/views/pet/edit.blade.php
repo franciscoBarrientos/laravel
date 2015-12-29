@@ -1,23 +1,10 @@
 @extends('layouts.principal')
     @section('content')
         @include('alerts.request')
-        <div class="container-fluid">
-            {!!Form::model($user,['route'=>['usuario.update',$user->id], 'method'=>'PUT'])!!}
-                @include('user.forms.user')
-                <button class="btn btn-primary" onclick="submitUpdateUser(this.form)">
-                    <i class="fa fa-refresh"></i> Actualizar
-                </button>
-            {!!Form::close()!!}
-        </div>
-
-        <script>
-            function submitUpdateUser(form){
-
-                if(form.email.value == <?php echo($user->email); ?>){
-                    form.email.value = '';
-                }
-
-                form.submit();
-            }
-        </script>
+        {!!Form::model($pet,['route'=>['pet.update',$pet->id], 'method'=>'PUT'])!!}
+        @include('pet.forms.pet')
+        </br></br></br>
+        {!!Form::submit('Actualizar', ['class'=>"btn btn-primary"])!!}
+        <a href="{{ route('pet.indexPetsByClient', $client->id) }}" class="btn btn-info" title="Volver">Volver</span></a>
+        {!!Form::close()!!}
     @endsection
