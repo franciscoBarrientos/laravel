@@ -97,9 +97,18 @@ class PetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PetCreateRequest $request, $id)
     {
         //
+        $pet = Pet::find($id);
+        $request['birthDate'] = Carbon::createFromFormat('m/d/Y', $request['birthDate']);
+        $pet['birth_date'] = $request['birthDate'];
+        $pet -> fill($request->all());
+        $pet -> save();
+
+        Session::flash('message', 'Mascota ' . $pet->name .' editado correctamente');
+        return Redirect::to('/pet/'.$pet->client_id.'/index');
+        //return dd($pet);
     }
 
     /**
