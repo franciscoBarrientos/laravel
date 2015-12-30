@@ -24,6 +24,9 @@
     <!-- Custom CSS -->
     {!!Html::style('css/container.css')!!}
 
+    <!-- CSS Jquery UI -->
+    {!!Html::style('css/jquery-ui.css')!!}
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -179,5 +182,11 @@
 
 <!-- Custom Theme JavaScript -->
 {!!Html::script('dist/js/sb-admin-2.js')!!}
+
+<!-- JQueryUI 1.11.4 -->
+{!!Html::script('js/jquery-ui.min.js')!!}
+
+<!-- DatePicker -->
+{!!Html::script('js/jquery-datepicker.js')!!}
 </body>
 </html>

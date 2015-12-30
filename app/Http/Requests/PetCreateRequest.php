@@ -4,7 +4,7 @@ namespace Veterinaria\Http\Requests;
 
 use Veterinaria\Http\Requests\Request;
 
-class ClientCreateRequest extends Request
+class PetCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,11 @@ class ClientCreateRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
-            'lastname' => 'required|min:3',
-            'rut' => 'required|min:11|max:12',
-            'address' => 'required',
-            'cellphone' => 'required|min:8|max:15',
-            'phone' => 'required|min:8|max:12',
-            'email' => 'required|email',
+            //
+            'name' => 'required'
+            , 'sex' => 'required'
+            , 'birthDate' => 'required'
+            , 'species_id' => 'required'
         ];
     }
 }
