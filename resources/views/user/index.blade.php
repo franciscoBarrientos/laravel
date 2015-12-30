@@ -1,7 +1,6 @@
 @extends('layouts.principal')
 @section('content')
     @include('alerts.message')
-
     <div id="tableUser" class="table-responsive">
         <table class="table">
             <thead>

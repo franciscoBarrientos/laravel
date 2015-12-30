@@ -6,7 +6,7 @@
     float: right;
 }
 
-.container-float{
+.container-width{
     width:100%;
 }
 
@@ -14,6 +14,21 @@
     margin-top:10px;
 }
 
+.width-rut{
+    width:75%;
+}
+
+.width-space{
+    width:5%;
+}
+
+.width-dv{
+    width:20%;
+}
+
+.border-none{
+    border: 0;
+}
 
 .icono-edit:before{
     font-family: FontAwesome;

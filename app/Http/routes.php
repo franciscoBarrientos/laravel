@@ -57,6 +57,7 @@ Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
 Route::resource('home', 'FrontController@home');
 Route::resource('administrator', 'AdministratorController');
+
 Route::get('pet/{id}/createpet', [
     'uses'  => 'PetController@createPetByClient',
     'as'    => 'pet.createpet'
@@ -77,3 +78,8 @@ Route::get('client/{id}/destroy', [
     'uses'  => 'ClientController@destroy',
     'as'    => 'client.destroy'
 ]);
+
+Route::resource('productType', 'ProductTypeController');
+Route::resource('provider', 'ProviderController');
+Route::resource('product', 'ProductController');
+

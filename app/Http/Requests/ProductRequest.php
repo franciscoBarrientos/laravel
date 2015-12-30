@@ -4,7 +4,7 @@ namespace Veterinaria\Http\Requests;
 
 use Veterinaria\Http\Requests\Request;
 
-class UserUpdateRequest extends Request
+class ProductRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $this->get('id')
+            'name'              => 'required',
+            'product_type_id'   => 'required|numeric',
+            'provider_id'       => 'required|numeric',
+            'quantity'          => 'required|numeric'
         ];
     }
 }

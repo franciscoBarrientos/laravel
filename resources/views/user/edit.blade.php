@@ -3,22 +3,12 @@
         @include('alerts.request')
         <div class="container-fluid">
             {!!Form::model($user,['route'=>['usuario.update',$user->id], 'method'=>'PUT'])!!}
+                {!! Form::hidden('id', $user->id) !!}
                 @include('user.forms.user')
-                <button class="btn btn-primary" onclick="submitUpdateUser(this.form)">
+                <button type="submit" class="btn btn-primary">
                     <i class="fa fa-refresh"></i> Actualizar
                 </button>
                 <a href="{{ route('usuario.index') }}" class="btn btn-info" title="Volver">Volver</span></a>
             {!!Form::close()!!}
         </div>
-
-        <script>
-            function submitUpdateUser(form){
-
-                if(form.email.value == <?php echo($user->email); ?>){
-                    form.email.value = '';
-                }
-
-                form.submit();
-            }
-        </script>
     @endsection
