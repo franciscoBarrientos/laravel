@@ -23,13 +23,10 @@ class ProviderRequest extends Request
      */
     public function rules()
     {
-        if ($this->method() == 'PUT')
-        {
+        if ($this->method() == 'PUT'){
             // Update operation, exclude the record with id from the validation:
             $rut_rule = 'required|digits:8|unique:providers,rut,' . $this->get('id');
-        }
-        else
-        {
+        }else{
             // Create operation. There is no id yet.
             $rut_rule = 'required|digits:8|unique:providers';
         }

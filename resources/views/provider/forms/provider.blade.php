@@ -1,3 +1,4 @@
+@include('alerts.errors')
 <div class="form-group">
     {!!Form::label('fancy_name','Nombre de fantasía:')!!}
     {!!Form::text('fancy_name', null,['class'=>'form-control', 'placeholder'=>'Nombre de fantasía'])!!}

@@ -26,13 +26,6 @@
 
     <!-- CSS Jquery UI -->
     {!!Html::style('css/jquery-ui.css')!!}
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <!-- Navigation -->
@@ -51,7 +44,7 @@
     <ul class="nav navbar-top-links navbar-right float-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <?php echo(ucfirst(strtolower(Auth::user()->name))); ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                {{ucfirst(strtolower(Auth::user()->name))}} <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
@@ -98,7 +91,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
                     <ul class="nav nav-second-level">
@@ -123,12 +116,7 @@
                     </ul>
                 </li>
 
-                <?php
-                    $admin = \Veterinaria\Administrator::find(Auth::user()->id);
-                    $userId = (explode(",", $admin["user_id"])[0]);
-                ?>
-
-                @if($userId == Auth::user()->id)
+                @if(\Veterinaria\Administrator::find(Auth::user()->id))
                 <li>
                     <a href=""><i class="fa fa-gear"></i> Administrar</a>
                     <ul class="nav nav-second-level">
@@ -171,6 +159,13 @@
 </div>
 <!-- /#wrapper -->
 
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
 <!-- jQuery -->
 {!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
 
@@ -183,10 +178,14 @@
 <!-- Custom Theme JavaScript -->
 {!!Html::script('dist/js/sb-admin-2.js')!!}
 
+<!-- Custom Utils JavaScript -->
+{!!Html::script('js/utils.js')!!}
+
 <!-- JQueryUI 1.11.4 -->
 {!!Html::script('js/jquery-ui.min.js')!!}
 
 <!-- DatePicker -->
 {!!Html::script('js/jquery-datepicker.js')!!}
+
 </body>
 </html>

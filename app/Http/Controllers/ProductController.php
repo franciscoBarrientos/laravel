@@ -54,6 +54,7 @@ class ProductController extends Controller
             ,'product_type_id'   => $request['product_type_id']
             ,'provider_id'       => $request['provider_id']
             ,'quantity'          => $request['quantity']
+            ,'price'             => $request['price']
         ]);
 
         Session::flash('message', 'Producto creado correctamente');

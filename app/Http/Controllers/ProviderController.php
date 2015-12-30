@@ -4,12 +4,15 @@ namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Http\Requests\ProviderRequest;
+use Veterinaria\Product;
 use Veterinaria\Provider;
+use Veterinaria\Http\Controllers\UtilsController;
 
 class ProviderController extends Controller
 {
@@ -45,19 +48,24 @@ class ProviderController extends Controller
      */
     public function store(ProviderRequest $request)
     {
-        Provider::Create([
-             'fancy_name'       => $request['fancy_name']
-            ,'business_name'    => $request['business_name']
-            ,'activity'         => $request['activity']
-            ,'rut'              => $request['rut']
-            ,'verifying_digit'  => $request['verifying_digit']
-            ,'name'             => $request['name']
-            ,'email'            => $request['email']
-            ,'phone'            => $request['phone']
-        ]);
+        if(UtilsController::validateRut($request['rut'],$request['verifying_digit'])){
+            Provider::Create([
+                'fancy_name'       => $request['fancy_name']
+                ,'business_name'    => $request['business_name']
+                ,'activity'         => $request['activity']
+                ,'rut'              => $request['rut']
+                ,'verifying_digit'  => $request['verifying_digit']
+                ,'name'             => $request['name']
+                ,'email'            => $request['email']
+                ,'phone'            => $request['phone']
+            ]);
 
-        Session::flash('message', 'Proveedor creado correctamente');
-        return Redirect::to('/provider');
+            Session::flash('message', 'Proveedor creado correctamente');
+            return Redirect::to('/provider');
+        }else{
+            Session::flash('message-error', 'El RUT no es correcto');
+            return view('provider.create', compact('provider'));
+        }
     }
 
     /**
@@ -95,34 +103,7 @@ class ProviderController extends Controller
         $provider = Provider::find($id);
         $provider -> fill($request->all());
 
-        $rut = $provider -> rut.'-'.$provider->verifying_digit;
-
-        if(strpos($rut,"-")==false){
-            $rutArray[0] = substr($rut, 0, -1);
-            $rutArray[1] = substr($rut, -1);
-        }else{
-            $rutArray = explode("-", trim($rut));
-        }
-        
-        $rutNew = str_replace(".", "", trim($rutArray[0]));
-        $factor = 2;
-        $sum = 0;
-        
-        for($i = strlen($rutNew)-1; $i >= 0; $i--):
-            $factor = $factor > 7 ? 2 : $factor;
-            $sum += $rutNew{$i}*$factor++;
-        endfor;
-        
-        $rest = $sum % 11;
-        $dv = 11 - $rest;
-        
-        if($dv == 11){
-            $dv = 0;
-        }else if($dv == 10){
-            $dv = "k";
-        }
-        
-        if($dv == trim(strtolower($rutArray[1]))){
+        if(UtilsController::validateRut($provider -> rut,$provider->verifying_digit)){
             $provider -> save();
             Session::flash('message', 'Proveedor editado correctamente');
             return Redirect::to('/provider');
@@ -140,6 +121,17 @@ class ProviderController extends Controller
      */
     public function destroy($id)
     {
+        $provider = Provider::find($id);
+
+        $products = DB::table('products')
+                    ->select('id')
+                    ->where('provider_id', '=', $provider->id)
+                    ->get();
+
+        foreach($products as $product){
+            Product::destroy($product->id);
+        }
+
         Provider::destroy($id);
         Session::flash('message','Proveedor eliminado correctamente');
         return Redirect::to('/provider');

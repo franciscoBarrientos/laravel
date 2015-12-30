@@ -3,6 +3,8 @@
 namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Veterinaria\Administrator;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Http\Requests\UserCreateRequest;
@@ -10,14 +12,35 @@ use Veterinaria\Http\Requests\UserUpdateRequest;
 use Veterinaria\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Routing\Route;
 
 class UserController extends Controller
 {
-
     public function __construct(){
         $this -> middleware('auth');
-        $this -> middleware('admin');
+        $this -> middleware('admin', ['only' => ['index','create','destroy']]);
+        $this -> beforeFilter('@find',['only' => ['edit','update','destroy']]);
+        $this -> beforeFilter('@auth',['only' => ['edit','update']]);
     }
+
+    public function find(Route $route){
+        $this->user = User::find($route->getParameter('usuario'));
+        $this->notFound($this->user);
+    }
+
+    public function auth(){
+        $this->adminFlag = false;
+        $this->userAuth = false;
+
+        if(Administrator::find(Auth::user()->id)){
+            $this->adminFlag = true;
+        }
+
+        if($this->user->id == Auth::user()->id){
+            $this->userAuth = true;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +48,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
         $users = User::paginate(10);
         return view('user.index', compact('users'));
     }
@@ -37,7 +59,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
         return view('user.create');
     }
 
@@ -49,12 +70,9 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        //
         User::Create([
-            'name' => $request['name']
+              'name' => $request['name']
             , 'email' => $request['email']
-            //Se encripta en el UserController
-            //, 'password' => bcrypt($request['password'])
             , 'password' => $request['password']
         ]);
 
@@ -81,10 +99,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
-        $user = User::find($id);
-
-        return view('user.edit', ['user'=>$user]);
+        if($this->userAuth || $this->adminFlag){
+            return view('user.edit', ['user'=>$this->user]);
+        }else{
+            Session::flash('message-error','Sin privilegios de administrador');
+            return Redirect::to('/home');
+        }
     }
 
     /**
@@ -96,13 +116,27 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        //
-        $user = User::find($id);
-        $user -> fill($request->all());
-        $user -> save();
+        if($this->userAuth || $this->adminFlag){
+            $this->user -> fill($request->all());
+            $this->user -> save();
 
-        Session::flash('message', 'Usuario editado correctamente');
-        return Redirect::to('/usuario');
+            $path = 'message';
+            $message = 'Usuario editado correctamente';
+
+            if($this->userAuth){
+                $route = '/home';
+            }else{
+                $route = '/usuario';
+            }
+        }else{
+            $path = 'message-error';
+            $message = 'Sin privilegios de administrador';
+            $route = '/home';
+        }
+
+        Session::flash($path,$message);
+        return Redirect::to($route);
+
     }
 
     /**
@@ -113,7 +147,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        $this->user->delete();
         Session::flash('message','Usuario Eliminado Correctamente');
         return Redirect::to('/usuario');
     }

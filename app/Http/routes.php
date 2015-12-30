@@ -40,24 +40,14 @@ Route::get('/', function () {
 });
 */
 
-/*
- try with views
-Route::get('/', 'FrontController@index');
-Route::get('contacto', 'FrontController@contacto');
-Route::get('reviews', 'FrontController@reviews');
-*/
-
 Route::resource('/', 'FrontController');
-//Route::get('contact', 'FrontController@contact');
 Route::resource('client', 'ClientController');
 Route::resource('usuario', 'UserController');
 Route::resource('pet', 'PetController');
-//Route::resource('sidebar', 'PruebaController');
 Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
 Route::resource('home', 'FrontController@home');
 Route::resource('administrator', 'AdministratorController');
-
 Route::get('pet/{id}/createpet', [
     'uses'  => 'PetController@createPetByClient',
     'as'    => 'pet.createpet'
@@ -78,8 +68,9 @@ Route::get('client/{id}/destroy', [
     'uses'  => 'ClientController@destroy',
     'as'    => 'client.destroy'
 ]);
-
 Route::resource('productType', 'ProductTypeController');
 Route::resource('provider', 'ProviderController');
 Route::resource('product', 'ProductController');
-
+Route::post('password/email','Auth\PasswordController@postEmail');
+Route::get('password/reset/{token}','Auth\PasswordController@getReset');
+Route::post('password/reset','Auth\PasswordController@postReset');
