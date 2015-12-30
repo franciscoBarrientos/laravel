@@ -24,27 +24,8 @@
     <!-- Custom CSS -->
     {!!Html::style('css/container.css')!!}
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- jQuery -->
-    {!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
-
-    <!-- Bootstrap Core JavaScript -->
-    {!!Html::script('js/bootstrap.min.js')!!}
-
-    <!-- Metis Menu Plugin JavaScript -->
-    {!!Html::script('bower_components/metisMenu/dist/metisMenu.min.js')!!}
-
-    <!-- Custom Theme JavaScript -->
-    {!!Html::script('dist/js/sb-admin-2.js')!!}
-
-    <!-- Custom Utils JavaScript -->
-    {!!Html::script('js/utils.js')!!}
+    <!-- CSS Jquery UI -->
+    {!!Html::style('css/jquery-ui.css')!!}
 </head>
 <body>
 <!-- Navigation -->
@@ -177,5 +158,34 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- jQuery -->
+{!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
+
+<!-- Bootstrap Core JavaScript -->
+{!!Html::script('js/bootstrap.min.js')!!}
+
+<!-- Metis Menu Plugin JavaScript -->
+{!!Html::script('bower_components/metisMenu/dist/metisMenu.min.js')!!}
+
+<!-- Custom Theme JavaScript -->
+{!!Html::script('dist/js/sb-admin-2.js')!!}
+
+<!-- Custom Utils JavaScript -->
+{!!Html::script('js/utils.js')!!}
+
+<!-- JQueryUI 1.11.4 -->
+{!!Html::script('js/jquery-ui.min.js')!!}
+
+<!-- DatePicker -->
+{!!Html::script('js/jquery-datepicker.js')!!}
+
 </body>
 </html>

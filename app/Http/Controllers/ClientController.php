@@ -2,6 +2,7 @@
 
 namespace Veterinaria\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -9,6 +10,7 @@ use Veterinaria\Http\Requests;
 use Veterinaria\Http\Requests\ClientCreateRequest;
 use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Client;
+use Veterinaria\Pet;
 
 class ClientController extends Controller
 {
@@ -81,6 +83,8 @@ class ClientController extends Controller
     {
         //
         $client = Client::find($id);
+        //$pets = Pet::paginate(10);
+        //$pets = Pet::where('client_id', '=' , $id)->paginate(10);
 
         return view('client.edit', ['client'=>$client]);
     }
@@ -111,12 +115,18 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Eliminate first his pet
+        $clientPets = DB::table('pets')
+            ->where('client_id', $id)
+            ->get();
+
+        foreach($clientPets as $clientPet){;
+            Pet::destroy($clientPet->id);
+        }
+
         Client::destroy($id);
 
         Session::flash('message', 'Cliente eliminado correctamente');
-        return Redirect::to('/clinet');
+        return Redirect::to('/client');
     }
 }
-
-?>
