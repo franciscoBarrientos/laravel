@@ -145,6 +145,7 @@ return [
         Veterinaria\Providers\EventServiceProvider::class,
         Veterinaria\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
     ],
 
     /*
@@ -195,6 +196,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
     ],
 
 ];
