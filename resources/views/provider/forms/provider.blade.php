@@ -19,7 +19,10 @@
                     {!!Form::label('rut','RUT:')!!}
                     {!!Form::text('rut', null,['class'=>'form-control', 'placeholder'=>'11111111', 'maxlength'=>'8'])!!}
                 </td>
-                <td class="text-center width-space">-</td>
+                <td class="text-center">
+                    <br>
+                    <i class="fa fa-minus"></i>
+                </td>
                 <td class="width-dv">
                     {!!Form::label('verifying_digit','DV:')!!}
                     {!!Form::text('verifying_digit', null,['class'=>'form-control', 'placeholder'=>'1', 'maxlength'=>'1'])!!}

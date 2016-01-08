@@ -57,3 +57,17 @@
     width:100%;
     text-align:left;
 }
+
+.icon-pet:before{
+    font-family: FontAwesome;
+    content:"\f1b0";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-add-pet:before{
+    font-family: FontAwesome;
+    content:"\f055";
+    color:#FFF;
+    font-size: 15px;
+}

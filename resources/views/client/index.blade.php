@@ -23,22 +23,16 @@
                 <td>{{$client->cellphone}}</td>
                 <td>{{$client->phone}}</td>
                 <td>
-                    {!!link_to_route('pet.indexPetsByClient', $title = ' Mascotas', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}
+                    {!!link_to_route('pet.indexPetsByClient', $title = ' Mascotas', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icon-pet'])!!}
                 </td>
                 <td>
-                    {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                    {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>
                 <td>
-                    <!--
-					{!!Form::open(['route'=>['client.destroy',$client->id], 'method'=>'DELETE'])!!}
-						<button type="submit" class="btn btn-danger">
-							<i class="fa fa-user-times"></i> Eliminar
-						</button>
-                    {!!Form::close()!!} 
-					-->
-                    <a href="{{ route('client.destroy', $client->id) }}" class="btn btn-danger">
-                        <i class="fa fa-user-times"></i>Eliminar
-                    </a>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$client->id}}">
+                        <i class="fa fa-user-times"></i> Eliminar
+                    </button>
+                    @include('client.forms.confirm')
                 </td>
             </tbody>
             @endforeach

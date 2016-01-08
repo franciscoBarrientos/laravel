@@ -10,8 +10,8 @@
                 Si eliminas el tipo de producto {{$productType->description}}, se eliminaran todos los productos asociados a éste. ¿Estas seguro de querer eliminarlo?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-danger" >Eliminar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
+                <button type="submit" class="btn btn-danger" ><i class="fa fa-minus-circle"></i> Eliminar</button>
             </div>
         </div>
     </div>
