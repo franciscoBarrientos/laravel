@@ -1,4 +1,4 @@
-.float-left{
+searchButton.float-left{
     float: left;
 }
 
@@ -70,4 +70,43 @@
     content:"\f055";
     color:#FFF;
     font-size: 15px;
+}
+
+.icon-add-product:before{
+    font-family: FontAwesome;
+    content:"\f217";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-search:before{
+    font-family: FontAwesome;
+    content:"\f002";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-add:before{
+    font-family: FontAwesome;
+    content:"\f067";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.width-middle{
+    width: 50%;
+}
+
+.searchField{
+    min-width: 150px;
+    width: 90%;
+    margin: auto;
+}
+
+.searchButton{
+    padding-left: 10px;
+    min-width: 44px;
+    width: 10%;
+    margin: auto;
+    text-align: right;
 }

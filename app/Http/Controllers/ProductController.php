@@ -116,4 +116,20 @@ class ProductController extends Controller
         Session::flash('message','Producto eliminado Correctamente');
         return Redirect::to('/product');
     }
+
+    public function searchByName(Request $request){
+        $products = Product::search($request->name)->available()->orderBy('name')->get();
+
+        return response()->json(
+            $products->toArray()
+        );
+    }
+
+    public function searchById(Request $request){
+        $product = Product::searchById($request->id)->available()->get();
+
+        return response()->json(
+            $product->toArray()
+        );
+    }
 }
