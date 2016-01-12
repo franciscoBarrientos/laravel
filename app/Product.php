@@ -14,4 +14,19 @@ class Product extends Model
         ,'quantity'
         ,'price'
     ];
+
+    public function scopeSearch($query, $name)
+    {
+        return $query->where('name', 'like', "%$name%");
+    }
+
+    public function scopeSearchById($query, $id)
+    {
+        return $query->where('id', '=', "$id");
+    }
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('quantity', '>', 0);
+    }
 }

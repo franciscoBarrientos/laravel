@@ -7,7 +7,9 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-save"></i> Guardar
                 </button>
-            <a href="{{ route('pet.indexPetsByClient', $client->id) }}" class="btn btn-info" title="Volver">Volver</span></a>
+                <a href="{{ route('pet.indexPetsByClient', $client->id) }}" class="btn btn-info">
+                    <i class="fa fa-arrow-circle-left"></i>  Volver
+                </a>
             {!!Form::close()!!}
         </div>
     @endsection

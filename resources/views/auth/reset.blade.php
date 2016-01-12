@@ -19,10 +19,13 @@
                                         {!!Form::text('email', $reset->email, ['value' => '{{old(email)}}', 'readonly' => 'true', 'class' => 'form-control'])!!}
                                     </div>
                                     <div class="form-group">
-                                        {!!Form::password('password', ['class' => 'form-control'])!!}
+                                        {!!Form::password('password', ['class' => 'form-control', 'placeholder'=>'Nueva Contraseña'])!!}
                                     </div>
                                     <div class="form-group">
-                                        {!!Form::password('password_confirmation', ['class' => 'form-control'])!!}
+                                        {!!Form::password('password_confirmation', ['class' => 'form-control', 'placeholder'=>'Reingrese Nueva Contraseña'])!!}
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::captcha() !!}
                                     </div>
                                     <ul class="list-inline intro-form-buttons">
                                         <li>
@@ -33,6 +36,7 @@
                                     </ul>
                                 </div>
                             {!!Form::close()!!}
+                            {!! Captcha::script() !!}
                         </div>
                     </div>
                 </div>

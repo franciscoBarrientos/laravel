@@ -81,6 +81,18 @@
                 </li>
 
                 <li>
+                    <a href="/ticket"><i class="fa fa-shopping-bag"></i> Venta</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{!! URL::to('/ticket/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                        </li>
+                        <li>
+                            <a href="{!! URL::to('/ticket') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
                     <a href="/product"><i class="fa fa-cart-plus "></i> Productos</a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -178,14 +190,8 @@
 <!-- Custom Theme JavaScript -->
 {!!Html::script('dist/js/sb-admin-2.js')!!}
 
-<!-- Custom Utils JavaScript -->
-{!!Html::script('js/utils.js')!!}
-
-<!-- JQueryUI 1.11.4 -->
-{!!Html::script('js/jquery-ui.min.js')!!}
-
-<!-- DatePicker -->
-{!!Html::script('js/jquery-datepicker.js')!!}
+@section('scripts')
+@show
 
 </body>
 </html>

@@ -74,3 +74,16 @@ Route::resource('product', 'ProductController');
 Route::post('password/email','Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}','Auth\PasswordController@getReset');
 Route::post('password/reset','Auth\PasswordController@postReset');
+Route::resource('ticket', 'TicketController');
+Route::post('product/searchName', [
+    'uses'  => 'ProductController@searchByName',
+    'as'    => 'product.searchName'
+]);
+Route::post('product/searchId', [
+    'uses'  => 'ProductController@searchById',
+    'as'    => 'product.searchId'
+]);
+Route::get('ticket/{id}/detail', [
+    'uses'  => 'TicketController@detail',
+    'as'    => 'ticket.detail'
+]);

@@ -12,6 +12,11 @@
                         <table class="table">
                             <tr>
                                 <td>{!!Form::text('email', null,['class'=>'form-control', 'placeholder'=>'Ingrese su email'])!!}</td>
+                            </tr>
+                            <tr>
+                                <td>{!! Form::captcha() !!}</td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-envelope-o"></i> Enviar
@@ -21,6 +26,7 @@
                         </table>
                     </div>
                 {!! Form::close() !!}
+                {!! Captcha::script() !!}
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                 {!!Html::image('img/ipad.png','alt',array( 'class' => 'img-responsive'))!!}

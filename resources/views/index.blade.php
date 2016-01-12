@@ -6,6 +6,7 @@
             <div class="login-error">
                 @include('alerts.errors')
                 @include('alerts.request')
+                @include('alerts.message')
             </div>
             <div class="container">
                 <div class="row">
