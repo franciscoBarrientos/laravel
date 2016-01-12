@@ -82,4 +82,5 @@ Route::get('client/{id}/destroy', [
 Route::resource('productType', 'ProductTypeController');
 Route::resource('provider', 'ProviderController');
 Route::resource('product', 'ProductController');
-
+Route::resource('atention', 'AtentionController');
+Route::get('findpets', 'AtentionController@findPetsByClient');

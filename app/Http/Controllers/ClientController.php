@@ -129,4 +129,5 @@ class ClientController extends Controller
         Session::flash('message', 'Cliente eliminado correctamente');
         return Redirect::to('/client');
     }
+
 }
