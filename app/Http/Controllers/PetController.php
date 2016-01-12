@@ -55,7 +55,7 @@ class PetController extends Controller
     {
         //
         $date = $request['birthDate'];
-        $date = Carbon::createFromFormat('m/d/Y', $date);
+        $date = Carbon::createFromFormat('Y-m-d', $date);
         Pet::create([
             'name' => $request['name']
             , 'client_id' => $request['client_id']
@@ -104,14 +104,14 @@ class PetController extends Controller
     {
         //
         $pet = Pet::find($id);
-        $request['birthDate'] = Carbon::createFromFormat('m/d/Y', $request['birthDate']);
+        $request['birthDate'] = Carbon::createFromFormat('Y-m-d', $request['birthDate']);
         $pet['birth_date'] = $request['birthDate'];
         $pet -> fill($request->all());
         $pet -> save();
 
         Session::flash('message', 'Mascota ' . $pet->name .' editado correctamente');
         return Redirect::to('/pet/'.$pet->client_id.'/index');
-        //return dd($pet);
+        //return dd( $request['birthDate']);
     }
 
     /**

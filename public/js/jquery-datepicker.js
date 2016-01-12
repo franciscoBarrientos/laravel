@@ -23,6 +23,7 @@ $(function() {
     $.datepicker.setDefaults($.datepicker.regional['es']);
     $( "#datepicker" ).datepicker({
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        dateFormat: 'yy-mm-dd'
     });
 });

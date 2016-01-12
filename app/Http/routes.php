@@ -87,3 +87,5 @@ Route::get('ticket/{id}/detail', [
     'uses'  => 'TicketController@detail',
     'as'    => 'ticket.detail'
 ]);
+Route::resource('atention', 'AtentionController');
+Route::get('findpets', 'AtentionController@findPetsByClient');
