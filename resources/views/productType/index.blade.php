@@ -11,13 +11,14 @@
             <tbody>
                 <td>{{$productType->description}}</td>
                 <td>
-                    {!!link_to_route('productType.edit', $title = ' Editar', $parameters = $productType->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                    {!!link_to_route('productType.edit', $title = ' Editar', $parameters = $productType->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>
                 <td>
                     {!!Form::open(['route'=>['productType.destroy',$productType->id], 'method'=>'DELETE'])!!}
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fa fa-user-times"></i> Eliminar
-                    </button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$productType->id}}">
+                            <i class="fa fa-user-times"></i> Eliminar
+                        </button>
+                        @include('productType.forms.confirm')
                     {!!Form::close()!!}
                 </td>
             </tbody>

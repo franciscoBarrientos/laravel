@@ -3,6 +3,8 @@
         @include('alerts.request')
         {!!Form::open(['route'=>'product.store', 'method'=>'POST'])!!}
             @include('product.forms.product')
-            {!!Form::submit('Registrar', ['class'=>"btn btn-primary"])!!}
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save"></i> Registrar
+            </button>
         {!!Form::close()!!}
     @endsection

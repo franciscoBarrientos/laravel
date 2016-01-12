@@ -11,7 +11,7 @@
                 <th>Dirección</th>
                 <th>Celular</th>
                 <th>Teléfono</th>
-                <th colspan="2">Acciones</th>
+                <th colspan="3">Acciones</th>
             </thead>
             @foreach($clients as $client)
             <tbody>
@@ -23,21 +23,16 @@
                 <td>{{$client->cellphone}}</td>
                 <td>{{$client->phone}}</td>
                 <td>
-                    {!!link_to_route('pet.indexPetsByClient', $title = ' Mascotas', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}
+                    {!!link_to_route('pet.indexPetsByClient', $title = ' Mascotas', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icon-pet'])!!}
                 </td>
                 <td>
-                    {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                    {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>
                 <td>
-<!--                    {!!Form::open(['route'=>['client.destroy',$client->id], 'method'=>'DELETE'])!!}
-                    <button type="submit" class="btn btn-danger">
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$client->id}}">
                         <i class="fa fa-user-times"></i> Eliminar
                     </button>
-                    {!!Form::close()!!}
--->
-                    <a href="{{ route('client.destroy', $client->id) }}" class="btn btn-danger">
-                        <i class="fa fa-user-times"></i>Eliminar
-                    </a>
+                    @include('client.forms.confirm')
                 </td>
             </tbody>
             @endforeach

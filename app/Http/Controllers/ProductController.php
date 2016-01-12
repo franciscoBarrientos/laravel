@@ -54,6 +54,7 @@ class ProductController extends Controller
             ,'product_type_id'   => $request['product_type_id']
             ,'provider_id'       => $request['provider_id']
             ,'quantity'          => $request['quantity']
+            ,'price'             => $request['price']
         ]);
 
         Session::flash('message', 'Producto creado correctamente');
@@ -114,5 +115,21 @@ class ProductController extends Controller
         Product::destroy($id);
         Session::flash('message','Producto eliminado Correctamente');
         return Redirect::to('/product');
+    }
+
+    public function searchByName(Request $request){
+        $products = Product::search($request->name)->available()->orderBy('name')->get();
+
+        return response()->json(
+            $products->toArray()
+        );
+    }
+
+    public function searchById(Request $request){
+        $product = Product::searchById($request->id)->available()->get();
+
+        return response()->json(
+            $product->toArray()
+        );
     }
 }

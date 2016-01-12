@@ -23,13 +23,14 @@
                     <td>{{$provider->email}}</td>
                     <td>{{$provider->phone}}</td>
                     <td>
-                        {!!link_to_route('provider.edit', $title = ' Editar', $parameters = $provider->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                        {!!link_to_route('provider.edit', $title = ' Editar', $parameters = $provider->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                     </td>
                     <td>
                         {!!Form::open(['route'=>['provider.destroy',$provider->id], 'method'=>'DELETE'])!!}
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fa fa-user-times"></i> Eliminar
-                        </button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$provider->id}}">
+                                <i class="fa fa-user-times"></i> Eliminar
+                            </button>
+                            @include('provider.forms.confirm')
                         {!!Form::close()!!}
                     </td>
                 </tbody>

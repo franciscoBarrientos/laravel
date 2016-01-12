@@ -2,6 +2,10 @@
 @section('content')
 @include('alerts.message')
     <div id="tablePet" class="table-responsive">
+        <div class="float-left">
+            <a href="{{ route('pet.createpet', $client->id) }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar mascota</a>
+            <a href="{{ route('client.index') }}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
+        </div>
         <table class="table">
             <thead>
             <th>Mascota</th>
@@ -16,7 +20,7 @@
             <td>{{$pet->sex}}</td>
             <td>{{$pet->species_id}}</td>
             <td>
-                {!!link_to_route('pet.editPetByClient', $title = ' Editar', $parameters = [$client->id, $pet->id], $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                {!!link_to_route('pet.editPetByClient', $title = ' Editar', $parameters = [$client->id, $pet->id], $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 <a href="{{ route('pet.destroy', $pet->id) }}" class="btn btn-danger">
                     <i class="fa fa-user-times"></i>Eliminar</a>
             </td>
@@ -24,11 +28,5 @@
             @endforeach
         </table>
         <div>{!! $pets->render() !!}</div>
-        <a href="{{ route('pet.createpet', $client->id) }}" class="btn btn-primary">
-                <span aria-hidden="true">
-                    Agregar mascota
-                </span>
-        </a>
-        <a href="{{ route('client.index') }}" class="btn btn-info" title="Volver">Volver</span></a>
     </div>
 @endsection

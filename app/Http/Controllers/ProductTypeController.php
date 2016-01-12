@@ -4,10 +4,12 @@ namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
+use Veterinaria\Product;
 use Veterinaria\ProductType;
 
 class ProductTypeController extends Controller{
@@ -100,6 +102,17 @@ class ProductTypeController extends Controller{
      */
     public function destroy($id)
     {
+        $productType = ProductType::find($id);
+
+        $products = DB::table('products')
+                    ->select('id')
+                    ->where('product_type_id', '=', $productType->id)
+                    ->get();
+
+        foreach($products as $product){
+            Product::destroy($product->id);
+        }
+
         ProductType::destroy($id);
         Session::flash('message','Tipo de producto Eliminado Correctamente');
         return Redirect::to('/productType');

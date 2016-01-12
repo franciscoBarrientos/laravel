@@ -1,4 +1,4 @@
-.float-left{
+searchButton.float-left{
     float: left;
 }
 
@@ -30,7 +30,7 @@
     border: 0;
 }
 
-.icono-edit:before{
+.icon-edit:before{
     font-family: FontAwesome;
     content:"\f040";
     color:#FFF;
@@ -44,7 +44,7 @@
     font-size: 15px;
 }
 
-.icono-remove:before{
+.icon-remove:before{
     font-family: FontAwesome;
     content:"\f00d";
     color:#FFF;
@@ -56,4 +56,57 @@
     z-index: 1;
     width:100%;
     text-align:left;
+}
+
+.icon-pet:before{
+    font-family: FontAwesome;
+    content:"\f1b0";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-add-pet:before{
+    font-family: FontAwesome;
+    content:"\f055";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-add-product:before{
+    font-family: FontAwesome;
+    content:"\f217";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-search:before{
+    font-family: FontAwesome;
+    content:"\f002";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-add:before{
+    font-family: FontAwesome;
+    content:"\f067";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.width-middle{
+    width: 50%;
+}
+
+.searchField{
+    min-width: 150px;
+    width: 90%;
+    margin: auto;
+}
+
+.searchButton{
+    padding-left: 10px;
+    min-width: 44px;
+    width: 10%;
+    margin: auto;
+    text-align: right;
 }

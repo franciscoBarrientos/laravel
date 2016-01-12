@@ -22,3 +22,7 @@
     {!!Form::label('quantity','Cantidad:')!!}
     {!!Form::number('quantity', null,['class'=>'form-control'])!!}
 </div>
+<div class="form-group">
+    {!!Form::label('price','Precio:')!!}
+    {!!Form::number('price', null,['class'=>'form-control'])!!}
+</div>
