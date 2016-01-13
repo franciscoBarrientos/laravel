@@ -8,7 +8,9 @@ class Pet extends Model
 {
     //
     protected $table = 'pets';
-    protected $fillable = array('pet_name'
-                                , 'pet_age'
-                                , 'client_id') ;
+    protected $fillable = array('name'
+                                , 'client_id'
+                                , 'sex'
+                                , 'birth_date'
+                                , 'breed_id') ;
 }

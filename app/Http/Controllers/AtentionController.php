@@ -4,10 +4,13 @@ namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Veterinaria\Atention;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
+use Veterinaria\Species;
+use Veterinaria\Pet;
 
-class veterinariaController extends Controller
+class AtentionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +20,8 @@ class veterinariaController extends Controller
     public function index()
     {
         //
-        return "estoy en el index del controller restful";
+        $atentions = Atention::paginate(10);
+        return view('atention.index', compact('atentions'));
     }
 
     /**
@@ -28,7 +32,9 @@ class veterinariaController extends Controller
     public function create()
     {
         //
-        return "Aquí esta´ra el formulario para crear";
+        $rut = null;
+        $listSpecies = Species::lists('species', 'id');
+        return view('atention.create', ['listSpecies'=>$listSpecies, 'rut'=>$rut]);
     }
 
     /**
@@ -85,5 +91,11 @@ class veterinariaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function findPetsByClient(){
+        $pets = Pet::paginate(10);
+        $client = null;
+        dd($pets);
     }
 }

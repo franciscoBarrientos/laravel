@@ -145,6 +145,8 @@ return [
         Veterinaria\Providers\EventServiceProvider::class,
         Veterinaria\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -195,6 +197,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

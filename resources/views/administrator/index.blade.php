@@ -1,34 +1,28 @@
 @extends('layouts.principal')
-@section('content')
-@include('alerts.message')
+    @section('content')
+        @include('alerts.message')
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Administrador</th>
+                    <th colspan="2">Correo</th>
+                </tr>
 
-<div class="table-responsive">
-    <table class="table">
-        <tr>
-            <th>Administrador</th>
-            <th colspan="2">Correo</th>
-        </tr>
-
-        @foreach($administrators as $administrator)
-        <?php $user = $users->find($administrator->user_id); ?>
-        <tr>
-            <td>
-                <?php
-                    $name = ucfirst(strtolower($user->name));
-                    echo($name);
-                ?>
-            </td>
-            <td><?php echo($user->email); ?></td>
-            <td>
-                {!!Form::open(['route'=>['administrator.destroy',$administrator->user_id], 'method'=>'DELETE'])!!}
-                <button type="submit" class="btn btn-danger">
-                    <i class="fa fa-user-times"></i> Eliminar
-                </button>
-                {!!Form::close()!!}
-            </td>
-        </tr>
-        @endforeach
-    </table>
-    <div>{!! $administrators->render() !!}</div>
-</div>
-@endsection
+                @foreach($administrators as $administrator)
+                <tr>
+                    <td>{{ucfirst(strtolower($users->find($administrator->user_id)->name))}}</td>
+                    <td>{{$users->find($administrator->user_id)->email}}</td>
+                    <td>
+                        {!!Form::open(['route'=>['administrator.destroy',$administrator->user_id], 'method'=>'DELETE'])!!}
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$administrator->id}}">
+                            <i class="fa fa-user-times"></i> Eliminar
+                        </button>
+                        @include('administrator.forms.confirm')
+                        {!!Form::close()!!}
+                    </td>
+                </tr>
+                @endforeach
+            </table>
+            <div>{!! $administrators->render() !!}</div>
+        </div>
+    @endsection

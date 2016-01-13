@@ -26,7 +26,7 @@ class ClientCreateRequest extends Request
         return [
             'name' => 'required|min:3',
             'lastname' => 'required|min:3',
-            'rut' => 'required|min:10|max:10',
+            'rut' => 'required|min:11|max:12',
             'address' => 'required',
             'cellphone' => 'required|min:8|max:15',
             'phone' => 'required|min:8|max:12',

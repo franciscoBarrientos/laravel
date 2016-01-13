@@ -35,7 +35,7 @@ class LogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Veterinaria\Http\Requests\LoginRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(LoginRequest $request)
