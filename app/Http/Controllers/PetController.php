@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Veterinaria\Breed;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Requests\PetCreateRequest;
 use Veterinaria\Http\Controllers\Controller;
@@ -40,9 +41,11 @@ class PetController extends Controller
     public function create()
     {
         //
-        $listSpecies = Species::lists('species', 'id');
+        //$listSpecies = Species::lists('species', 'id');
+        $listBreeds = Breed::lists('species_id' , 'name', 'id');
         $species_id = null;
-        return view('pet.create', ['listSpecies' => $listSpecies, 'species_id' => $species_id]);
+        //return view('pet.create', ['listSpecies' => $listSpecies, 'species_id' => $species_id]);
+        return view('pet.create', ['listBreeds' => $listBreeds, 'species_id' => $species_id]);
     }
 
     /**
@@ -57,11 +60,11 @@ class PetController extends Controller
         $date = $request['birthDate'];
         $date = Carbon::createFromFormat('Y-m-d', $date);
         Pet::create([
-            'name' => $request['name']
+            'name' => strtoupper($request['name'])
             , 'client_id' => $request['client_id']
             , 'sex' => $request['sex']
             , 'birth_date' => $date
-            , 'species_id' => $request['species_id']
+            , 'breed_id' => $request['breed_id']
         ]);
         Session::flash('message', 'Mascota creada correctamente');
         return Redirect::to('/pet/'.$request['client_id'].'/index');
@@ -134,13 +137,13 @@ class PetController extends Controller
     public function createPetByClient($id){
         //To create pet by client
         $client = Client::find($id);
-        $listSpecies = Species::lists('species', 'id');
-        $species_id = null;
+        $breedsList = Breed::lists('name', 'id');
+        $breed_id = null;
         $birthDate = null;
-        //return dd($client);
+        //return dd($breedsList);
         return view('pet.create', ['client' => $client
-            , 'listSpecies' => $listSpecies
-            , 'species_id' => $species_id
+            , 'breedsList' => $breedsList
+            , 'breed_id' => $breed_id
             , 'birthDate' => $birthDate
         ]);
     }
@@ -153,21 +156,27 @@ class PetController extends Controller
             -> where('client_id', $id)
             -> paginate(10);
 
-        return view('pet.index', ['client' => $client, 'pets' => $pets] );
+/*        $speciesList = DB::table('species')
+            -> paginate(10);
+*/
+        $breedsList = DB::table('breeds')
+            -> paginate(10);
+
+        return view('pet.index', ['client' => $client, 'pets' => $pets, 'breedsList' => $breedsList] );
     }
 
     public function editPetByClient($clientId, $petId){
         $pet = Pet::find($petId);
         $client = Client::find($clientId);
-        $listSpecies = Species::lists('species', 'id');
-        $species_id = $pet['species_id'];
+        $breedsList = Breed::lists('name', 'id');
+        $breed_id = $pet['breed_id'];
         $sex = $pet['sex'];
         $birthDate = $pet['birth_date'];
 
         return view('pet.edit',['pet' => $pet
             , 'client' => $client
-            , 'listSpecies' => $listSpecies
-            , 'species_id' => $species_id
+            , 'breedsList' => $breedsList
+            , 'breed_id' => $breed_id
             , 'sex' => $sex
             , 'birthDate' => $birthDate
         ]);

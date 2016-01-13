@@ -13,14 +13,17 @@ class AddUserToUser extends Migration
      */
     public function up()
     {
-        DB::table('users')->insert(
-          array(
-              'id' => 1,
-              'name' => 'test',
-              'email' => 'test@test.cl',
-              'password' => Hash::make('test')
-          )
-        );
+        $usersTest = DB::table('users')->where('name', 'test')->first();
+        if ($usersTest == null){
+            DB::table('users')->insert(
+                array(
+                    'id' => 1,
+                    'name' => 'test',
+                    'email' => 'test@test.cl',
+                    'password' => Hash::make('test')
+                )
+            );
+        }
     }
 
     /**

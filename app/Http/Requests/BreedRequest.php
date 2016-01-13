@@ -4,7 +4,7 @@ namespace Veterinaria\Http\Requests;
 
 use Veterinaria\Http\Requests\Request;
 
-class PetCreateRequest extends Request
+class BreedRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,8 @@ class PetCreateRequest extends Request
     {
         return [
             //
-            'name' => 'required'
-            , 'sex' => 'required'
-            , 'birthDate' => 'required'
-            , 'breed_id' => 'required'
+            'name'=>'required',
+            'species_id'=>'required'
         ];
     }
 }

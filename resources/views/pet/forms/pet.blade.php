@@ -12,8 +12,8 @@
         {!!Form::select('sex',['1' => 'MACHO', '2' => 'HEMBRA'],null,['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!!Form::label('species_id', 'Especie:')!!}
-        {!!Form::select('species_id',$listSpecies, $species_id, ['class'=>'form-control']) !!}
+        {!!Form::label('breed_id', 'Raza:')!!}
+        {!!Form::select('breed_id',$breedsList, $breed_id, ['class'=>'form-control']) !!}
     </div>
     @section('scripts')
         <!-- JQueryUI 1.11.4 -->

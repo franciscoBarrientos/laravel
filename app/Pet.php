@@ -12,5 +12,5 @@ class Pet extends Model
                                 , 'client_id'
                                 , 'sex'
                                 , 'birth_date'
-                                , 'species_id') ;
+                                , 'breed_id') ;
 }

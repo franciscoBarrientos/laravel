@@ -1,11 +1,13 @@
 @extends('layouts.principal')
 @section('content')
 @include('alerts.message')
+    </br>
     <div id="tablePet" class="table-responsive">
         <div class="float-left">
             <a href="{{ route('pet.createpet', $client->id) }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar mascota</a>
             <a href="{{ route('client.index') }}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
         </div>
+        </br>
         <table class="table">
             <thead>
             <th>Mascota</th>
@@ -17,8 +19,16 @@
             @foreach($pets as $pet)
             <tbody>
             <td>{{$pet->name}}</td>
-            <td>{{$pet->sex}}</td>
-            <td>{{$pet->species_id}}</td>
+            @if ($pet->sex == 1)
+                <td>MACHO</td>
+            @else
+                <td>HEMBRA</td>
+            @endif
+            @foreach($breedsList as $breed)
+                @if ($pet->breed_id == $breed->id)
+                    <td>{{$breed->name}}</td>
+                @endif
+            @endforeach
             <td>
                 {!!link_to_route('pet.editPetByClient', $title = ' Editar', $parameters = [$client->id, $pet->id], $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 <a href="{{ route('pet.destroy', $pet->id) }}" class="btn btn-danger">

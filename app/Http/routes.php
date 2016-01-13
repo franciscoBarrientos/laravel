@@ -89,3 +89,13 @@ Route::get('ticket/{id}/detail', [
 ]);
 Route::resource('atention', 'AtentionController');
 Route::get('findpets', 'AtentionController@findPetsByClient');
+Route::resource('species', 'SpeciesController');
+Route::get('species/{id}/destroy', [
+    'uses'  => 'SpeciesController@destroy',
+    'as'    => 'species.destroy'
+]);
+Route::resource('breed', 'BreedController');
+Route::get('breed/{id}/destroy', [
+    'uses'  => 'BreedController@destroy',
+    'as'    => 'breed.destroy'
+]);
