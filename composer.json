@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.1.*",
         "doctrine/dbal": "~2.3",
         "nesbot/carbon": "~1.14",
-        "arcanedev/no-captcha": "~2.2"
+        "arcanedev/no-captcha": "~2.2",
+        "barryvdh/laravel-dompdf": "0.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
