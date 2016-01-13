@@ -4,6 +4,7 @@ namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Veterinaria\Http\Requests;
@@ -121,6 +122,13 @@ class TicketController extends Controller
 
     public function detail($id){
         $tickets = TicketProduct::searchByTicketId($id)->orderBy('created_at')->get();
-        return view('ticket.detail', compact('tickets'));
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>');
+
+        $date = date('Y-m-d');
+
+        return $pdf->download("Boleta-".$id."-".$date.".pdf");
+        //return view('ticket.detail', compact('tickets'));
     }
 }
