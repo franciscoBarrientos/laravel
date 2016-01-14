@@ -27,3 +27,13 @@
         </div>
     </div>
     </br></br></br>
+    @section('scripts')
+        <!-- DatePicker -->
+        {!!Html::script('js/jquery-datepicker.js')!!}
+
+        <!-- Rut -->
+        {!!Html::script('js/jquery.rut.js')!!}
+
+        <!-- Validate Rut -->
+        {!!Html::script('js/jquery_validate_rut.js')!!}
+    @endsection

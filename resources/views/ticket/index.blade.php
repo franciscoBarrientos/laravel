@@ -11,10 +11,7 @@
         <tbody>
         <td>{{$ticket->number}}</td>
         <td>
-            {!!link_to_route('ticket.detail', $title = ' Ver Detalle', $parameters = $ticket->id, $attributes = ['class'=>'btn btn-primary icon-search'])!!}
-        </td>
-        <td>
-            <button class="btn btn-success"><i class="fa fa-print"></i> Imprimir</button>
+            {!!link_to_route('ticket.detail', $title = ' Descargar', $parameters = $ticket->id, $attributes = ['class'=>'btn btn-primary icon-pdf'])!!}
         </td>
         <td>
             {!!Form::open(['route'=>['ticket.destroy',$ticket->id], 'method'=>'DELETE'])!!}

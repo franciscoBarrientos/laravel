@@ -1,9 +1,15 @@
 var detailNumber = 0;
+var productList = [];
+var $url;
+
+function Product(id, quantity, detailNumber) {
+    this.id = id;
+    this.quantity = quantity;
+    this.detailNumber = detailNumber;
+}
 
 $(document).ready(function(){
     $('#search-btn').click(function(){
-        var data = $("#data");
-        var head = $("#head");
         var name = $("#name").val();
         var route = "/product/searchName";
         var token = $("#token").val();
@@ -16,14 +22,17 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(res){
                 if(res.length > 0){
+                    var data = $("#data");
+                    var head = $("#head");
+
                     head.empty();
                     data.empty();
-                    head.append("<tr>" +
-                        "<th style='width: 25%'>Nombre</th>" +
-                        "<th style='width: 25%'>Stock</th>" +
-                        "<th style='width: 25%'>Precio</th>" +
-                        "<th colspan='2' style='width: 25%;text-align: left'>Agregar</th>" +
-                        "</tr>");
+                    head.append('<tr>' +
+                                    '<th class="width-25">Nombre</th>' +
+                                    '<th class="width-25">Stock</th>' +
+                                    '<th class="width-25">Precio</th>' +
+                                    '<th colspan="2" class="add-product-ticket">Agregar</th>' +
+                                '</tr>');
 
                     $(res).each(function(key,value){
                         data.append('<tr>' +
@@ -51,6 +60,25 @@ $(document).ready(function(){
         var ajaxRequest = document.getElementById('ajaxRequest');
         ajaxRequest.style.display = "none";
     });
+    $('#createTicket').click(function(){
+        var token = $("#token");
+
+        var form = document.createElement("form");
+
+        addHidden(form, "_token", token.val());
+        addHidden(form, "detailNumber", detailNumber);
+
+        productList.forEach(function(product) {
+            addHidden(form, "id"+product.detailNumber, product.id);
+            addHidden(form, "quantity"+product.detailNumber, product.quantity);
+        });
+
+        form.method = "POST";
+        form.action = $url;
+        document.body.appendChild(form);
+
+        form.submit();
+    });
 });
 
 function addProduct(id){
@@ -76,7 +104,7 @@ function addProduct(id){
                             var price = 0;
                             var cumulativeAmount = 0;
 
-                            for(i=0; i<detailNumber; i++){
+                            for(var i = 0; i<detailNumber; i++){
                                 var productRow = $("#detailNumber"+i);
                                 var row = $(productRow).closest("tr"); // Find the row
 
@@ -90,12 +118,11 @@ function addProduct(id){
 
                             if(parseFloat(value.quantity) >= (parseFloat(quantity)+parseFloat(cumulativeAmount))){
                                 data.append('<tr id="detailNumber'+detailNumber+'">' +
-                                                '<td id="rowId" style="display: none">'+
+                                                '<td id="rowId" class="display-none">'+
                                                     '<input type="hidden" name="id'+detailNumber+'" id="id" value="'+value.id+'"/>'+
                                                     value.id+
                                                 '</td>' +
                                                 '<td>'+
-                                                    '<input type="hidden" name="name'+detailNumber+'" value="'+value.name+'"/>'+
                                                     value.name+
                                                 '</td>'+
                                                 '<td id="rowQuantity">' +
@@ -103,11 +130,9 @@ function addProduct(id){
                                                     quantity+
                                                 '</td>' +
                                                 '<td>'+
-                                                    '<input type="hidden" name="price'+detailNumber+'" value="'+value.price+'"/>'+
                                                     +value.price+
                                                 '</td>' +
                                                 '<td id="rowPrice">'+
-                                                    '<input type="hidden" name="subtotal'+detailNumber+'" value="'+value.price*quantity+'"/>'+
                                                     +value.price*quantity+
                                                 '</td>' +
                                                 '<td>'+
@@ -115,14 +140,17 @@ function addProduct(id){
                                                 '</td>' +
                                             '</tr>');
 
-                                var ionputDetailNumber = document.getElementById('detailNumber');
-                                ionputDetailNumber.value = detailNumber;
+                                var inputDetailNumber = document.getElementById('detailNumber');
+                                inputDetailNumber.value = detailNumber;
                                 var total = document.getElementById('total');
                                 total.value = parseFloat(total.value)+parseFloat(value.price * quantity);
                                 var totalPrice = document.getElementById('totalPrice');
                                 totalPrice.innerHTML = total.value;
 
                                 detail.style.display = 'inline';
+
+                                addProductInList(value.id,quantity, detailNumber);
+
                                 detailNumber++;
                             }else{
                                 ajaxRequestResponse.empty();
@@ -165,11 +193,48 @@ function deleteProduct(id){
     totalPrice.innerHTML = total.value;
 
     product.remove();
+    removeProductOfList(id);
 
     if(rows == 1){
         var container = document.getElementById('detail');
         container.style.display = "none";
     }
+}
+
+function addProductInList(id, quantity, detailNumber){
+    var product = new Product(id, quantity, detailNumber);
+    productList.push(product);
+}
+
+function removeProductOfList(id){
+    removeByAttr(productList, 'detailNumber', id);
+}
+
+function addHidden(theForm, key, value) {
+    // Create a hidden input element, and append it to the form:
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = key;//'name-as-seen-at-the-server';
+    input.value = value;
+    theForm.appendChild(input);
+}
+
+var removeByAttr = function(arr, attr, value){
+    var i = arr.length;
+    while(i--){
+        if( arr[i]
+            && arr[i].hasOwnProperty(attr)
+            && (arguments.length > 2 && arr[i][attr] === value ) ){
+
+            arr.splice(i,1);
+
+        }
+    }
+    return arr;
+}
+
+function url(url){
+    $url = url;
 }
 
 function isNormalInteger(str) {

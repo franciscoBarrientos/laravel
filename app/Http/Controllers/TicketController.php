@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
+use Veterinaria\Product;
 use Veterinaria\Ticket;
 use Veterinaria\TicketProduct;
 
@@ -55,12 +57,15 @@ class TicketController extends Controller
 
         for($i = 0; $i <= $request->detailNumber; $i++){
             if($request->{"id".$i} != null){
+                $product = Product::find($request->{"id".$i});
+                $quantity = $request->{"quantity".$i};
+                $subtotal = ($quantity * $product->price);
                 TicketProduct::Create([
                     'ticket_id' => $ticket->id
-                    ,'description' => $request->{"name".$i}
-                    ,'quantity' => $request->{"quantity".$i}
-                    ,'price' => $request->{"price".$i}
-                    ,'subtotal' => $request->{"subtotal".$i}
+                    ,'description' => $product->name
+                    ,'quantity' => $quantity
+                    ,'price' => $product->price
+                    ,'subtotal' => $subtotal
                 ]);
             }
         }
@@ -88,8 +93,8 @@ class TicketController extends Controller
      */
     public function edit($id)
     {
-        $ticket = Ticket::find($id);
-        return view('ticket.edit', compact('ticket'));
+        /*$ticket = Ticket::find($id);
+        return view('ticket.edit', compact('ticket'));*/
     }
 
     /**
@@ -121,12 +126,13 @@ class TicketController extends Controller
     }
 
     public function detail($id){
-        $tickets = TicketProduct::searchByTicketId($id)->orderBy('created_at')->get();
+        $products = TicketProduct::searchByTicketId($id)->orderBy('created_at')->get();
+        $date = date('Y-m-d');
+
+        $view =  View::make('ticket.detail', compact('products', 'date', 'id'))->render();
 
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML('<h1>Test</h1>');
-
-        $date = date('Y-m-d');
+        $pdf->loadHTML($view);
 
         return $pdf->download("Boleta-".$id."-".$date.".pdf");
         //return view('ticket.detail', compact('tickets'));

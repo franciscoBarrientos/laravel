@@ -93,6 +93,27 @@
     font-size: 15px;
 }
 
+.icon-print:before{
+    font-family: FontAwesome;
+    content:"\f02f";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-download:before{
+    font-family: FontAwesome;
+    content:"\f0ed";
+    color:#FFF;
+    font-size: 15px;
+}
+
+.icon-pdf:before{
+    font-family: FontAwesome;
+    content:"\f1c1";
+    color:#FFF;
+    font-size: 15px;
+}
+
 .width-middle{
     width: 50%;
 }
@@ -109,4 +130,17 @@
     width: 10%;
     margin: auto;
     text-align: right;
+}
+
+.display-none{
+    display:none;
+}
+
+.add-product-ticket{
+    width: 25%;
+    text-align: left;
+}
+
+.width-25{
+    width: 25%;
 }
