@@ -14,9 +14,9 @@ class AlterTablePetsDropColumnSpeciesId extends Migration
     {
         //
         Schema::table('pets', function ($table) {
-        $table->dropForeign('pets_species_id_foreign');
-        $table->dropColumn('species_id');
-    });
+            $table->dropForeign('pets_species_id_foreign');
+            $table->dropColumn('species_id');
+        });
 
         Schema::table('pets', function ($table) {
             $table->integer('breed_id')->unsigned();

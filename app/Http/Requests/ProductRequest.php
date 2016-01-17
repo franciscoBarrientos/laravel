@@ -23,11 +23,19 @@ class ProductRequest extends Request
      */
     public function rules()
     {
+        /*if ($this->method() == 'PUT'){
+            // Update operation, exclude the record with id from the validation:
+            $quantity_rule = '';
+        }else{
+            // Create operation. There is no id yet.
+            $quantity_rule = 'required|numeric';
+        }*/
+
         return [
             'name'               => 'required'
             ,'product_type_id'   => 'required|numeric'
             ,'provider_id'       => 'required|numeric'
-            ,'quantity'          => 'required|numeric'
+            //,'quantity'          => $quantity_rule
             ,'price'             => 'required|numeric|min:1'
         ];
     }

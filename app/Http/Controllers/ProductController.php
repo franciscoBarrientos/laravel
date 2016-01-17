@@ -53,7 +53,7 @@ class ProductController extends Controller
              'name'              => $request['name']
             ,'product_type_id'   => $request['product_type_id']
             ,'provider_id'       => $request['provider_id']
-            ,'quantity'          => $request['quantity']
+            //,'quantity'          => $request['quantity']
             ,'price'             => $request['price']
         ]);
 
@@ -112,7 +112,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Product::destroy($id);
+        //Product::destroy($id);
+        $product = Product::find($id);
+        $product -> delete();
         Session::flash('message','Producto eliminado Correctamente');
         return Redirect::to('/product');
     }
@@ -131,5 +133,9 @@ class ProductController extends Controller
         return response()->json(
             $product->toArray()
         );
+    }
+
+    public function add(Request $request){
+        dd($request);
     }
 }

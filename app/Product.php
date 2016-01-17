@@ -3,10 +3,14 @@
 namespace Veterinaria;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'products';
+
     protected $fillable = [
         'name'
         ,'product_type_id'
@@ -14,6 +18,8 @@ class Product extends Model
         ,'quantity'
         ,'price'
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function scopeSearch($query, $name)
     {

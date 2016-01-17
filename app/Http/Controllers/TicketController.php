@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\View;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Product;
+use Veterinaria\RecordTypeStock;
+use Veterinaria\Stock;
 use Veterinaria\Ticket;
 use Veterinaria\TicketProduct;
 
@@ -60,6 +62,7 @@ class TicketController extends Controller
                 $product = Product::find($request->{"id".$i});
                 $quantity = $request->{"quantity".$i};
                 $subtotal = ($quantity * $product->price);
+
                 TicketProduct::Create([
                     'ticket_id' => $ticket->id
                     ,'description' => $product->name
@@ -67,6 +70,20 @@ class TicketController extends Controller
                     ,'price' => $product->price
                     ,'subtotal' => $subtotal
                 ]);
+
+                $ticket = Ticket::all()->last();
+
+                $recordTypeStock = RecordTypeStock::find("2");
+
+                Stock::Create([
+                    'invoice_number' => $ticket->number
+                    ,'quantity' => $quantity
+                    ,'product_id' => $product->id
+                    ,'record_type_stock_id' => $recordTypeStock->id
+                ]);
+
+                $product -> quantity = ($product -> quantity - $quantity);
+                $product -> save();
             }
         }
 

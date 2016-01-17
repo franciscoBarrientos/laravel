@@ -99,3 +99,7 @@ Route::get('breed/{id}/destroy', [
     'uses'  => 'BreedController@destroy',
     'as'    => 'breed.destroy'
 ]);
+Route::get('breed/{id}/add', [
+    'uses'  => 'ProductController@add',
+    'as'    => 'product.add'
+]);

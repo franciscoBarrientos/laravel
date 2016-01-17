@@ -18,10 +18,12 @@
         @endforeach
     </select>
 </div>
+<!--@if(!isset($block))
 <div class="form-group">
     {!!Form::label('quantity','Cantidad:')!!}
     {!!Form::number('quantity', null,['class'=>'form-control'])!!}
 </div>
+@endif-->
 <div class="form-group">
     {!!Form::label('price','Precio:')!!}
     {!!Form::number('price', null,['class'=>'form-control'])!!}
