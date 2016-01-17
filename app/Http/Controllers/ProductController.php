@@ -122,19 +122,27 @@ class ProductController extends Controller
     }
 
     public function searchByName(Request $request){
-        $products = Product::search($request->name)->available()->orderBy('name')->get();
+        if($request->ajax()){
+            $products = Product::search($request->name)->available()->orderBy('name')->get();
 
-        return response()->json(
-            $products->toArray()
-        );
+            return response()->json(
+                $products->toArray()
+            );
+        }
+
+        return null;
     }
 
     public function searchById(Request $request){
-        $product = Product::searchById($request->id)->available()->get();
+        if($request->ajax()){
+            $product = Product::searchById($request->id)->available()->get();
 
-        return response()->json(
-            $product->toArray()
-        );
+            return response()->json(
+                $product->toArray()
+            );
+        }
+
+        return null;
     }
 
     public function add(Request $request){

@@ -29,8 +29,6 @@ class PetController extends Controller
     public function index()
     {
         //
-        $pets = Pet::paginate(10);
-        return view('pet.index', compact('pets'));
     }
 
     /**
@@ -41,11 +39,6 @@ class PetController extends Controller
     public function create()
     {
         //
-        //$listSpecies = Species::lists('species', 'id');
-        $listBreeds = Breed::lists('species_id' , 'name', 'id');
-        $species_id = null;
-        //return view('pet.create', ['listSpecies' => $listSpecies, 'species_id' => $species_id]);
-        return view('pet.create', ['listBreeds' => $listBreeds, 'species_id' => $species_id]);
     }
 
     /**
@@ -68,7 +61,6 @@ class PetController extends Controller
         ]);
         Session::flash('message', 'Mascota creada correctamente');
         return Redirect::to('/pet/'.$request['client_id'].'/index');
-//        return dd($date);
     }
 
     /**
@@ -91,9 +83,6 @@ class PetController extends Controller
     public function edit($id)
     {
         //
-        $pet = Pet::find($id);
-
-        return view('pet.edit',['pet' => $pet]);
     }
 
     /**
@@ -137,30 +126,26 @@ class PetController extends Controller
     public function createPetByClient($id){
         //To create pet by client
         $client = Client::find($id);
-        $breedsList = Breed::lists('name', 'id');
+        //$breedsList = Breed::lists('name', 'id');
+        $species = Species::lists('species', 'id');
         $breed_id = null;
         $birthDate = null;
-        //return dd($breedsList);
+
         return view('pet.create', ['client' => $client
-            , 'breedsList' => $breedsList
+            //, 'breedsList' => $breedsList
+            , 'species' => $species
             , 'breed_id' => $breed_id
             , 'birthDate' => $birthDate
         ]);
     }
 
     public function indexPetsByClient($id){
-        //$pets = Pet::paginate(10);
-
         $client = Client::find($id);
         $pets = DB::table('pets')
             -> where('client_id', $id)
             -> paginate(10);
 
-/*        $speciesList = DB::table('species')
-            -> paginate(10);
-*/
-        $breedsList = DB::table('breeds')
-            -> paginate(10);
+        $breedsList = DB::table('breeds') -> paginate(10);
 
         return view('pet.index', ['client' => $client, 'pets' => $pets, 'breedsList' => $breedsList] );
     }
@@ -168,15 +153,23 @@ class PetController extends Controller
     public function editPetByClient($clientId, $petId){
         $pet = Pet::find($petId);
         $client = Client::find($clientId);
-        $breedsList = Breed::lists('name', 'id');
-        $breed_id = $pet['breed_id'];
-        $sex = $pet['sex'];
-        $birthDate = $pet['birth_date'];
+
+        $breed = Breed::find($pet->breed_id);
+        $breedsList = Breed::breeds($breed->species_id);
+        $breed_id = $pet->breed_id;
+
+        $species = Species::lists('species', 'id');
+        $specie_id = $breed->species_id;
+
+        $sex = $pet->sex;
+        $birthDate = $pet->birth_date;
 
         return view('pet.edit',['pet' => $pet
             , 'client' => $client
             , 'breedsList' => $breedsList
             , 'breed_id' => $breed_id
+            , 'species' => $species
+            , 'specie_id' => $specie_id
             , 'sex' => $sex
             , 'birthDate' => $birthDate
         ]);

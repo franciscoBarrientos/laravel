@@ -103,3 +103,4 @@ Route::post('product/{product}/add', [
     'uses'  => 'ProductController@add',
     'as'    => 'product.add'
 ]);
+Route::get('breeds/{id}','SpeciesController@getBreeds');

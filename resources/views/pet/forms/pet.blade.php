@@ -11,14 +11,33 @@
         {!!Form::label('sex', 'Sexo:')!!}
         {!!Form::select('sex',['1' => 'MACHO', '2' => 'HEMBRA'],null,['class'=>'form-control']) !!}
     </div>
+    @if(isset($specie_id))
+    <div class="form-group">
+        {!!Form::label('specie_id', 'Especie:')!!}
+        {!!Form::select('specie_id',$species, $specie_id,['class'=>'form-control','id'=>'specie']) !!}
+    </div>
+    @endif
+    @if(!isset($specie_id))
+    <div class="form-group">
+        {!!Form::label('specie_id', 'Especie:')!!}
+        {!!Form::select('specie_id',$species, null,['class'=>'form-control','id'=>'specie']) !!}
+    </div>
+    @endif
     <div class="form-group">
         {!!Form::label('breed_id', 'Raza:')!!}
-        {!!Form::select('breed_id',$breedsList, $breed_id, ['class'=>'form-control']) !!}
+        {!!Form::select('breed_id',['placeholder'=>'SELECCIONA UN RAZA'],null,['class'=>'form-control','id'=>'breed']) !!}
     </div>
     @section('scripts')
         <!-- JQueryUI 1.11.4 -->
-        {!!Html::script('js/jquery-ui.min.js')!!}
+        {!!Html::script('js/jquery-ui-1.11.4/jquery-ui.min.js')!!}
 
         <!-- DatePicker -->
         {!!Html::script('js/jquery-datepicker.js')!!}
+
+        <!-- Ajax -->
+        {!!Html::script('js/ajaxPet.js')!!}
+
+        @if(!isset($breed_id)
+            <script></script>
+        @endif
     @endsection

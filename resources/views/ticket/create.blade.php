@@ -74,7 +74,7 @@
     @section('scripts')
         <!-- AJAX -->
         {!!Html::script('js/utils.js')!!}
-        {!!Html::script('js/ajax.js')!!}
+        {!!Html::script('js/ajaxTicket.js')!!}
 
         <script>
             token('{{ csrf_token() }}');

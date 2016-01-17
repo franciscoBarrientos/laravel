@@ -144,3 +144,7 @@
 .width-25{
     width: 25%;
 }
+
+.ui-widget-header{
+    color: #000;
+}

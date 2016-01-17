@@ -25,7 +25,7 @@
     {!!Html::style('css/container.css')!!}
 
     <!-- CSS Jquery UI -->
-    {!!Html::style('css/jquery-ui.css')!!}
+    {!!Html::style('js/jquery-ui-1.11.4/jquery-ui.css')!!}
 </head>
 <body>
 <!-- Navigation -->
@@ -151,6 +151,28 @@
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('/administrator') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/species"><i class="fa fa-paw"></i> Especie</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/species/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/species') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/breed"><i class="fa fa-asterisk"></i> Razas</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/breed/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/breed') !!}"><i class="fa fa-th-list"></i> Listar</a>
                                 </li>
                             </ul>
                         </li>
