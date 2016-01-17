@@ -31,4 +31,13 @@ class PetCreateRequest extends Request
             , 'breed_id' => 'required'
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es requerido.',
+            'sex.required' => 'El sexo es requerido.',
+            'birthDate.numeric' => 'La fecha de nacimiento es requerida.',
+            'breed_id.required' => 'La raza es requerida.',
+        ];
+    }
 }

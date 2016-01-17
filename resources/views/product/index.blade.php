@@ -19,7 +19,7 @@
             <td>{{$product->quantity}}</td>
             <td>{{$product->price}}</td>
             <td>
-                <button type="button" class="btn btn-success" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-modal-maintainer="Producto" data-modal-type="add" data-toggle="modal" data-target="#addModal">
+                <button type="button" class="btn btn-success" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-modal-maintainer="Producto" data-modal-type="add" data-toggle="modal" data-target="#confirmModal">
                     <i class="fa fa-plus"></i> Agregar Stock
                 </button>
             </td>
@@ -38,8 +38,12 @@
     {!!$products->render()!!}
     @section('scripts')
         <!-- AJAX -->
+        {!!Html::script('js/utils.js')!!}
         {!!Html::script('js/modal.js')!!}
-        <script>url('{{route('product.destroy',1)}}');</script>
+        <script>
+            token('{{csrf_token()}}');
+            url('{{route('product.index')}}');
+        </script>
     @endsection
 </div>
 @endsection

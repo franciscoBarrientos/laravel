@@ -39,4 +39,17 @@ class ProductRequest extends Request
             ,'price'             => 'required|numeric|min:1'
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es requerido.',
+            'product_type_id.required' => 'El tipo de producto es requerido.',
+            'product_type_id.numeric' => 'El tipo de producto debe ser un número.',
+            'provider_id.required' => 'El proveedor es requerido.',
+            'provider_id.numeric' => 'El proveedor debe ser un número.',
+            'price.required' =>  'El precio es requerido.',
+            'price.numeric' =>  'El precio debe ser un número.',
+            'price.min' =>  'El precio mínimo es 1.',
+        ];
+    }
 }

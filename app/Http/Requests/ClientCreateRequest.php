@@ -28,9 +28,28 @@ class ClientCreateRequest extends Request
             'lastname' => 'required|min:3',
             'rut' => 'required|min:11|max:12',
             'address' => 'required',
-            'cellphone' => 'required|min:8|max:15',
-            'phone' => 'required|min:8|max:12',
+            'cellphone' => 'min:8|max:15',
+            'phone' => 'min:8|max:12',
             'email' => 'required|email',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es requerido.',
+            'name.min' => 'El nombre debe tener al menos 3 caractéres.',
+            'lastname.required' => 'El apellido es requerido.',
+            'lastname.min' => 'El apellido debe tener al menos 3 caractéres.',
+            'rut.required' => 'El RUT es requerido.',
+            'rut.min' => 'El RUT debe tener al menos 11 caractéres.',
+            'rut.max' => 'El RUT debe tener como máximo 12 caractéres.',
+            'address.required' => 'La dirección es requerida.',
+            'cellphone.min' => 'El celular debe tener al menos 11 caractéres.',
+            'cellphone.max' => 'El celular debe como máximo 15 caractéres.',
+            'phone.min' => 'El teléfono debe tener al menos 11 caractéres.',
+            'phone.max' => 'El teléfono debe como máximo 15 caractéres.',
+            'email.required' => 'El email es requerido.',
+            'email.email' => 'El email ingresado no es válido.',
         ];
     }
 }

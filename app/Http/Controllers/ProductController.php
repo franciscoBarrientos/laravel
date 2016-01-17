@@ -12,6 +12,8 @@ use Veterinaria\Http\Requests\ProductRequest;
 use Veterinaria\Product;
 use Veterinaria\ProductType;
 use Veterinaria\Provider;
+use Veterinaria\RecordTypeStock;
+use Veterinaria\Stock;
 
 class ProductController extends Controller
 {
@@ -136,6 +138,20 @@ class ProductController extends Controller
     }
 
     public function add(Request $request){
-        dd($request);
+        $recordTypeStock = RecordTypeStock::find("1");
+
+        Stock::Create([
+            'invoice_number' => $request->invoice_number
+            ,'quantity' => $request->quantity
+            ,'product_id' => $request->id
+            ,'record_type_stock_id' => $recordTypeStock->id
+        ]);
+
+        $product = Product::find($request->id);
+        $product->quantity = ($product->quantity+$request->quantity);
+        $product->save();
+
+        Session::flash('message', 'Stock agregado correctamente');
+        return Redirect::to('/product');
     }
 }

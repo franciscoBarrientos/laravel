@@ -73,9 +73,11 @@
 
     @section('scripts')
         <!-- AJAX -->
+        {!!Html::script('js/utils.js')!!}
         {!!Html::script('js/ajax.js')!!}
 
         <script>
-            url('<?php echo(route('ticket.store')); ?>');
+            token('{{ csrf_token() }}');
+            url('{{route('ticket.store')}}');
         </script>
     @endsection

@@ -28,4 +28,13 @@ class UserUpdateRequest extends Request
             'email' => 'required|email|unique:users,email,' . $this->get('id')
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es requerido',
+            'email.required' => 'El email es requerido',
+            'email.email' => 'El email ingresado es incorrecto',
+            'email.unique' => 'El email ingresado ya existe',
+        ];
+    }
 }

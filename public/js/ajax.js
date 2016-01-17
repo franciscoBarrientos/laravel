@@ -1,18 +1,10 @@
 var detailNumber = 0;
-var productList = [];
-var $url;
-
-function Product(id, quantity, detailNumber) {
-    this.id = id;
-    this.quantity = quantity;
-    this.detailNumber = detailNumber;
-}
 
 $(document).ready(function(){
     $('#search-btn').click(function(){
         var name = $("#name").val();
         var route = "/product/searchName";
-        var token = $("#token").val();
+        var token = $token;
 
         $.ajax({
             url: route,
@@ -61,11 +53,11 @@ $(document).ready(function(){
         ajaxRequest.style.display = "none";
     });
     $('#createTicket').click(function(){
-        var token = $("#token");
+        var token = $token;
 
         var form = document.createElement("form");
 
-        addHidden(form, "_token", token.val());
+        addHidden(form, "_token", token);
         addHidden(form, "detailNumber", detailNumber);
 
         productList.forEach(function(product) {
@@ -90,7 +82,7 @@ function addProduct(id){
         if (isNormalInteger(quantity)) {
             var data = $("#dataDetail");
             var route = "/product/searchId";
-            var token = $("#token").val();
+            var token = $token;
             var detail = document.getElementById('detail');
             $.ajax({
                 url: route,
@@ -198,58 +190,5 @@ function deleteProduct(id){
     if(rows == 1){
         var container = document.getElementById('detail');
         container.style.display = "none";
-    }
-}
-
-function addProductInList(id, quantity, detailNumber){
-    var product = new Product(id, quantity, detailNumber);
-    productList.push(product);
-}
-
-function removeProductOfList(id){
-    removeByAttr(productList, 'detailNumber', id);
-}
-
-function addHidden(theForm, key, value) {
-    // Create a hidden input element, and append it to the form:
-    var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;//'name-as-seen-at-the-server';
-    input.value = value;
-    theForm.appendChild(input);
-}
-
-var removeByAttr = function(arr, attr, value){
-    var i = arr.length;
-    while(i--){
-        if( arr[i]
-            && arr[i].hasOwnProperty(attr)
-            && (arguments.length > 2 && arr[i][attr] === value ) ){
-
-            arr.splice(i,1);
-
-        }
-    }
-    return arr;
-}
-
-function url(url){
-    $url = url;
-}
-
-function isNormalInteger(str) {
-    var n = ~~Number(str);
-    return String(n) === str && n >= 0;
-}
-
-Element.prototype.remove = function() {
-    this.parentElement.removeChild(this);
-}
-
-NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-    for(var i = this.length - 1; i >= 0; i--) {
-        if(this[i] && this[i].parentElement) {
-            this[i].parentElement.removeChild(this[i]);
-        }
     }
 }
