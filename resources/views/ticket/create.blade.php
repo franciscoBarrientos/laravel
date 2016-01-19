@@ -47,9 +47,18 @@
                 </table>
             </div>
 
+            <?php
+                $lastTicket = \Veterinaria\Ticket::all()->last();
+                if($lastTicket == null){
+                    $nextTicket = 1;
+                }else{
+                    $nextTicket = ($lastTicket->number) + 1;
+                }
+            ?>
+
             <div class="form-group" id="detail" style="display: none">
                 <h4>Detalle de Boleta</h4>
-                <h5>Número de próxima Boleta: {{\Veterinaria\Ticket::all()->last()->number + 1}}</h5>
+                <h5>Número de próxima Boleta: {{$nextTicket}}</h5>
                 <table class="container-width">
                     <thead id="headDetail">
                         <tr>

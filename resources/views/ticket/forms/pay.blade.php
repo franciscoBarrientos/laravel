@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="pagar{{$ticket->number}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="pagar{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

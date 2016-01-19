@@ -3,10 +3,10 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Boleta {{$id}}</title>
+        <title>Boleta {{$number}}</title>
     </head>
     <body>
-        <h1>Boleta: {{$id}}</h1>
+        <h1>Boleta: {{$number}}</h1>
         <h3>Fecha: {{$date}}</h3>
             <table>
                 <tr>

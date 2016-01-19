@@ -51,7 +51,14 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $number = Ticket::all()->last()->number + 1;
+        $lastTicket = \Veterinaria\Ticket::all()->last();
+
+        if($lastTicket == null){
+            $number = 1;
+        }else{
+            $number = ($lastTicket->number) + 1;
+        }
+
         $canceled = 0;
 
         Ticket::Create([
@@ -149,14 +156,13 @@ class TicketController extends Controller
     public function detail($id){
         $products = TicketProduct::searchByTicketId($id)->orderBy('created_at')->get();
         $date = date('Y-m-d');
-
-        $view =  View::make('ticket.detail', compact('products', 'date', 'id'))->render();
+        $number = Ticket::find($id)->number;
+        $view =  View::make('ticket.detail', compact('products', 'date', 'number'))->render();
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
 
-        return $pdf->download("Boleta-".$id."-".$date.".pdf");
-        //return view('ticket.detail', compact('tickets'));
+        return $pdf->download("Boleta-".$number."-".$date.".pdf");
     }
 
     public function paid($id){
@@ -164,7 +170,7 @@ class TicketController extends Controller
 
         $ticket->paid = 1;
         $ticket->save();
-        Session::flash('message', 'Boleta '+$ticket->id+' fue pagada');
+        Session::flash('message', 'Boleta '.$ticket->number.' fue pagada');
         return Redirect::to('/ticket');
     }
 }
