@@ -25,12 +25,15 @@ class AtentionTypeRequest extends Request
     {
         return [
             'description' => 'required',
+            'price' => 'required|numeric',
         ];
     }
 
     public function messages(){
         return [
             'description.required' => 'El tipo de atención es requerida.',
+            'price.required' => 'El precio es requerido.',
+            'price.numeric' => 'El precio debe ser un número.',
         ];
     }
 }

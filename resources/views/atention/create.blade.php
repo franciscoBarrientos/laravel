@@ -16,4 +16,5 @@
                 <a href="{{ route('atention.index') }}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
             {!!Form::close()!!}
         </div>
+        <br><br>
     @endsection

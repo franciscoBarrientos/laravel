@@ -173,4 +173,9 @@ class TicketController extends Controller
         Session::flash('message', 'Boleta '.$ticket->number.' fue pagada');
         return Redirect::to('/ticket');
     }
+
+    public function canceled(){
+        $tickets = Ticket::where('canceled', '=', 1)->paginate(10);
+        return view('ticket.trash', compact('tickets'));
+    }
 }

@@ -11,12 +11,14 @@
             <table class="table">
                 <thead>
                 <th>Tipo de Atención</th>
+                <th>Precio</th>
                 <th colspan="2">Acciones</th>
                 </thead>
 
                 @foreach($atentionsType as $atentionType)
                 <tbody>
                 <td>{{$atentionType->description}}</td>
+                <td>{{$atentionType->price}}</td>
                 <td>
                     {!!link_to_route('atentionType.edit', $title = ' Editar', $parameters = [$atentionType->id], $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>

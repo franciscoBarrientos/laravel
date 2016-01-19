@@ -32,7 +32,7 @@ class UserController extends Controller
         $this->adminFlag = false;
         $this->userAuth = false;
 
-        if(Administrator::find(Auth::user()->id)){
+        if(Administrator::administrator(Auth::user()->id)){
             $this->adminFlag = true;
         }
 

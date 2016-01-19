@@ -19,7 +19,7 @@
                     <td>{{ucfirst(strtolower($users->find($administrator->user_id)->name))}}</td>
                     <td>{{$users->find($administrator->user_id)->email}}</td>
                     <td>
-                        {!!Form::open(['route'=>['administrator.destroy',$administrator->user_id], 'method'=>'DELETE'])!!}
+                        {!!Form::open(['route'=>['administrator.destroy',$administrator->id], 'method'=>'DELETE'])!!}
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$administrator->id}}">
                             <i class="fa fa-user-times"></i> Eliminar
                         </button>

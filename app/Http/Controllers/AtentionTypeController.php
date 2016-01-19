@@ -47,7 +47,8 @@ class AtentionTypeController extends Controller
     public function store(AtentionTypeRequest $request)
     {
         AtentionType::create([
-            'description'   =>  $request['description']
+            'description'   =>  $request['description'],
+            'price'   =>  $request['price']
         ]);
 
         Session::flash('message', 'El tipo de atención fue creado correctamente');

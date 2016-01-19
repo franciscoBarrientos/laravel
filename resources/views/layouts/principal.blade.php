@@ -89,6 +89,9 @@
                         <li>
                             <a href="{!! URL::to('/ticket') !!}"><i class="fa fa-th-list"></i> Listar</a>
                         </li>
+                        <li>
+                            <a href="{!! URL::to('/ticket/canceled/list') !!}"><i class="fa fa-trash"></i> Listar Anuladas</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -116,7 +119,7 @@
                     </ul>
                 </li>
 
-                @if(\Veterinaria\Administrator::find(Auth::user()->id))
+                @if(\Veterinaria\Administrator::administrator(Auth::user()->id))
                 <li>
                     <a href=""><i class="fa fa-gear"></i> Administrar</a>
                     <ul class="nav nav-second-level">

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AtentionType extends Model
 {
     use SoftDeletes;
-    protected $table = 'atention_type';
-    protected $fillable = ['description'];
+    protected $table = 'atentions_type';
+    protected $fillable = ['description','price'];
     protected $dates = ['deleted_at'];
 }

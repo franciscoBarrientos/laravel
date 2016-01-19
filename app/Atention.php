@@ -9,5 +9,11 @@ class Atention extends Model
     //
     protected $table = 'atentions';
     protected $fillable = ['description'
-        ,'pet_id'];
+                            ,'pet_id'
+                            ,'atentions_type_id'
+                            ,'procedure'
+                            ,'treatment'
+                            ,'diagnosis'
+                            ,'prescription'
+                          ];
 }

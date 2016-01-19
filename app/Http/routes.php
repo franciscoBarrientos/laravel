@@ -75,6 +75,18 @@ Route::post('password/email','Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}','Auth\PasswordController@getReset');
 Route::post('password/reset','Auth\PasswordController@postReset');
 Route::resource('ticket', 'TicketController');
+Route::get('ticket/{id}/detail', [
+    'uses'  => 'TicketController@detail',
+    'as'    => 'ticket.detail'
+]);
+Route::post('ticket/{id}',[
+    'uses'  =>  'TicketController@paid',
+    'as'    =>  'ticket.paid'
+]);
+Route::get('ticket/canceled/list',[
+    'uses'  =>  'TicketController@canceled',
+    'as'    =>  'ticket.canceled'
+]);
 Route::post('product/searchName', [
     'uses'  => 'ProductController@searchByName',
     'as'    => 'product.searchName'
@@ -82,10 +94,6 @@ Route::post('product/searchName', [
 Route::post('product/searchId', [
     'uses'  => 'ProductController@searchById',
     'as'    => 'product.searchId'
-]);
-Route::get('ticket/{id}/detail', [
-    'uses'  => 'TicketController@detail',
-    'as'    => 'ticket.detail'
 ]);
 Route::resource('atention', 'AtentionController');
 Route::get('findpets', 'AtentionController@findPetsByClient');
@@ -107,9 +115,5 @@ Route::get('breeds/{id}','SpeciesController@getBreeds');
 Route::get('pet/{clientId}/atention/{petId}/add/', [
     'uses'  => 'AtentionController@add',
     'as'    => 'atention.add'
-]);
-Route::post('ticket/{id}',[
-    'uses'  =>  'TicketController@paid',
-    'as'    =>  'ticket.paid'
 ]);
 Route::resource('atentionType', 'AtentionTypeController');
