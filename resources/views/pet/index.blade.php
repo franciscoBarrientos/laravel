@@ -22,7 +22,10 @@
             <tbody>
                 <td>{{$pet->name}}</td>
                 <td>
-                    {!!link_to_route('atention.add', $title = ' Crear Atención', $parameters = [$client->id, $pet->id], $attributes = ['class'=>'btn btn-success icon-add'])!!}
+                    {!!link_to_route('atention.add', $title = ' Crear Atención', $parameters = [$pet->id], $attributes = ['class'=>'btn btn-success icon-add'])!!}
+                </td>
+                <td>
+                    {!!link_to_route('atention.indexByPetId', $title = ' Ver Atencion', $parameters = [$pet->id], $attributes = ['class'=>'btn btn-success icon-search'])!!}
                 </td>
                 <td>
                     <button class="btn btn-info" data-toggle="modal" data-target="#information{{$pet->id}}">

@@ -48,15 +48,10 @@
             {{$breed->name}}
         </div>
     </div>
-    <div class="col-xs-12">
-        <div class="form-group col-xs-6" >
-            {!!Form::label('description','Descripción:')!!}
-            {!!Form::text('description',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-xs-6" >
-            {!!Form::label('atentionType','Tipo de Atención:')!!}
-            {!!Form::select('atentionType',$atentionsType, null, ['class'=>'form-control']) !!}
-        </div>
+    <div class="col-xs-12 form-group">
+        {!!Form::label('atentions_type_id','Tipo de Atención:')!!}
+        {!!Form::select('atentions_type_id',$atentionsType, null, ['class'=>'form-control']) !!}
+        {!!Form::hidden('pet_id',$pet->id, null, ['class'=>'form-control']) !!}
     </div>
     <div class="col-xs-12">
         <div class="form-group">

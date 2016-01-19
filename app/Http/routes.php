@@ -112,8 +112,12 @@ Route::post('product/{product}/add', [
     'as'    => 'product.add'
 ]);
 Route::get('breeds/{id}','SpeciesController@getBreeds');
-Route::get('pet/{clientId}/atention/{petId}/add/', [
+Route::get('pet/{petId}/atention/add', [
     'uses'  => 'AtentionController@add',
     'as'    => 'atention.add'
+]);
+Route::get('pet/{petId}/atention/', [
+    'uses'  => 'AtentionController@indexByPetId',
+    'as'    => 'atention.indexByPetId'
 ]);
 Route::resource('atentionType', 'AtentionTypeController');

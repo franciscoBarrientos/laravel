@@ -142,10 +142,10 @@ class PetController extends Controller
         $client = Client::find($id);
         $pets = Pet::where('client_id','=', $id)-> paginate(10);
 
-        return view('pet.index', ['client' => $client, 'pets' => $pets] );
+        return view('pet.index', compact('client','pets'));
     }
 
-    public function editPetByClient($clientId, $petId){
+    public function editPetByClient($clientId,$petId){
         $pet = Pet::find($petId);
         $client = Client::find($clientId);
         $breed = Breed::find($pet->breed_id);
@@ -156,6 +156,6 @@ class PetController extends Controller
         $sex = $pet->sex;
         $birthDate = $pet->birth_date;
 
-        return view('pet.edit',compact('pet',['client','breedsList','breed_id','species','specie_id','sex', 'birthDate']));
+        return view('pet.edit',compact('pet','client','breedsList','breed_id','species','specie_id','sex', 'birthDate'));
     }
 }

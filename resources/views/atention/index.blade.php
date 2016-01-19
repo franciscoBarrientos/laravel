@@ -3,16 +3,19 @@
     @include('alerts.message')
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Atenciones</h2>
+            <h2 class="page-header">Atenciones de {{$pet->name}}</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
-    <div id="tableUser" class="table-responsive">
+    <div>
+        {!!link_to_route('atention.add', $title = ' Crear Atención', $parameters = [$pet->id], $attributes = ['class'=>'btn btn-success icon-add'])!!}
+        <a href="{{ route('pet.indexPetsByClient', $client->id) }}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
+    </div>
+    <div class="table-responsive">
         <table class="table">
             <thead>
                 <th>Paciente</th>
                 <th>Fecha</th>
-                <th>Descripción</th>
                 <th colspan="2">Acciones</th>
             </thead>
 
@@ -23,7 +26,6 @@
             <tbody>
                 <td>{{$pet->name}}</td>
                 <td>{{$atention->created_at->format('Y/m/d')}}</td>
-                <td>{{$atention->description}}</td>
                 <td>
                     <button class="btn btn-success">
                         <i class="fa fa-search"></i> Ver Detalles

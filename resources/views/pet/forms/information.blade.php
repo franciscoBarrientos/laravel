@@ -39,7 +39,7 @@
                         HEMBRA
                     @endif
                 </div>
-                <div>{!!Form::label('Fecha de Nacimiento:')!!}&nbsp;{{$pet->birth_date}}</div>
+                <div>{!!Form::label('Fecha Nacimiento:')!!}&nbsp;{{$pet->birth_date}}</div>
                 <div>{!!Form::label('Edad:')!!}&nbsp;{{$date}}</div>
                 <div>{!!Form::label('Especie:')!!}&nbsp;{{$specieName}}</div>
                 <div>{!!Form::label('Raza:')!!}&nbsp;{{$breedName}}</div>

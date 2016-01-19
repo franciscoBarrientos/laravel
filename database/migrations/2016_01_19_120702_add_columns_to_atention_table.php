@@ -20,6 +20,7 @@ class AddColumnsToAtentionTable extends Migration
             $table->text('treatment');
             $table->text('diagnosis');
             $table->text('prescription');
+            $table->dropColumn('description');
         });
     }
 
@@ -37,6 +38,7 @@ class AddColumnsToAtentionTable extends Migration
             $table->dropColumn('treatment');
             $table->dropColumn('diagnosis');
             $table->dropColumn('prescription');
+            $table->string('description');
         });
     }
 }
