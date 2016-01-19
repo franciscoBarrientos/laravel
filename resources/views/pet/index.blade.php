@@ -1,39 +1,44 @@
 @extends('layouts.principal')
 @section('content')
 @include('alerts.message')
-    </br>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Mascotas</h2>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
     <div id="tablePet" class="table-responsive">
-        <div class="float-left">
+        <div>
             <a href="{{ route('pet.createpet', $client->id) }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar mascota</a>
             <a href="{{ route('client.index') }}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
         </div>
-        </br>
         <table class="table">
             <thead>
-            <th>Mascota</th>
-            <th>Sexo</th>
-            <th>Especie</th>
-            <th colspan="2">Acciones</th>
+                <th>Mascota</th>
+                <th colspan="4">Acciones</th>
             </thead>
 
             @foreach($pets as $pet)
             <tbody>
-            <td>{{$pet->name}}</td>
-            @if ($pet->sex == 1)
-                <td>MACHO</td>
-            @else
-                <td>HEMBRA</td>
-            @endif
-            @foreach($breedsList as $breed)
-                @if ($pet->breed_id == $breed->id)
-                    <td>{{$breed->name}}</td>
-                @endif
-            @endforeach
-            <td>
-                {!!link_to_route('pet.editPetByClient', $title = ' Editar', $parameters = [$client->id, $pet->id], $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
-                <a href="{{ route('pet.destroy', $pet->id) }}" class="btn btn-danger">
-                    <i class="fa fa-user-times"></i>Eliminar</a>
-            </td>
+                <td>{{$pet->name}}</td>
+                <td>
+                    {!!link_to_route('atention.add', $title = ' Crear Atención', $parameters = [$client->id, $pet->id], $attributes = ['class'=>'btn btn-success icon-add'])!!}
+                </td>
+                <td>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#information{{$pet->id}}">
+                        <i class="fa fa-info-circle"></i> Información
+                    </button>
+                    @include('pet.forms.information')
+                </td>
+                <td>
+                    {!!link_to_route('pet.editPetByClient', $title = ' Editar', $parameters = [$client->id, $pet->id], $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
+                </td>
+                <td>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$pet->id}}">
+                        <i class="fa fa-user-times"></i> Eliminar
+                    </button>
+                    @include('pet.forms.confirm')
+                </td>
             </tbody>
             @endforeach
         </table>

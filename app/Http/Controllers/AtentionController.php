@@ -5,6 +5,9 @@ namespace Veterinaria\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Veterinaria\Atention;
+use Veterinaria\AtentionType;
+use Veterinaria\Breed;
+use Veterinaria\Client;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Species;
@@ -22,8 +25,8 @@ class AtentionController extends Controller
      */
     public function index()
     {
-        //
         $atentions = Atention::paginate(10);
+
         return view('atention.index', compact('atentions'));
     }
 
@@ -32,12 +35,7 @@ class AtentionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        $rut = null;
-        $listSpecies = Species::lists('species', 'id');
-        return view('atention.create', ['listSpecies'=>$listSpecies, 'rut'=>$rut]);
+    public function create(){
     }
 
     /**
@@ -100,5 +98,15 @@ class AtentionController extends Controller
         $pets = Pet::paginate(10);
         $client = null;
         dd($pets);
+    }
+
+    public function add($clientId,$petId){
+        $pet = Pet::find($petId);
+        $client = Client::find($clientId);
+        $breed = Breed::find($pet->breed_id);
+        $specie = Species::find($breed->species_id);
+        $atentionsType = AtentionType::lists('description','id')->all();
+
+        return view('atention.create', compact('pet','client','breed','specie','atentionsType'));
     }
 }

@@ -1,14 +1,9 @@
 $(document).ready(function(){
     var $specie = $("#specie");
 
-    ajaxPet($specie.val());
-    var $breed = $("#breed");
-    /* $breed[1].selected = true;
-    console.log($breed.val());*/
-
-    $breed.change(function(event){
-        console.log($breed.val());
-    });
+    if($create == true){
+        ajaxPet($specie.val());
+    }
 
     $specie.change(function(event){
         ajaxPet(event.target.value);

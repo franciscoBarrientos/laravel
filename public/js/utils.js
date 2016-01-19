@@ -1,6 +1,7 @@
 var $url;
 var $token;
 var productList = [];
+var $create;
 
 function url(url){
     $url = url;
@@ -8,6 +9,10 @@ function url(url){
 
 function token(token){
     $token = token;
+}
+
+function create(create){
+    $create = create;
 }
 
 function addHidden(theForm, key, value) {
@@ -64,3 +69,4 @@ function addProductInList(id, quantity, detailNumber){
     var product = new Product(id, quantity, detailNumber);
     productList.push(product);
 }
+

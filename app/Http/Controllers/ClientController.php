@@ -121,10 +121,13 @@ class ClientController extends Controller
             ->get();
 
         foreach($clientPets as $clientPet){;
-            Pet::destroy($clientPet->id);
+            //Pet::destroy($clientPet->id);
+            $pet = Pet::find($clientPet->id);
+            $pet -> delete();
         }
 
-        Client::destroy($id);
+        $client = Client::find($id);
+        $client  -> delete();
 
         Session::flash('message', 'Cliente eliminado correctamente');
         return Redirect::to('/client');

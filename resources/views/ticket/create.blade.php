@@ -1,6 +1,12 @@
 @extends('layouts.principal')
     @section('content')
         @include('alerts.request')
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Crear Boleta</h2>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
         <div class="container-width">
             <div id="ajaxRequest" style="display: none">
                 <div class="container-fluid">

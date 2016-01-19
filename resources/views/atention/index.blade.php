@@ -1,30 +1,37 @@
 @extends('layouts.principal')
 @section('content')
     @include('alerts.message')
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Atenciones</h2>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
     <div id="tableUser" class="table-responsive">
         <table class="table">
             <thead>
-                <th>Cliente</th>
-                <th>Mascota</th>
+                <th>Paciente</th>
+                <th>Fecha</th>
                 <th>Descripción</th>
                 <th colspan="2">Acciones</th>
             </thead>
 
             @foreach($atentions as $atention)
+            <?php
+                $pet = \Veterinaria\Pet::find($atention->pet_id);
+            ?>
             <tbody>
-                <td>{{$client->name}}</td>
                 <td>{{$pet->name}}</td>
+                <td>{{$atention->created_at->format('Y/m/d')}}</td>
                 <td>{{$atention->description}}</td>
-<!--                <td>
-                    {!!link_to_route('usuario.edit', $title = ' Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary icono-edit'])!!}
+                <td>
+                    <button class="btn btn-success">
+                        <i class="fa fa-search"></i> Ver Detalles
+                    </button>
                 </td>
                 <td>
-                    {!!Form::open(['route'=>['usuario.destroy',$user->id], 'method'=>'DELETE'])!!}
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fa fa-user-times"></i> Eliminar
-                        </button>
-                    {!!Form::close()!!}
-                </td> -->
+                    {!!link_to_route('atention.edit', $title = ' Editar', $parameters = $atention->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
+                </td>
             </tbody>
             @endforeach
         </table>

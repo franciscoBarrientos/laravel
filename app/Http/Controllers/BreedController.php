@@ -32,10 +32,8 @@ class BreedController extends Controller
         $breeds = DB::table('breeds')
             -> orderBy('name', 'asc')
             -> paginate(10);
-        $speciesList = DB::table('species')
-            -> paginate(10);
 
-        return view('breed.index', ['breeds' => $breeds, 'speciesList' => $speciesList]);
+        return view('breed.index', compact('breeds'));
     }
 
     /**

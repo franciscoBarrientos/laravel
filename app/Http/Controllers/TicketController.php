@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
+use Veterinaria\Http\Requests\TicketPaidRequest;
 use Veterinaria\Product;
 use Veterinaria\RecordTypeStock;
 use Veterinaria\Stock;
@@ -156,5 +157,14 @@ class TicketController extends Controller
 
         return $pdf->download("Boleta-".$id."-".$date.".pdf");
         //return view('ticket.detail', compact('tickets'));
+    }
+
+    public function paid($id){
+        $ticket = Ticket::find($id);
+
+        $ticket->paid = 1;
+        $ticket->save();
+        Session::flash('message', 'Boleta '+$ticket->id+' fue pagada');
+        return Redirect::to('/ticket');
     }
 }

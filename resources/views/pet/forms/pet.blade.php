@@ -23,11 +23,22 @@
         {!!Form::select('specie_id',$species, null,['class'=>'form-control','id'=>'specie']) !!}
     </div>
     @endif
+    @if(isset($breedsList))
     <div class="form-group">
         {!!Form::label('breed_id', 'Raza:')!!}
-        {!!Form::select('breed_id',['placeholder'=>'SELECCIONA UN RAZA'],null,['class'=>'form-control','id'=>'breed']) !!}
+        {!!Form::select('breed_id',$breedsList,null,['class'=>'form-control','id'=>'breed']) !!}
     </div>
+    @endif
+    @if(!isset($breedsList))
+    <div class="form-group">
+        {!!Form::label('breed_id', 'Raza:')!!}
+        {!!Form::select('breed_id',['-1'=>'Selecciona una Raza'],null,['class'=>'form-control','id'=>'breed']) !!}
+    </div>
+    @endif
     @section('scripts')
+        <!-- utils -->
+        {!!Html::script('js/utils.js')!!}
+
         <!-- JQueryUI 1.11.4 -->
         {!!Html::script('js/jquery-ui-1.11.4/jquery-ui.min.js')!!}
 
@@ -37,7 +48,10 @@
         <!-- Ajax -->
         {!!Html::script('js/ajaxPet.js')!!}
 
-        @if(!isset($breed_id)
-            <script></script>
+        @if(!isset($breedsList))
+            <script>create(true);</script>
+        @endif
+        @if(isset($breedsList))
+            <script>create(false);</script>
         @endif
     @endsection

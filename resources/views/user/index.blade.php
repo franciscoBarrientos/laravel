@@ -1,6 +1,12 @@
 @extends('layouts.principal')
 @section('content')
     @include('alerts.message')
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Usuarios</h2>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
     <div id="tableUser" class="table-responsive">
         <table class="table">
             <thead>

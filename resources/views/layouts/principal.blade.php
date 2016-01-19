@@ -65,7 +65,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="/home"><i class="fa fa-dashboard"></i> Panel</a>
+                    <a href="/home"><i class="fa fa-bell"></i> Alertas</a>
                 </li>
 
                 <li>
@@ -100,18 +100,6 @@
                         </li>
                         <li>
                             <a href="{!! URL::to('/product') !!}"><i class="fa fa-th-list"></i> Listar</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{!! URL::to('/productType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
-                        </li>
-                        <li>
-                            <a href="{!! URL::to('/productType') !!}"><i class="fa fa-th-list"></i> Listar</a>
                         </li>
                     </ul>
                 </li>
@@ -173,6 +161,28 @@
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('/breed') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/productType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/productType') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/atentionType"><i class="fa fa-book"></i> Tipos de Atención</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/atentionType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/atentionType') !!}"><i class="fa fa-th-list"></i> Listar</a>
                                 </li>
                             </ul>
                         </li>
