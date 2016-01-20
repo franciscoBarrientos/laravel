@@ -4,23 +4,6 @@
     $breedName = $petBreed->name;
     $specieId = $petBreed->species_id;
     $specieName = \Veterinaria\Species::find($specieId)->species;
-
-    $date2 = date('Y-m-d');
-    $diff = abs(strtotime($date2) - strtotime($pet->birth_date));
-    $years = floor($diff / (365*60*60*24));
-    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
-    if($years == 1){$yearAge = 'año';}
-    else{$yearAge = 'años';}
-
-    if($months == 1){$monthsAge = 'mes';}
-    else{$monthsAge = 'meses';}
-
-    if($days == 1){$daysAge = 'día';}
-    else{$daysAge = 'días';}
-
-    $date = $years.' '.$yearAge.' '.$months.' '.$monthsAge.' '.$days.' '.$daysAge;
 ?>
 <div class="modal fade" id="information{{$pet->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -43,6 +26,7 @@
                 <div>{!!Form::label('Edad:')!!}&nbsp;{{$date}}</div>
                 <div>{!!Form::label('Especie:')!!}&nbsp;{{$specieName}}</div>
                 <div>{!!Form::label('Raza:')!!}&nbsp;{{$breedName}}</div>
+                <div>{!!Form::label('Número de Ficha:')!!}&nbsp;{{$pet->record_number}}</div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>

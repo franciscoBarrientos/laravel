@@ -13,6 +13,11 @@ class Pet extends Model
                                 , 'client_id'
                                 , 'sex'
                                 , 'birth_date'
-                                , 'breed_id') ;
+                                , 'breed_id'
+                                , 'record_number') ;
     protected $dates = ['deleted_at'];
+
+    public static function getPetByClientId($id){
+        return Pet::where('client_id','=',$id)->get();
+    }
 }

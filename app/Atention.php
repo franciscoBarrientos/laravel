@@ -13,6 +13,7 @@ class Atention extends Model
                             ,'treatment'
                             ,'diagnosis'
                             ,'prescription'
+                            ,'ticket_id'
                           ];
 
     public static function getAtentionsByPetId($id){

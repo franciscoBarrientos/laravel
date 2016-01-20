@@ -34,12 +34,23 @@ class UtilsController{
     }
 
     public static function calculateAge($birthDate){
-        $date2 = date('Y-m-d');//
+        $date2 = date('Y-m-d');
         $diff = abs(strtotime($date2) - strtotime($birthDate));
         $years = floor($diff / (365*60*60*24));
         $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
         $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-        $date = $years.' años '.$months.' meses '.$days.' días';
+
+        if($years == 1){$yearAge = 'año';}
+        else{$yearAge = 'años';}
+
+        if($months == 1){$monthsAge = 'mes';}
+        else{$monthsAge = 'meses';}
+
+        if($days == 1){$daysAge = 'día';}
+        else{$daysAge = 'días';}
+
+        $date = $years.' '.$yearAge.' '.$months.' '.$monthsAge.' '.$days.' '.$daysAge;
+
         return $date;
     }
 }

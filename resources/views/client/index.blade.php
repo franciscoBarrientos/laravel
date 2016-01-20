@@ -19,13 +19,13 @@
                 <td>{{$client->name}}</td>
                 <td>{{$client->lastname}}</td>
                 <td>
+                    {!!link_to_route('pet.indexPetsByClient', $title = ' Mascotas', $parameters = $client->id, $attributes = ['class'=>'btn btn-success icon-pet'])!!}
+                </td>
+                <td>
                     <button class="btn btn-info" data-toggle="modal" data-target="#detail{{$client->id}}">
                         <i class="fa fa-info-circle"></i> Información
                     </button>
                     @include('client.forms.detail')
-                </td>
-                <td>
-                    {!!link_to_route('pet.indexPetsByClient', $title = ' Mascotas', $parameters = $client->id, $attributes = ['class'=>'btn btn-success icon-pet'])!!}
                 </td>
                 <td>
                     {!!link_to_route('client.edit', $title = ' Editar', $parameters = $client->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}

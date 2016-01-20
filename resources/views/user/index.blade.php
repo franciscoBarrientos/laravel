@@ -20,10 +20,10 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
-                    {!!link_to_route('usuario.edit', $title = ' Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
+                    {!!link_to_route('user.edit', $title = ' Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}
                 </td>
                 <td>
-                    {!!Form::open(['route'=>['usuario.destroy',$user->id], 'method'=>'DELETE'])!!}
+                    {!!Form::open(['route'=>['user.destroy',$user->id], 'method'=>'DELETE'])!!}
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$user->id}}">
                             <i class="fa fa-user-times"></i> Eliminar
                         </button>

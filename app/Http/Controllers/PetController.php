@@ -15,6 +15,7 @@ use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Pet;
 use Veterinaria\Species;
 use Veterinaria\Client;
+use Veterinaria\Ticket;
 
 class PetController extends Controller
 {
@@ -49,15 +50,13 @@ class PetController extends Controller
      */
     public function store(PetCreateRequest $request)
     {
-        //
-        $date = $request['birthDate'];
-        $date = Carbon::createFromFormat('Y-m-d', $date);
         Pet::create([
-            'name' => strtoupper($request['name'])
+               'name' => $request['name']
             , 'client_id' => $request['client_id']
             , 'sex' => $request['sex']
-            , 'birth_date' => $date
+            , 'birth_date' => $request['birth_date']
             , 'breed_id' => $request['breed_id']
+            , 'record_number' => $request['record_number']
         ]);
         Session::flash('message', 'Mascota creada correctamente');
         return Redirect::to('/pet/'.$request['client_id'].'/index');
@@ -82,28 +81,31 @@ class PetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pet = Pet::find($id);
+        $clientId = Client::find($pet->client_id)->id;
+        $breed = Breed::find($pet->breed_id);
+        $breedsList = Breed::breeds($breed->species_id)->lists('name', 'id');
+        $species = Species::lists('species', 'id');
+        $specie_id = $breed->species_id;
+
+        return view('pet.edit',compact('pet','breedsList','species','specie_id','clientId'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request|\Veterinaria\Http\Requests\PetCreateRequest $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(PetCreateRequest $request, $id)
     {
-        //
         $pet = Pet::find($id);
-        $request['birthDate'] = Carbon::createFromFormat('Y-m-d', $request['birthDate']);
-        $pet['birth_date'] = $request['birthDate'];
         $pet -> fill($request->all());
         $pet -> save();
 
         Session::flash('message', 'Mascota ' . $pet->name .' editado correctamente');
         return Redirect::to('/pet/'.$pet->client_id.'/index');
-        //return dd( $request['birthDate']);
     }
 
     /**
@@ -125,37 +127,21 @@ class PetController extends Controller
     public function createPetByClient($id){
         //To create pet by client
         $client = Client::find($id);
-        //$breedsList = Breed::lists('name', 'id');
         $species = Species::lists('species', 'id');
-        $breed_id = null;
-        $birthDate = null;
+        $number = Pet::max('record_number');
 
-        return view('pet.create', ['client' => $client
-            //, 'breedsList' => $breedsList
-            , 'species' => $species
-            , 'breed_id' => $breed_id
-            , 'birthDate' => $birthDate
-        ]);
+        if($number == null){
+            $number = 1;
+        }else{
+            $number++;
+        }
+
+        return view('pet.create', compact('client','species','number'));
     }
 
     public function indexPetsByClient($id){
         $client = Client::find($id);
         $pets = Pet::where('client_id','=', $id)-> paginate(10);
-
         return view('pet.index', compact('client','pets'));
-    }
-
-    public function editPetByClient($clientId,$petId){
-        $pet = Pet::find($petId);
-        $client = Client::find($clientId);
-        $breed = Breed::find($pet->breed_id);
-        $breedsList = Breed::breeds($breed->species_id)->lists('name', 'id');
-        $breed_id = $pet->breed_id;
-        $species = Species::lists('species', 'id');
-        $specie_id = $breed->species_id;
-        $sex = $pet->sex;
-        $birthDate = $pet->birth_date;
-
-        return view('pet.edit',compact('pet','client','breedsList','breed_id','species','specie_id','sex', 'birthDate'));
     }
 }

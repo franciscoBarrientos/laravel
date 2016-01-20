@@ -10,8 +10,10 @@
                 ¿Estas seguro de eliminar a la mascota {{ucfirst ( strtolower ( $pet->name ))}}?
             </div>
             <div class="modal-footer">
+                {!!Form::open(['route'=>['pet.destroy',$pet->id], 'method'=>'DELETE'])!!}
                 <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
-                <a href="{{ route('pet.destroy', $pet->id) }}" class="btn btn-danger" ><i class="fa fa-minus-circle"></i> Eliminar</a>
+                <button type="submit" class="btn btn-danger" ><i class="fa fa-minus-circle"></i> Eliminar</button>
+                {!!Form::close()!!}
             </div>
         </div>
     </div>

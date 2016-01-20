@@ -21,7 +21,7 @@
                 <td>{{$ticket->created_at->format('Y/m/d')}}</td>
                 <td>{{$ticket->updated_at->format('Y/m/d')}}</td>
                 <td>
-                    {!!link_to_route('ticket.detail', $title = ' Descargar', $parameters = $ticket->id, $attributes = ['class'=>'btn btn-primary icon-pdf'])!!}
+                    {!!link_to_route('ticket.pdf', $title = ' Descargar', $parameters = $ticket->id, $attributes = ['class'=>'btn btn-primary icon-pdf'])!!}
                 </td>
                 </tbody>
                 @endforeach

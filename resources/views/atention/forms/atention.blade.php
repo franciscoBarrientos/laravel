@@ -1,21 +1,3 @@
-    <?php
-        $date2 = date('Y-m-d');
-        $diff = abs(strtotime($date2) - strtotime($pet->birth_date));
-        $years = floor($diff / (365*60*60*24));
-        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
-        if($years == 1){$yearAge = 'año';}
-        else{$yearAge = 'años';}
-
-        if($months == 1){$monthsAge = 'mes';}
-        else{$monthsAge = 'meses';}
-
-        if($days == 1){$daysAge = 'día';}
-        else{$daysAge = 'días';}
-
-        $date = $years.' '.$yearAge.' '.$months.' '.$monthsAge.' '.$days.' '.$daysAge;
-    ?>
     <div class="col-xs-12">
         <div class="form-group col-xs-6 col-sm-4" style="padding:0;">
             {!!Form::label(null,'Cliente:')!!}

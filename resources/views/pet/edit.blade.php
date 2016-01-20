@@ -13,7 +13,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-refresh"></i> Actualizar
                 </button>
-                <a href="{{route('pet.indexPetsByClient', $client->id)}}" class="btn btn-info">
+                <a href="{{route('pet.indexPetsByClient', $clientId)}}" class="btn btn-info">
                     <i class="fa fa-arrow-circle-left">  Volver</i>
                 </a>
             {!!Form::close()!!}

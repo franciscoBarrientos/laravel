@@ -48,7 +48,7 @@
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
-                    <a href="/usuario/{!!Auth::user()->id!!}/edit"><i class="fa fa-user"></i> Perfil de Usuario</a>
+                    <a href="/user/{!!Auth::user()->id!!}/edit"><i class="fa fa-user"></i> Perfil de Usuario</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -124,13 +124,13 @@
                     <a href=""><i class="fa fa-gear"></i> Administrar</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="/usuario"><i class="fa fa-users"></i> Usuarios</a>
+                            <a href="/user"><i class="fa fa-users"></i> Usuarios</a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="{!! URL::to('/usuario/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                    <a href="{!! URL::to('/user/create') !!}"><i class="fa fa-plus"></i> Crear</a>
                                 </li>
                                 <li>
-                                    <a href="{!! URL::to('/usuario') !!}"><i class="fa fa-th-list"></i>Listar</a>
+                                    <a href="{!! URL::to('/user') !!}"><i class="fa fa-th-list"></i>Listar</a>
                                 </li>
                             </ul>
                         </li>

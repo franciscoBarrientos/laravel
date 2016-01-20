@@ -9,6 +9,7 @@
         </div>
         <div class="container-fluid">
             {!!Form::open(['route'=>'pet.store', 'method'=>'POST'])!!}
+                {!!Form::hidden('client_id', $client->id)!!}
                 @include('pet.forms.pet')
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-save"></i> Guardar

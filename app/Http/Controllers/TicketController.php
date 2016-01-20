@@ -82,8 +82,6 @@ class TicketController extends Controller
                     ,'subtotal' => $subtotal
                 ]);
 
-                $ticket = Ticket::all()->last();
-
                 $recordTypeStock = RecordTypeStock::find("2");
 
                 Stock::Create([
@@ -153,11 +151,11 @@ class TicketController extends Controller
         return Redirect::to('/ticket');
     }
 
-    public function detail($id){
+    public function pdf($id){
         $products = TicketProduct::searchByTicketId($id)->orderBy('created_at')->get();
         $date = date('Y-m-d');
         $number = Ticket::find($id)->number;
-        $view =  View::make('ticket.detail', compact('products', 'date', 'number'))->render();
+        $view =  View::make('ticket.pdf', compact('products', 'date', 'number'))->render();
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

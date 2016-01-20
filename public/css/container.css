@@ -114,6 +114,13 @@
     font-size: 15px;
 }
 
+.icon-eye:before{
+    font-family: FontAwesome;
+    content:"\f06e";
+    color:#333;
+    font-size: 15px;
+}
+
 .width-middle{
     width: 50%;
 }

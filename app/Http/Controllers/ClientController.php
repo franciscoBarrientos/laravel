@@ -2,8 +2,8 @@
 
 namespace Veterinaria\Http\Controllers;
 
-use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Veterinaria\Http\Requests;
@@ -81,10 +81,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
         $client = Client::find($id);
-        //$pets = Pet::paginate(10);
-        //$pets = Pet::where('client_id', '=' , $id)->paginate(10);
 
         return view('client.edit', ['client'=>$client]);
     }
@@ -98,7 +95,6 @@ class ClientController extends Controller
      */
     public function update(ClientCreateRequest $request, $id)
     {
-        //
         $client = Client::find($id);
         $client -> fill($request->all());
         $client -> save();
@@ -116,14 +112,10 @@ class ClientController extends Controller
     public function destroy($id)
     {
         //Eliminate first his pet
-        $clientPets = DB::table('pets')
-            ->where('client_id', $id)
-            ->get();
+        $clientPets = Pet::getPetByClientId($id);
 
         foreach($clientPets as $clientPet){;
-            //Pet::destroy($clientPet->id);
-            $pet = Pet::find($clientPet->id);
-            $pet -> delete();
+            $clientPet -> delete();
         }
 
         $client = Client::find($id);

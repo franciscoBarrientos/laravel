@@ -39,45 +39,67 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-
+//Front
 Route::resource('/', 'FrontController');
-Route::resource('client', 'ClientController');
-Route::resource('usuario', 'UserController');
-Route::resource('pet', 'PetController');
+
+//User
+Route::resource('user', 'UserController');
+
+//Login
 Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
+
+//home
 Route::resource('home', 'FrontController@home');
+
+//administrator
 Route::resource('administrator', 'AdministratorController');
-Route::get('pet/{id}/createpet', [
+
+//pet
+Route::resource('pet','PetController');
+Route::get('pet/{id}/create', [
     'uses'  => 'PetController@createPetByClient',
     'as'    => 'pet.createpet'
-]);
-Route::get('pet/{id}/destroy', [
-    'uses'  => 'PetController@destroy',
-    'as'    => 'pet.destroy'
 ]);
 Route::get('pet/{id}/index', [
     'uses'  => 'PetController@indexPetsByClient',
     'as'    => 'pet.indexPetsByClient'
 ]);
-Route::get('pet/{clientId}/{petId}/edit', [
-    'uses'  => 'PetController@editPetByClient',
-    'as'    => 'pet.editPetByClient'
-]);
-Route::get('client/{id}/destroy', [
-    'uses'  => 'ClientController@destroy',
-    'as'    => 'client.destroy'
-]);
+
+//Client
+Route::resource('client', 'ClientController');
+
+//productType
 Route::resource('productType', 'ProductTypeController');
-Route::resource('provider', 'ProviderController');
+
+//product
 Route::resource('product', 'ProductController');
+Route::post('product/searchName', [
+    'uses'  => 'ProductController@searchByName',
+    'as'    => 'product.searchName'
+]);
+Route::post('product/searchId', [
+    'uses'  => 'ProductController@searchById',
+    'as'    => 'product.searchId'
+]);
+Route::post('product/{product}/add', [
+    'uses'  => 'ProductController@add',
+    'as'    => 'product.add'
+]);
+
+//provider
+Route::resource('provider', 'ProviderController');
+
+//password recovery
 Route::post('password/email','Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}','Auth\PasswordController@getReset');
 Route::post('password/reset','Auth\PasswordController@postReset');
+
+//ticket
 Route::resource('ticket', 'TicketController');
-Route::get('ticket/{id}/detail', [
-    'uses'  => 'TicketController@detail',
-    'as'    => 'ticket.detail'
+Route::get('ticket/{id}/pdf', [
+    'uses'  => 'TicketController@pdf',
+    'as'    => 'ticket.pdf'
 ]);
 Route::post('ticket/{id}',[
     'uses'  =>  'TicketController@paid',
@@ -87,37 +109,40 @@ Route::get('ticket/canceled/list',[
     'uses'  =>  'TicketController@canceled',
     'as'    =>  'ticket.canceled'
 ]);
-Route::post('product/searchName', [
-    'uses'  => 'ProductController@searchByName',
-    'as'    => 'product.searchName'
-]);
-Route::post('product/searchId', [
-    'uses'  => 'ProductController@searchById',
-    'as'    => 'product.searchId'
-]);
+
+//atention
 Route::resource('atention', 'AtentionController');
-Route::get('findpets', 'AtentionController@findPetsByClient');
+Route::get('atention/{petId}/add', [
+    'uses'  => 'AtentionController@add',
+    'as'    => 'atention.add'
+]);
+Route::get('atention/{petId}/index', [
+    'uses'  => 'AtentionController@indexByPetId',
+    'as'    => 'atention.indexByPetId'
+]);
+Route::get('atention/{id}/detail', [
+    'uses'  => 'AtentionController@detail',
+    'as'    => 'atention.detail'
+]);
+Route::get('atention/{id}/pdf', [
+    'uses'  => 'AtentionController@pdf',
+    'as'    => 'atention.pdf'
+]);
+
+//atentionType
+Route::resource('atentionType', 'AtentionTypeController');
+
+//species
 Route::resource('species', 'SpeciesController');
 Route::get('species/{id}/destroy', [
     'uses'  => 'SpeciesController@destroy',
     'as'    => 'species.destroy'
 ]);
+
+//breed
 Route::resource('breed', 'BreedController');
 Route::get('breed/{id}/destroy', [
     'uses'  => 'BreedController@destroy',
     'as'    => 'breed.destroy'
 ]);
-Route::post('product/{product}/add', [
-    'uses'  => 'ProductController@add',
-    'as'    => 'product.add'
-]);
 Route::get('breeds/{id}','SpeciesController@getBreeds');
-Route::get('pet/{petId}/atention/add', [
-    'uses'  => 'AtentionController@add',
-    'as'    => 'atention.add'
-]);
-Route::get('pet/{petId}/atention/', [
-    'uses'  => 'AtentionController@indexByPetId',
-    'as'    => 'atention.indexByPetId'
-]);
-Route::resource('atentionType', 'AtentionTypeController');

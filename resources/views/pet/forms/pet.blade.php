@@ -1,11 +1,10 @@
-    {!!Form::hidden('client_id', $client -> id,['class'=>'form-control', 'parameters' => 'id'])!!}
     <div class="form-group">
         {!!Form::label('name', 'Nombre:')!!}
         {!!Form::text('name', null,['class'=>'form-control', 'placeholder'=>'Nombre mascota'])!!}
     </div>
     <div class="form-group">
-        {!!Form::label('birthDate', 'Fecha nacimiento:')!!}
-        {!!Form::text('birthDate', $birthDate, ['id' => 'datepicker', 'class'=>'form-control']) !!}
+        {!!Form::label('birth_date', 'Fecha nacimiento:')!!}
+        {!!Form::text('birth_date', null, ['id' => 'datepicker', 'class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!!Form::label('sex', 'Sexo:')!!}
@@ -16,8 +15,7 @@
         {!!Form::label('specie_id', 'Especie:')!!}
         {!!Form::select('specie_id',$species, $specie_id,['class'=>'form-control','id'=>'specie']) !!}
     </div>
-    @endif
-    @if(!isset($specie_id))
+    @else
     <div class="form-group">
         {!!Form::label('specie_id', 'Especie:')!!}
         {!!Form::select('specie_id',$species, null,['class'=>'form-control','id'=>'specie']) !!}
@@ -28,13 +26,20 @@
         {!!Form::label('breed_id', 'Raza:')!!}
         {!!Form::select('breed_id',$breedsList,null,['class'=>'form-control','id'=>'breed']) !!}
     </div>
-    @endif
-    @if(!isset($breedsList))
+    @else
     <div class="form-group">
         {!!Form::label('breed_id', 'Raza:')!!}
         {!!Form::select('breed_id',['-1'=>'Selecciona una Raza'],null,['class'=>'form-control','id'=>'breed']) !!}
     </div>
     @endif
+    <div class="form-group">
+        {!!Form::label('record_number', 'Número de ficha:')!!}
+        @if(isset($number))
+        {!!Form::number('record_number',$number,['class'=>'form-control']) !!}
+        @else
+        {!!Form::number('record_number',null,['class'=>'form-control']) !!}
+        @endif
+    </div>
     @section('scripts')
         <!-- utils -->
         {!!Html::script('js/utils.js')!!}

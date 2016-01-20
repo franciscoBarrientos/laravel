@@ -8,7 +8,8 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-refresh"></i> Actualizar
                 </button>
-            <a href="{{route('pet.indexPetsByClient', $client->id)}}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
+            <a href="{{route('atention.indexByPetId', $pet->id)}}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
             {!!Form::close()!!}
         </div>
+        <br><br>
     @endsection
