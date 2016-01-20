@@ -43,6 +43,7 @@ Sistema de gestión de pacientes y control de abastecimiento
 + Modificamos el nombre del archivo __.env.example.__ por __.env__ y agregamos nuestras credenciales.
 
 + Agregar en .env:
+
 		MAIL_DRIVER=smtp
 		MAIL_HOST=smtp.gmail.com
 		MAIL_PORT=465
