@@ -4,6 +4,7 @@ namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Veterinaria\AlertType;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
 
@@ -37,6 +38,8 @@ class FrontController extends Controller{
 
     public function home()
     {
-        return view('home.index');
+        $alerts = AlertType::all();
+
+        return view('home.index',compact('alerts'));
     }
 }

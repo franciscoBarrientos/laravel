@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Inicio</a>
+        <a class="navbar-brand" href="/home">Inicio</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -186,6 +186,17 @@
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('/atentionType') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/alertType"><i class="fa fa-exclamation-circle"></i> Tipos de Alertas</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/alertType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/alertType') !!}"><i class="fa fa-th-list"></i> Listar</a>
                                 </li>
                             </ul>
                         </li>

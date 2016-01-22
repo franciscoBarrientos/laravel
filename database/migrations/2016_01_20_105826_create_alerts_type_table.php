@@ -18,7 +18,6 @@ class CreateAlertsTypeTable extends Migration
             $table->string('title');
             $table->string('icon');
             $table->string('color');
-            $table->text('html');
             $table->timestamps();
             $table->softDeletes();
         });

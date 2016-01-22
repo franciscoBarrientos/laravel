@@ -146,3 +146,6 @@ Route::get('breed/{id}/destroy', [
     'as'    => 'breed.destroy'
 ]);
 Route::get('breeds/{id}','SpeciesController@getBreeds');
+
+//AlertType
+Route::resource('alertType', 'AlertTypeController');

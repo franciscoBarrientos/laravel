@@ -2,6 +2,7 @@ var $url;
 var $token;
 var productList = [];
 var $create;
+var $alerts = [];
 
 function url(url){
     $url = url;
@@ -70,3 +71,6 @@ function addProductInList(id, quantity, detailNumber){
     productList.push(product);
 }
 
+function addAlertsInList(id){
+    $alerts.push(id);
+}

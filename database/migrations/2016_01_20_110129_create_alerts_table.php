@@ -21,6 +21,8 @@ class CreateAlertsTable extends Migration
             $table->foreign('pets_id')->references('id')->on('pets');
             $table->string('description');
             $table->dateTime('date');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

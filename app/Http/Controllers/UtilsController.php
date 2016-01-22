@@ -53,4 +53,105 @@ class UtilsController{
 
         return $date;
     }
+
+    public static function getColorButtonList(){
+        $color = [
+            'default'   =>  'Blanco',
+            'primary'   =>  'Azul',
+            'info'      =>  'Celeste',
+            'green'     =>  'Verde',
+            'success'   =>  'Verde Claro',
+            'yellow'    =>  'Amarillo',
+            'warning'   =>  'Amarillo Claro',
+            'red'       =>  'Rojo',
+            'danger'    =>  'Rojo Claro'
+        ];
+
+        return $color;
+    }
+
+    public static function getColorName($class){
+        $color = '';
+        if($class == 'default')
+            $color = 'Blanco';
+        if($class == 'primary')
+            $color = 'Azul';
+        if($class == 'info')
+            $color = 'Celeste';
+        if($class == 'green')
+            $color = 'Verde';
+        if($class == 'success')
+            $color = 'Verde Claro';
+        if($class == 'yellow')
+            $color = 'Amarillo';
+        if($class == 'warning')
+            $color = 'Amarillo Claro';
+        if($class == 'red')
+            $color = 'Rojo';
+        if($class == 'danger')
+            $color = 'Rojo Claro';
+
+        return $color;
+    }
+    
+    public static function generateFontAwesomeHtml($fontAwesomes, $columnsNumber, $fontPixelSize){
+        $html = '<div class="table-responsive"><table class="table">';
+        $size = count($fontAwesomes);
+        $j = 1;
+        $i = 0;
+        foreach($fontAwesomes as $id => $ico){
+            if($i == $columnsNumber){$i = 0;}
+            if($i == 0){$html .= '<tr>';}
+            if($j < $size || ($j == $size && $i == ($columnsNumber-1))){$html .= '<td>';}
+            else{$html .= '<td colspan="'.($columnsNumber-$i).'">';}
+            $html .= '<i id="'.$id.'" class="fa '.$ico.'" style="font-size: '.$fontPixelSize.'px;cursor:pointer;" onclick="changeFontAwesome(this.id)"></i></td>';
+            if($i == ($columnsNumber-1)){$html .= '</tr>';}
+            $i++;
+            $j++;
+        }
+        if($i<($columnsNumber-1)){$html .= '</tr>';}
+        $html .= '</table></div>';
+        return $html;
+    }
+
+    public static function getAlertTypeHtml($color,$id,$title,$font){
+        $html = '<div class="col-lg-3 col-md-6">
+                    <div class="panel panel-'.$color.'">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa '.$font.' fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" id="number'.$id.'"></div>
+                                    <div>'.$title.'</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a style="cursor: pointer" data-toggle="modal" data-target="#alertType'.$id.'">
+                            <div class="panel-footer">
+                                <span class="pull-left">Ver Detalles</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal fade" id="alertType'.$id.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">'.$title.'</h4>
+                            </div>
+                            <div class="modal-body text-justify" id="alertTypeBody'.$id.'"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+
+        return $html;
+    }
 }

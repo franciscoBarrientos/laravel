@@ -121,6 +121,13 @@
     font-size: 15px;
 }
 
+.icon-hand:before{
+    font-family: FontAwesome;
+    content:"\f25a";
+    color:#333;
+    font-size: 15px;
+}
+
 .width-middle{
     width: 50%;
 }
