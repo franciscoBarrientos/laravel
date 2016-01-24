@@ -9,6 +9,7 @@
         </div>
         <div class="container-fluid">
             {!!Form::model($pet,['route'=>['pet.update',$pet->id], 'method'=>'PUT'])!!}
+                {!! Form::hidden('id', $pet->id) !!}
                 @include('pet.forms.pet')
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-refresh"></i> Actualizar

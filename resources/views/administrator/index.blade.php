@@ -7,13 +7,18 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
+        <div>
+            <a href="/administrator/create" class="btn btn-success">
+                <i class="fa fa-plus"></i> Crear
+            </a>
+        </div>
+        <br>
         <div class="table-responsive">
             <table class="table">
                 <tr>
                     <th>Administrador</th>
                     <th colspan="2">Correo</th>
                 </tr>
-
                 @foreach($administrators as $administrator)
                 <tr>
                     <td>{{ucfirst(strtolower($users->find($administrator->user_id)->name))}}</td>

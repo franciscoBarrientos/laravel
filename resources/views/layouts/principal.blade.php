@@ -10,7 +10,7 @@
     <title>Vida Animal</title>
 
     <!-- Bootstrap Core CSS -->
-    {!!Html::style('css/bootstrap.min.css')!!}
+    {!!Html::style('bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
 
     <!-- MetisMenu CSS -->
     {!!Html::style('bower_components/metisMenu/dist/metisMenu.min.css')!!}
@@ -19,13 +19,10 @@
     {!!Html::style('dist/css/sb-admin-2.css')!!}
 
     <!-- Custom Fonts -->
-    {!!Html::style('font-awesome/css/font-awesome.min.css')!!}
+    {!!Html::style('bower_components/font-awesome/css/font-awesome.min.css')!!}
 
     <!-- Custom CSS -->
     {!!Html::style('css/container.css')!!}
-
-    <!-- CSS Jquery UI -->
-    {!!Html::style('js/jquery-ui-1.11.4/jquery-ui.css')!!}
 </head>
 <body>
 <!-- Navigation -->
@@ -228,7 +225,7 @@
 {!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
 
 <!-- Bootstrap Core JavaScript -->
-{!!Html::script('js/bootstrap.min.js')!!}
+{!!Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js')!!}
 
 <!-- Metis Menu Plugin JavaScript -->
 {!!Html::script('bower_components/metisMenu/dist/metisMenu.min.js')!!}

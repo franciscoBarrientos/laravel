@@ -49,7 +49,8 @@ class PetCreateRequest extends Request
             'breed_id.numeric' => 'Debe seleccionar una raza.',
             'breed_id.min' => 'Debe seleccionar una raza.',
             'record_number.required' => 'El número de ficha es requerido',
-            'record_number.numeric' => 'El ',
+            'record_number.unique' => 'El número de ficha ya a sido registrado',
+            'record_number.numeric' => 'El  número de ficha debe ser un numerico',
             'record_number.min' => 'required|numeric|min:1'
         ];
     }

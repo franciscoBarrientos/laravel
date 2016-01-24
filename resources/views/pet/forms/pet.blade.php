@@ -4,7 +4,12 @@
     </div>
     <div class="form-group">
         {!!Form::label('birth_date', 'Fecha nacimiento:')!!}
-        {!!Form::text('birth_date', null, ['id' => 'datepicker', 'class'=>'form-control']) !!}
+        <div class='input-group date' id='calendarPet'>
+            {!!Form::text('birth_date', null, ['class'=>'form-control']) !!}
+        <span class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+        </span>
+        </div>
     </div>
     <div class="form-group">
         {!!Form::label('sex', 'Sexo:')!!}
@@ -41,14 +46,19 @@
         @endif
     </div>
     @section('scripts')
+        <!-- Moment -->
+        {!!Html::script('bower_components/moment/min/moment.min.js')!!}
+        {!!Html::script('bower_components/moment/min/locales.min.js')!!}
+
+        <!-- Bootstrap-datetimepicker -->
+        {!!Html::script('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')!!}
+        {!!Html::style('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')!!}
+
+        <!-- Custom Calendar -->
+        {!!Html::script('js/calendar.js')!!}
+
         <!-- utils -->
         {!!Html::script('js/utils.js')!!}
-
-        <!-- JQueryUI 1.11.4 -->
-        {!!Html::script('js/jquery-ui-1.11.4/jquery-ui.min.js')!!}
-
-        <!-- DatePicker -->
-        {!!Html::script('js/jquery-datepicker.js')!!}
 
         <!-- Ajax -->
         {!!Html::script('js/ajaxPet.js')!!}
@@ -60,3 +70,8 @@
             <script>create(false);</script>
         @endif
     @endsection
+
+
+
+
+

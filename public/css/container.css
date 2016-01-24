@@ -162,3 +162,10 @@
 .ui-widget-header{
     color: #000;
 }
+
+.icon-alert:before{
+    font-family: FontAwesome;
+    content:"\f0f3";
+    color:#FFF;
+    font-size: 15px;
+}

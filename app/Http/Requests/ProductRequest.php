@@ -37,6 +37,7 @@ class ProductRequest extends Request
             ,'provider_id'       => 'required|numeric'
             //,'quantity'          => $quantity_rule
             ,'price'             => 'required|numeric|min:1'
+            ,'stock_alert'     => 'required|numeric|min:0'
         ];
     }
 
@@ -50,6 +51,9 @@ class ProductRequest extends Request
             'price.required' =>  'El precio es requerido.',
             'price.numeric' =>  'El precio debe ser un número.',
             'price.min' =>  'El precio mínimo es 1.',
+            'stock_alert.required' =>  'El stock mínimo es requerido.',
+            'stock_alert.numeric' =>  'El stock mínimo debe ser un número.',
+            'stock_alert.min' =>  'El stock de alerta mínimo es 0.',
         ];
     }
 }

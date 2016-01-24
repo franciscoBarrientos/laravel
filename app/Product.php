@@ -17,6 +17,7 @@ class Product extends Model
         ,'provider_id'
         ,'quantity'
         ,'price'
+        ,'stock_alert'
     ];
 
     protected $dates = ['deleted_at'];

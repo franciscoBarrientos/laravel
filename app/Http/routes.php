@@ -149,3 +149,14 @@ Route::get('breeds/{id}','SpeciesController@getBreeds');
 
 //AlertType
 Route::resource('alertType', 'AlertTypeController');
+
+//Alert
+Route::resource('alert', 'AlertController');
+Route::get('alert/{id}/index',[
+    'uses'  => 'AlertController@alertIndex',
+    'as'    => 'alert.alertIndex'
+]);
+Route::get('alert/{id}/create',[
+    'uses'  => 'AlertController@add',
+    'as'    => 'alert.add'
+]);

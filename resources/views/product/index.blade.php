@@ -48,7 +48,7 @@
                     {!!Html::script('js/modal.js')!!}
                     <script>
                         token('{{csrf_token()}}');
-                        url('{{route('product.index')}}');
+                        url("{{route('product.index')}}");
                     </script>
                 @endsection
             </div>

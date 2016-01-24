@@ -22,17 +22,17 @@
             <tbody>
                 <td>{{$pet->name}}</td>
                 <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#information{{$pet->id}}">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#information{{$pet->id}}">
                         <i class="fa fa-info-circle"></i> Información
                     </button>
                     <?php $date = Veterinaria\Http\Controllers\UtilsController::calculateAge($pet->birth_date); ?>
                     @include('pet.forms.information')
                 </td>
                 <td>
-                    {!!link_to_route('atention.add', $title = ' Crear Atención', $parameters = [$pet->id], $attributes = ['class'=>'btn btn-success icon-add'])!!}
+                    {!!link_to_route('alert.alertIndex', $title = ' Alertas', $parameters = $pet->id, $attributes = ['class'=>'btn btn-warning icon-alert'])!!}
                 </td>
                 <td>
-                    {!!link_to_route('atention.indexByPetId', $title = ' Atenciones', $parameters = [$pet->id], $attributes = ['class'=>'btn btn-default icon-eye'])!!}
+                    {!!link_to_route('atention.indexByPetId', $title = ' Atenciones', $parameters = $pet->id, $attributes = ['class'=>'btn btn-default icon-eye'])!!}
                 </td>
                 <td>
                     {!!link_to_route('pet.edit', $title = ' Editar', $parameters = $pet->id, $attributes = ['class'=>'btn btn-primary icon-edit'])!!}

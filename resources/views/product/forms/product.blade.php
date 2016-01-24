@@ -28,3 +28,7 @@
     {!!Form::label('price','Precio:')!!}
     {!!Form::number('price', null,['class'=>'form-control'])!!}
 </div>
+<div class="form-group">
+    {!!Form::label('stock_alert','Stock de alerta:')!!}
+    {!!Form::number('stock_alert', null,['class'=>'form-control'])!!}
+</div>

@@ -7,6 +7,11 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
+        <div>
+            <a href="/atentionType/create" class="btn btn-success">
+                <i class="fa fa-plus"></i> Crear
+            </a>
+        </div>
         <div class="table-responsive">
             <table class="table">
                 <thead>

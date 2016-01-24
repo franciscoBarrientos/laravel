@@ -57,6 +57,7 @@ class ProductController extends Controller
             ,'provider_id'       => $request['provider_id']
             //,'quantity'          => $request['quantity']
             ,'price'             => $request['price']
+            ,'stock_alert'             => $request['stock_alert']
         ]);
 
         Session::flash('message', 'Producto creado correctamente');
