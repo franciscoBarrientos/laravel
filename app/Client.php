@@ -3,9 +3,11 @@
 namespace Veterinaria;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
 {
+    use SoftDeletes;
     protected $table = 'clients';
     protected $fillable = ['name'
                           ,'lastname'
@@ -14,4 +16,5 @@ class Client extends Model
                           ,'cellphone'
                           ,'phone'
                           ,'email'];
+    protected $dates = ['deleted_at'];
 }

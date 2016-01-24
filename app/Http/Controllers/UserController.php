@@ -24,7 +24,7 @@ class UserController extends Controller
     }
 
     public function find(Route $route){
-        $this->user = User::find($route->getParameter('usuario'));
+        $this->user = User::find($route->getParameter('user'));
         $this->notFound($this->user);
     }
 
@@ -32,7 +32,7 @@ class UserController extends Controller
         $this->adminFlag = false;
         $this->userAuth = false;
 
-        if(Administrator::find(Auth::user()->id)){
+        if(Administrator::administrator(Auth::user()->id)){
             $this->adminFlag = true;
         }
 
@@ -77,7 +77,7 @@ class UserController extends Controller
         ]);
 
         Session::flash('message', 'Usuario creado correctamente');
-        return Redirect::to('/usuario');
+        return Redirect::to('/user');
     }
 
     /**
@@ -126,7 +126,7 @@ class UserController extends Controller
             if($this->userAuth){
                 $route = '/home';
             }else{
-                $route = '/usuario';
+                $route = '/user';
             }
         }else{
             $path = 'message-error';
@@ -149,6 +149,6 @@ class UserController extends Controller
     {
         $this->user->delete();
         Session::flash('message','Usuario Eliminado Correctamente');
-        return Redirect::to('/usuario');
+        return Redirect::to('/user');
     }
 }

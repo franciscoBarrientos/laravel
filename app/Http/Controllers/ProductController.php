@@ -12,6 +12,8 @@ use Veterinaria\Http\Requests\ProductRequest;
 use Veterinaria\Product;
 use Veterinaria\ProductType;
 use Veterinaria\Provider;
+use Veterinaria\RecordTypeStock;
+use Veterinaria\Stock;
 
 class ProductController extends Controller
 {
@@ -53,8 +55,9 @@ class ProductController extends Controller
              'name'              => $request['name']
             ,'product_type_id'   => $request['product_type_id']
             ,'provider_id'       => $request['provider_id']
-            ,'quantity'          => $request['quantity']
+            //,'quantity'          => $request['quantity']
             ,'price'             => $request['price']
+            ,'stock_alert'             => $request['stock_alert']
         ]);
 
         Session::flash('message', 'Producto creado correctamente');
@@ -112,24 +115,52 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Product::destroy($id);
+        //Product::destroy($id);
+        $product = Product::find($id);
+        $product -> delete();
         Session::flash('message','Producto eliminado Correctamente');
         return Redirect::to('/product');
     }
 
     public function searchByName(Request $request){
-        $products = Product::search($request->name)->available()->orderBy('name')->get();
+        if($request->ajax()){
+            $products = Product::search($request->name)->available()->orderBy('name')->get();
 
-        return response()->json(
-            $products->toArray()
-        );
+            return response()->json(
+                $products->toArray()
+            );
+        }
+
+        return null;
     }
 
     public function searchById(Request $request){
-        $product = Product::searchById($request->id)->available()->get();
+        if($request->ajax()){
+            $product = Product::searchById($request->id)->available()->get();
 
-        return response()->json(
-            $product->toArray()
-        );
+            return response()->json(
+                $product->toArray()
+            );
+        }
+
+        return null;
+    }
+
+    public function add(Request $request){
+        $recordTypeStock = RecordTypeStock::find("1");
+
+        Stock::Create([
+            'invoice_number' => $request->invoice_number
+            ,'quantity' => $request->quantity
+            ,'product_id' => $request->id
+            ,'record_type_stock_id' => $recordTypeStock->id
+        ]);
+
+        $product = Product::find($request->id);
+        $product->quantity = ($product->quantity+$request->quantity);
+        $product->save();
+
+        Session::flash('message', 'Stock agregado correctamente');
+        return Redirect::to('/product');
     }
 }

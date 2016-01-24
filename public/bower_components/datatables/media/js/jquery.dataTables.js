@@ -3427,7 +3427,7 @@
 	 * Draw the table for the first time, adding all required features
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {object} [json] JSON from the server that completed the table, if using Ajax source
-	 *    with forms-side processing (optional)
+	 *    with client-side processing (optional)
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnInitComplete ( settings, json )
@@ -5481,7 +5481,7 @@
 		
 		/**
 		 * Add a single new row or multiple rows of data to the table. Please note
-		 * that this is suitable for forms-side processing only - if you are using
+		 * that this is suitable for client-side processing only - if you are using
 		 * server-side processing (i.e. "bServerSide": true), then to add data, you
 		 * must add it to the data source, i.e. the server-side, through an Ajax call.
 		 *  @param {array|object} data The data to be added to the table. This can be:
@@ -10681,7 +10681,7 @@
 		 *  @type function
 		 *  @param {object} settings DataTables settings object
 		 *  @param {object} json The JSON object request from the server - only
-		 *    present if forms-side Ajax sourced data is used
+		 *    present if client-side Ajax sourced data is used
 		 *
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.initComplete
@@ -11502,7 +11502,7 @@
 			 * gathering the data, this message is shown in an empty row in the table to
 			 * indicate to the end user the the data is being loaded. Note that this
 			 * parameter is not used when loading data by server-side processing, just
-			 * Ajax sourced data with forms-side processing.
+			 * Ajax sourced data with client-side processing.
 			 *  @type string
 			 *  @default Loading...
 			 *
@@ -12588,10 +12588,10 @@
 		/**
 		 * This parameter is only used in DataTables' server-side processing. It can
 		 * be exceptionally useful to know what columns are being displayed on the
-		 * forms side, and to map these to database fields. When defined, the names
+		 * client side, and to map these to database fields. When defined, the names
 		 * also allow DataTables to reorder information from the server if it comes
 		 * back in an unexpected order (i.e. if you switch your columns around on the
-		 * forms-side, your server-side code does not also need updating).
+		 * client-side, your server-side code does not also need updating).
 		 *  @type string
 		 *  @default <i>Empty string</i>
 		 *
@@ -12888,7 +12888,7 @@
 			/**
 			 * Server-side processing enabled flag - when enabled DataTables will
 			 * get all data from the server for every draw - there is no filtering,
-			 * sorting or paging done on the forms-side.
+			 * sorting or paging done on the client-side.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
@@ -15090,7 +15090,7 @@
 	 *  @param {event} e jQuery event object
 	 *  @param {object} oSettings DataTables settings object
 	 *  @param {object} json The JSON object request from the server - only
-	 *    present if forms-side Ajax sourced data is used</li></ol>
+	 *    present if client-side Ajax sourced data is used</li></ol>
 	 */
 
 	/**

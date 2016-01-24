@@ -29,4 +29,11 @@ class BreedRequest extends Request
             'species_id'=>'required'
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es requerido.',
+            'species_id.required' => 'La especie es requerida.',
+        ];
+    }
 }

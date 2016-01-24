@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Eliminar proveedor {{$ticket->number}}</h4>
+                <h4 class="modal-title" id="myModalLabel">Anular boleta {{$ticket->number}}</h4>
             </div>
             <div class="modal-body text-justify">
                 ¿Estas seguro de querer anular la boleta {{$ticket->number}}?

@@ -10,28 +10,15 @@
         <title>Vida Animal</title>
 
         <!-- Bootstrap Core CSS -->
-        {!!Html::style('css/bootstrap.min.css')!!}
+        {!!Html::style('bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
 
         <!-- Custom CSS -->
         {!!Html::style('css/landing-page.css')!!}
 
         <!-- Custom Fonts -->
-        {!!Html::style('font-awesome/css/font-awesome.min.css')!!}
+        {!!Html::style('bower_components/font-awesome/css/font-awesome.min.css')!!}
 
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- jQuery -->
-        {!!Html::script('js/jquery.js')!!}
-
-        <!-- Bootstrap Core JavaScript -->
-        {!!Html::script('js/bootstrap.min.js')!!}
     </head>
     <body>
         <!-- Navigation -->
@@ -69,4 +56,17 @@
 
         @yield('content')
     </body>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery -->
+    {!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
+
+    <!-- Bootstrap Core JavaScript -->
+    {!!Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js')!!}
 </html>

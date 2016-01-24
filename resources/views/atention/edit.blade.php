@@ -2,13 +2,14 @@
     @section('content')
         @include('alerts.request')
         <div class="container-fluid">
-            {!!Form::model($user,['route'=>['usuario.update',$user->id], 'method'=>'PUT'])!!}
-                {!! Form::hidden('id', $user->id) !!}
-                @include('user.forms.user')
+            {!!Form::model($atention,['route'=>['atention.update',$atention->id], 'method'=>'PUT'])!!}
+                {!! Form::hidden('id', $atention->id) !!}
+                @include('atention.forms.atention')
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-refresh"></i> Actualizar
                 </button>
-                <a href="{{ route('usuario.index') }}" class="btn btn-info" title="Volver">Volver</span></a>
+            <a href="{{route('atention.indexByPetId', $pet->id)}}" class="btn btn-info" title="Volver"><i class="fa fa-arrow-circle-left"></i> Volver</span></a>
             {!!Form::close()!!}
         </div>
+        <br><br>
     @endsection
