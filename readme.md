@@ -42,15 +42,32 @@ Sistema de gestión de pacientes y control de abastecimiento
     
 + Modificamos el nombre del archivo __.env.example.__ por __.env__ y agregamos nuestras credenciales.
 
++ Agregar en .env:
+
+		MAIL_DRIVER=smtp
+		MAIL_HOST=smtp.gmail.com
+		MAIL_PORT=465
+		MAIL_USERNAME=
+		MAIL_PASSWORD=
+		MAIL_ENCRYPTION=ssl
+
+		NOCAPTCHA_SECRET=
+		NOCAPTCHA_SITEKEY=
+
+		ENTERPRISE_NAME=Veterinaria Vida Animal
+		ENTERPRISE_ADDRESS=Libertador Bernardo O'Higgins 2041
+		ENTERPRISE_CITY=Maipú - Santiago
+		ENTERPRISE_PHONE=2 2780 1733
+		FOOTER=Consultas a Domicilio, Cirugía, Destartrajes, Flores de Bách.
+
 + Ejecutamos las migraciones.
 
         $ php artisan migrate
 
 + Por ultimo solo debemos generar una key para nuestra app.
 
-         $ php artisan key:generate
+        $ php artisan key:generate
 
 + Listo ya podemos ejecutar el proyecto.
 
         $ php artisan serve
-		

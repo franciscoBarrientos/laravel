@@ -10,5 +10,6 @@ class Ticket extends Model
     protected $fillable = [
         'number'
         ,'canceled'
+        ,'paid'
     ];
 }

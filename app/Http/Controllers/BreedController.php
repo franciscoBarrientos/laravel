@@ -3,8 +3,7 @@
 namespace Veterinaria\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Veterinaria\Http\Requests;
@@ -19,6 +18,7 @@ class BreedController extends Controller
 {
     public function __construct(){
         $this -> middleware('auth');
+        $this -> middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -27,14 +27,9 @@ class BreedController extends Controller
      */
     public function index()
     {
-        //
-        $breeds = DB::table('breeds')
-            -> orderBy('name', 'asc')
-            -> paginate(10);
-        $speciesList = DB::table('species')
-            -> paginate(10);
+        $breeds = Breed::all()->paginate(10);
 
-        return view('breed.index', ['breeds' => $breeds, 'speciesList' => $speciesList]);
+        return view('breed.index', compact('breeds'));
     }
 
     /**
@@ -44,7 +39,6 @@ class BreedController extends Controller
      */
     public function create()
     {
-        //
         $listSpecies = Species::lists('species', 'id');
         $species_id = null;
         return view('breed.create', ['listSpecies' => $listSpecies,  'species_id' => $species_id]);
@@ -53,14 +47,14 @@ class BreedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request|\Veterinaria\Http\Requests\BreedRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(BreedRequest $request)
     {
         //
         Breed::Create([
-            'name' => strtoupper($request['name'])
+            'name' => $request['name']
             , 'species_id' => $request['species_id']
         ]);
 
@@ -101,8 +95,8 @@ class BreedController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request|\Veterinaria\Http\Requests\BreedRequest $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(BreedRequest $request, $id)

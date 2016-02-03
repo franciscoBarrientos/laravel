@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Pagination\PaginationServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Veterinaria\Breed;
 use Veterinaria\Http\Requests;
 use Veterinaria\Http\Controllers\Controller;
 use Veterinaria\Http\Requests\SpeciesRequest;
@@ -18,6 +19,7 @@ class SpeciesController extends Controller
 {
     public function __construct(){
         $this -> middleware('auth');
+        $this -> middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -115,5 +117,14 @@ class SpeciesController extends Controller
 
         Session::flash('message', 'Especie eliminada correctamente');
         return Redirect::to('/species');
+    }
+
+    public function getBreeds(Request $request, $id){
+        if($request->ajax()){
+            $breeds = Breed::breeds($id);
+            return response()->json($breeds);
+        }
+
+        return null;
     }
 }

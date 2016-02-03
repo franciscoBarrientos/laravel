@@ -10,7 +10,7 @@
     <title>Vida Animal</title>
 
     <!-- Bootstrap Core CSS -->
-    {!!Html::style('css/bootstrap.min.css')!!}
+    {!!Html::style('bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
 
     <!-- MetisMenu CSS -->
     {!!Html::style('bower_components/metisMenu/dist/metisMenu.min.css')!!}
@@ -19,13 +19,10 @@
     {!!Html::style('dist/css/sb-admin-2.css')!!}
 
     <!-- Custom Fonts -->
-    {!!Html::style('font-awesome/css/font-awesome.min.css')!!}
+    {!!Html::style('bower_components/font-awesome/css/font-awesome.min.css')!!}
 
     <!-- Custom CSS -->
     {!!Html::style('css/container.css')!!}
-
-    <!-- CSS Jquery UI -->
-    {!!Html::style('css/jquery-ui.css')!!}
 </head>
 <body>
 <!-- Navigation -->
@@ -37,7 +34,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Inicio</a>
+        <a class="navbar-brand" href="/home">Inicio</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -48,7 +45,7 @@
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
-                    <a href="/usuario/{!!Auth::user()->id!!}/edit"><i class="fa fa-user"></i> Perfil de Usuario</a>
+                    <a href="/user/{!!Auth::user()->id!!}/edit"><i class="fa fa-user"></i> Perfil de Usuario</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -65,7 +62,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="/home"><i class="fa fa-dashboard"></i> Panel</a>
+                    <a href="/home"><i class="fa fa-bell"></i> Alertas</a>
                 </li>
 
                 <li>
@@ -89,6 +86,9 @@
                         <li>
                             <a href="{!! URL::to('/ticket') !!}"><i class="fa fa-th-list"></i> Listar</a>
                         </li>
+                        <li>
+                            <a href="{!! URL::to('/ticket/canceled/list') !!}"><i class="fa fa-trash"></i> Listar Anuladas</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -105,18 +105,6 @@
                 </li>
 
                 <li>
-                    <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{!! URL::to('/productType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
-                        </li>
-                        <li>
-                            <a href="{!! URL::to('/productType') !!}"><i class="fa fa-th-list"></i> Listar</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
                     <a href="/provider"><i class="fa fa-truck"></i> Proveedor</a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -128,18 +116,18 @@
                     </ul>
                 </li>
 
-                @if(\Veterinaria\Administrator::find(Auth::user()->id))
+                @if(\Veterinaria\Administrator::administrator(Auth::user()->id))
                 <li>
                     <a href=""><i class="fa fa-gear"></i> Administrar</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="/usuario"><i class="fa fa-users"></i> Usuarios</a>
+                            <a href="/user"><i class="fa fa-users"></i> Usuarios</a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="{!! URL::to('/usuario/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                    <a href="{!! URL::to('/user/create') !!}"><i class="fa fa-plus"></i> Crear</a>
                                 </li>
                                 <li>
-                                    <a href="{!! URL::to('/usuario') !!}"><i class="fa fa-th-list"></i>Listar</a>
+                                    <a href="{!! URL::to('/user') !!}"><i class="fa fa-th-list"></i>Listar</a>
                                 </li>
                             </ul>
                         </li>
@@ -151,6 +139,61 @@
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('/administrator') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/species"><i class="fa fa-paw"></i> Especie</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/species/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/species') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/breed"><i class="fa fa-asterisk"></i> Razas</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/breed/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/breed') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/productType"><i class="fa fa-cart-arrow-down"></i> Tipos de Producto</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/productType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/productType') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/atentionType"><i class="fa fa-book"></i> Tipos de Atención</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/atentionType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/atentionType') !!}"><i class="fa fa-th-list"></i> Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/alertType"><i class="fa fa-exclamation-circle"></i> Tipos de Alertas</a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{!! URL::to('/alertType/create') !!}"><i class="fa fa-plus"></i> Crear</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/alertType') !!}"><i class="fa fa-th-list"></i> Listar</a>
                                 </li>
                             </ul>
                         </li>
@@ -182,7 +225,7 @@
 {!!Html::script('bower_components/jquery/dist/jquery.min.js')!!}
 
 <!-- Bootstrap Core JavaScript -->
-{!!Html::script('js/bootstrap.min.js')!!}
+{!!Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js')!!}
 
 <!-- Metis Menu Plugin JavaScript -->
 {!!Html::script('bower_components/metisMenu/dist/metisMenu.min.js')!!}
@@ -192,14 +235,5 @@
 
 @section('scripts')
 @show
-
-<!-- DatePicker -->
-{!!Html::script('js/jquery-datepicker.js')!!}
-
-<!-- Rut -->
-{!!Html::script('js/jquery.rut.js')!!}
-
-<!-- Validate Rut -->
-{!!Html::script('js/jquery_validate_rut.js')!!}
 </body>
 </html>

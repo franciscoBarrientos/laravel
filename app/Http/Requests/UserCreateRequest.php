@@ -29,4 +29,14 @@ class UserCreateRequest extends Request
             'password' => 'required'
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es requerido',
+            'email.required' => 'El email es requerido',
+            'email.email' => 'El email ingresado es incorrecto',
+            'email.unique' => 'El email ingresado ya existe',
+            'email.password' => 'La contraseña ingresada es requerida',
+        ];
+    }
 }

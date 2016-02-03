@@ -19,7 +19,7 @@ class AddUserToUser extends Migration
                 array(
                     'id' => 1,
                     'name' => 'test',
-                    'email' => 'test@test.cl',
+                    'email' => 'test@test.com',
                     'password' => Hash::make('test')
                 )
             );

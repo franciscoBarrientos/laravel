@@ -1,6 +1,12 @@
 @extends('layouts.principal')
     @section('content')
         @include('alerts.request')
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Crear Boleta</h2>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
         <div class="container-width">
             <div id="ajaxRequest" style="display: none">
                 <div class="container-fluid">
@@ -34,44 +40,59 @@
             </div>
 
             <div class="form-group">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token2"/>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token"/>
                 <table class="container-width">
                     <thead id="head"></thead>
                     <tbody id="data"></tbody>
                 </table>
             </div>
 
+            <?php
+                $lastTicket = \Veterinaria\Ticket::all()->last();
+                if($lastTicket == null){
+                    $nextTicket = 1;
+                }else{
+                    $nextTicket = ($lastTicket->number) + 1;
+                }
+            ?>
+
             <div class="form-group" id="detail" style="display: none">
-                {!!Form::open(['route'=>'ticket.store', 'method'=>'POST'])!!}
-                    <h4>Detalle de Boleta</h4>
-                    <h5>Número de próxima Boleta: {{\Veterinaria\Ticket::all()->last()->number + 1}}</h5>
-                    <table class="container-width">
-                        <thead id="headDetail">
-                            <tr>
-                                <th style='width: 20%'>Nombre</th>
-                                <th style='width: 20%'>Cantidad</th>
-                                <th style='width: 20%'>Precio Unitario</th>
-                                <th style='width: 20%'>Precio SubTotal</th>
-                                <th style='width: 20%'>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dataDetail"></tbody>
+                <h4>Detalle de Boleta</h4>
+                <h5>Número de próxima Boleta: {{$nextTicket}}</h5>
+                <table class="container-width">
+                    <thead id="headDetail">
                         <tr>
-                            <td colspan="2"><input type="hidden" id="detailNumber" name="detailNumber" value="0"/></td>
-                            <td><label>Total:</label>&nbsp;</td>
-                            <td><input type="hidden" id="total" value="0"/><div id="totalPrice"></div></td>
-                            <td>&nbsp;</td>
+                            <th style='width: 20%'>Nombre</th>
+                            <th style='width: 20%'>Cantidad</th>
+                            <th style='width: 20%'>Precio Unitario</th>
+                            <th style='width: 20%'>Precio SubTotal</th>
+                            <th style='width: 20%'>Eliminar</th>
                         </tr>
-                        <tr>
-                            <td colspan="5">{!!Form::submit('Crear', ['class'=>"btn btn-primary icon-save"])!!}</td>
-                        </tr>
-                    </table>
-                {!!Form::close()!!}
+                    </thead>
+                    <tbody id="dataDetail"></tbody>
+                    <tr>
+                        <td colspan="2"><input type="hidden" id="detailNumber" name="detailNumber" value="0"/></td>
+                        <td><label>Total:</label>&nbsp;</td>
+                        <td><input type="hidden" id="total" value="0"/><div id="totalPrice"></div></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <input type="button" id="createTicket" class="btn btn-primary" value="Crear" />
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     @endsection
 
     @section('scripts')
         <!-- AJAX -->
-        {!!Html::script('js/ajax.js')!!}
+        {!!Html::script('js/utils.js')!!}
+        {!!Html::script('js/ajaxTicket.js')!!}
+
+        <script>
+            token('{{ csrf_token() }}');
+            url('{{route('ticket.store')}}');
+        </script>
     @endsection

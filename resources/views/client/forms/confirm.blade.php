@@ -10,8 +10,10 @@
                 ¿Estas seguro de eliminar al cliente {{$client->name}}?
             </div>
             <div class="modal-footer">
+                {!!Form::open(['route'=>['client.destroy',$client->id], 'method'=>'DELETE'])!!}
                 <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
-                <a href="{{ route('client.destroy', $client->id) }}" class="btn btn-danger" ><i class="fa fa-minus-circle"></i> Eliminar</a>
+                <button type="submit" class="btn btn-danger" ><i class="fa fa-minus-circle"></i> Eliminar</button>
+                {!!Form::close()!!}
             </div>
         </div>
     </div>

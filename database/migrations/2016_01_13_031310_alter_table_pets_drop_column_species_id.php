@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 class AlterTablePetsDropColumnSpeciesId extends Migration
 {
@@ -14,9 +15,9 @@ class AlterTablePetsDropColumnSpeciesId extends Migration
     {
         //
         Schema::table('pets', function ($table) {
-        $table->dropForeign('pets_species_id_foreign');
-        $table->dropColumn('species_id');
-    });
+            $table->dropForeign('pets_species_id_foreign');
+            $table->dropColumn('species_id');
+        });
 
         Schema::table('pets', function ($table) {
             $table->integer('breed_id')->unsigned();

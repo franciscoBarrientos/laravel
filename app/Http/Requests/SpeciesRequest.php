@@ -28,4 +28,10 @@ class SpeciesRequest extends Request
             'species'=>'required'
         ];
     }
+
+    public function messages(){
+        return [
+            'species.required' => 'La especie es requerida',
+        ];
+    }
 }
