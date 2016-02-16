@@ -12,4 +12,9 @@ class Ticket extends Model
         ,'canceled'
         ,'paid'
     ];
+
+    public function scopeSearch($query, $number)
+    {
+        return $query->where('number', 'like', "%$number%");
+    }
 }

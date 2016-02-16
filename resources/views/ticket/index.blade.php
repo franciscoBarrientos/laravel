@@ -3,10 +3,23 @@
 @include('alerts.message')
 <div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-9">
             <h2 class="page-header">Boletas</h2>
         </div>
         <!-- /.col-lg-12 -->
+        <div class="col-sm-3 page-header">
+            <!-- Buscador -->
+            {!! Form::open (['route' => 'ticket.index', 'method' => 'GET', 'class' => 'navbar-form-pull-right'])!!}
+            <div class="input-group">
+                {!! Form::text('number', null, ['class' => 'form-control', 'placeholder'=>'Buscar boleta', 'aria-describedby'=>'search']) !!}
+                        <span class="input-group-addon" id="search">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true">
+                            </span>
+                        </span>
+            </div>
+            {!! Form::close() !!}
+            <!-- Fin buscador -->
+        </div>
     </div>
     <table class="table">
         <thead>

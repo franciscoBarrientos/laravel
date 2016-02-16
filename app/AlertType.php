@@ -12,4 +12,8 @@ class AlertType extends Model
     protected $table = 'alerts_type';
 
     protected $fillable = ['title','font_awesome_id','color'];
+
+    public function scopeSearch($query, $title){
+        return $query -> where('title', 'LIKE', "%$title%");
+    }
 }

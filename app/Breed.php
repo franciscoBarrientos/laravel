@@ -13,4 +13,8 @@ class Breed extends Model
     public static function breeds($id){
         return Breed::where('species_id','=',$id)->get();
     }
+
+    public function scopeSearch($query, $name){
+        return $query -> where('name', 'LIKE', "%$name%");
+    }
 }

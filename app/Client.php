@@ -17,4 +17,9 @@ class Client extends Model
                           ,'phone'
                           ,'email'];
     protected $dates = ['deleted_at'];
+
+    public function scopeSearch($query, $name){
+        return $query -> where('name', 'LIKE', "%$name%");
+    }
+
 }

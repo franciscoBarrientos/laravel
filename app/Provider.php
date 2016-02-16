@@ -17,4 +17,9 @@ class Provider extends Model
         ,'email'
         ,'phone'
     ];
+
+    public function scopeSearch($query, $name)
+    {
+        return $query->where('name', 'like', "%$name%");
+    }
 }

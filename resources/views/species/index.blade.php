@@ -2,10 +2,23 @@
 @section('content')
 @include('alerts.message')
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-9">
             <h2 class="page-header">Especies</h2>
         </div>
         <!-- /.col-lg-12 -->
+        <div class="col-sm-3 page-header">
+            <!-- Buscador -->
+            {!! Form::open (['route' => 'species.index', 'method' => 'GET', 'class' => 'navbar-form-pull-right'])!!}
+            <div class="input-group">
+                {!! Form::text('species', null, ['class' => 'form-control', 'placeholder'=>'Buscar especie', 'aria-describedby'=>'search']) !!}
+                        <span class="input-group-addon" id="search">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true">
+                            </span>
+                        </span>
+            </div>
+            {!! Form::close() !!}
+            <!-- Fin buscador -->
+        </div>
     </div>
     <div>
         <a href="{{ route('species.create') }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar especie</a>

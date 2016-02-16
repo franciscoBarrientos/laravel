@@ -10,4 +10,8 @@ class ProductType extends Model
     protected $fillable = [
         'description'
     ];
+
+    public function scopeSearch($query, $description){
+        return $query -> where('description', 'LIKE', "%$description%");
+    }
 }

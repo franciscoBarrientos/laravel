@@ -2,10 +2,23 @@
 @section('content')
     @include('alerts.message')
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-9">
             <h2 class="page-header">Clientes</h2>
         </div>
         <!-- /.col-lg-12 -->
+        <div class="col-sm-3 page-header">
+        <!-- Buscador -->
+        {!! Form::open (['route' => 'client.index', 'method' => 'GET', 'class' => 'navbar-form-pull-right'])!!}
+            <div class="input-group">
+                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder'=>'Buscar cliente', 'aria-describedby'=>'search']) !!}
+                <span class="input-group-addon" id="search">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                    </span>
+                </span>
+            </div>
+        {!! Form::close() !!}
+        <!-- Fin buscador -->
+        </div>
     </div>
     <div id="tableClient">
         <table class="table">

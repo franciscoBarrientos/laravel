@@ -11,4 +11,8 @@ class AtentionType extends Model
     protected $table = 'atentions_type';
     protected $fillable = ['description','price'];
     protected $dates = ['deleted_at'];
+
+    public function scopeSearch($query, $description){
+        return $query -> where('description', 'LIKE', "%$description%");
+    }
 }

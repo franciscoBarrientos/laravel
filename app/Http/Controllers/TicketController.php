@@ -27,9 +27,9 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tickets = Ticket::where('canceled', '=', 0)->paginate(10);
+        $tickets = Ticket::Search($request->number)->where('canceled', '=', 0)->paginate(10);
         return view('ticket.index', compact('tickets'));
     }
 

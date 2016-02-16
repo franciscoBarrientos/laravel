@@ -42,4 +42,9 @@ class User extends Model implements AuthenticatableContract,
             $this->attributes['password'] = \Hash::make($pass);
         }
     }
+
+    public function scopeSearch($query, $name)
+    {
+        return $query->where('name', 'like', "%$name%");
+    }
 }

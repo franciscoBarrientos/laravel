@@ -23,9 +23,9 @@ class AlertTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $alertTypes = AlertType::paginate(10);
+        $alertTypes = AlertType::Search($request->title)->paginate(10);
         return view('alertType.index', compact('alertTypes'));
     }
 

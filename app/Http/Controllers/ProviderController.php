@@ -24,9 +24,9 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $providers = Provider::paginate(10);
+        $providers = Provider::Search($request->name)->paginate(10);
         return view('provider.index', compact('providers'));
     }
 

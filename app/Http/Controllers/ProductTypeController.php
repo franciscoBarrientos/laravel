@@ -22,9 +22,9 @@ class ProductTypeController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productTypes = ProductType::paginate(10);
+        $productTypes = ProductType::Search($request->description)->paginate(10);
         return view('productType.index', compact('productTypes'));
     }
 

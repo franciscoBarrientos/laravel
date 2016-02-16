@@ -2,8 +2,8 @@
 
 namespace Veterinaria\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Veterinaria\Http\Requests;
@@ -25,10 +25,9 @@ class BreedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $breeds = Breed::all()->paginate(10);
-
+        $breeds = Breed::Search($request->name)->paginate(10);
         return view('breed.index', compact('breeds'));
     }
 

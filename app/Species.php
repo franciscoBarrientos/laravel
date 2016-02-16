@@ -13,4 +13,8 @@ class Species extends Model
     {
         return $this->hasMany('Veterinaria\Pet');
     }
+
+    public function scopeSearch($query, $species){
+        return $query -> where('species', 'LIKE', "%$species%");
+    }
 }
